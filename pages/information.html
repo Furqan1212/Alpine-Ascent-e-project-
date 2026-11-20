@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Information — Alpine Ascents</title><meta name="description" content="Information">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../images/logo.svg"><link rel="icon" type="image/png" sizes="64x64" href="../images/favicon.png"><link rel="stylesheet" href="../css/style.css"><script>if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("motion")</script></head><body>
+<!-- ═══════════════════════════════════════════════════════════════════════════════
+  PAGE      : Information — Alpine Ascents   (pages/information.html)
+  SECTIONS  : The art of going up.  ·  What is mountaineering?  ·  From idea to summit.  ·  Mountaineering at a
+              glance.  ·  What every climber carries.  ·  Common beliefs, tested.  ·  Worth knowing.
+  SHARED    : skip link · scroll bar · navbar with Learn menu + visitor pill · footer · bottom ticker (same on every page)
+  STYLES    : ../css/style.css  (only stylesheet; comments above each section give the § to search for)
+  SCRIPTS   : main.js · motion.js · pages.js
+  HOW TO READ: every "▼" comment below sits right above the HTML it describes and lists its CSS classes + JS file.
+════════════════════════════════════════════════════════════════════════════════ -->
+<!-- ▼ SKIP LINK (keyboard shortcut to the main content)
+     CSS  : §2: .skip   (css/style.css — search for the § number) -->
+<a class="skip" href="#main">Skip to content</a>
+<!-- ▼ SCROLL PROGRESS BAR (thin orange line at the very top)
+     CSS  : §2: .progress   (css/style.css — search for the § number) -->
+<div class="progress" aria-hidden="true"></div>
+<!-- ▼ NAVIGATION BAR (fixed at the top)
+     CSS  : §4: .nav .logo .links .nav__right .visitors .burger | §2: .wrap | §4b: .dd .dd__btn .dd__menu | §4c:
+            .live .vtip   (css/style.css — search for the § number)
+     JS   : main.js: visitor counter + menu, dropdown, active page -->
+<header class="nav"><div class="wrap">
+<!-- ▼ LOGO (images/logo.svg, inline copy)
+     CSS  : §4: .logo   (css/style.css — search for the § number) -->
+<a class="logo" href="../index.html" aria-label="Alpine Ascents home"><svg class="lg" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="lgBg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0d1b31"/><stop offset="1" stop-color="#1c3a60"/></linearGradient><clipPath id="lgClip"><circle cx="24" cy="24" r="22.5"/></clipPath></defs><circle cx="24" cy="24" r="22.5" fill="url(#lgBg)"/><g clip-path="url(#lgClip)"><circle cx="36" cy="12" r="2.2" fill="#ffb38a" opacity=".9"/><path d="M-2 52 L24 21 L26 52Z" fill="#eef6fb"/><path d="M24 21 L50 52 L26 52Z" fill="#8fd3f4"/><path d="M24 21 L19.6 25.6 L22.4 24.6 L24 27.6 L26 24.8 L28.6 26.2Z" fill="#fff"/><path d="M-2 52 L-2 44 L13 36 L19 41 L28 34 L50 46 L50 52Z" fill="#12263f"/></g><g fill="#ff6a2b" stroke="#ff6a2b" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="9.2" r="2.5" stroke="none"/><path d="M24 12.4 V18.2" stroke-width="3"/><path d="M24 18.2 L21.6 21.2 M24 18.2 L26.4 21.2" stroke-width="2.4"/><path d="M24 13.6 L20.4 16.4" stroke-width="2.2"/><g><path d="M24 13.8 L28.2 9.4" stroke-width="2.2"/><path d="M26.2 6.2 L30.8 10.6" stroke-width="1.6" stroke="#eef6fb"/><path d="M26.2 6.2 L28.8 5.4" stroke-width="1.4" stroke="#eef6fb"/></g></g><circle cx="24" cy="24" r="22.5" fill="none" stroke="#8fd3f4" stroke-width="1.3" opacity=".55"/></svg>ALPINE ASCENTS</a>
+<!-- ▼ MAIN MENU (page links + Learn dropdown)
+     CSS  : §4: .links | §4b: .dd .dd__btn .dd__menu   (css/style.css — search for the § number)
+     JS   : main.js: menu, dropdown, active page -->
+<nav aria-label="Primary"><ul class="links" id="menu"><li><a href="../index.html">Home</a></li><li class="dd"><button class="dd__btn" type="button" aria-expanded="false" aria-haspopup="true">Learn <span aria-hidden="true">▾</span></button><ul class="dd__menu"><li><a href="information.html">Information</a></li><li><a href="history.html">History</a></li><li><a href="types-styles.html">Types &amp; Styles</a></li><li><a href="techniques.html">Techniques</a></li><li><a href="sheltering.html">Sheltering</a></li><li><a href="hazards.html">Hazards</a></li><li><a href="records.html">Records</a></li><li><a href="success-stories.html">Success Stories</a></li><li><a href="guidelines.html">Guidelines</a></li><li><a href="quiz.html">Quizzes</a></li></ul></li><li><a href="simulator.html">Simulator</a></li><li><a href="clubs.html">Clubs</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="developments.html">Latest</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
+<!-- ▼ VISITOR COUNTER + MOBILE-MENU BUTTON
+     CSS  : §4: .nav__right .visitors .burger | §4c: .live .vtip   (css/style.css — search for the § number)
+     JS   : main.js: visitor counter -->
+<div class="nav__right"><div class="visitors" tabindex="0" aria-describedby="visTip"><i class="live" aria-hidden="true"></i><b id="visitCount">—</b><span class="lbl">visitors</span><div class="vtip" id="visTip" role="tooltip"><strong id="visTipTitle"></strong><span id="visTipSub"></span><small>Counted in this browser only</small></div></div>
+<button class="burger" aria-expanded="false" aria-controls="menu" aria-label="Toggle menu"><span></span></button></div>
+</div></header>
+
+<!-- ▼ MAIN CONTENT — everything between the navbar and the footer. Each block below is one section of this page. -->
+<main id="main">
+<!-- ▼ PAGE BANNER — "The art of going up."
+     CSS  : §7: .page-hero .page-hero__bg .crumbs | §2: .wrap   (css/style.css — search for the § number) -->
+<section class="page-hero"><div class="page-hero__bg" style="background-image:url('https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=2000&q=80')" role="img" aria-label="The art of going up. banner photograph"></div>
+<div class="wrap"><p class="crumbs"><a href="../index.html">Home</a> / Information</p><h1>The art of going up.</h1></div></section>
+<!-- ▼ SECTION · Mountaineering — "What is mountaineering?"
+     CSS  : §2: .section .wrap .eyebrow .lead | §8: .split .facts .frame   (css/style.css — search for the §
+            number) -->
+<section class="section"><div class="wrap split"><div><p class="eyebrow">Mountaineering</p><h2 class="reveal">What is mountaineering?</h2>
+<p class="lead reveal">Mountaineering — mountain climbing — is the sport of reaching, or attempting to reach, high points in mountainous regions, chiefly for the pleasure of the climb.</p>
+<p class="reveal" style="color:var(--mist)">The term is often loosely applied to walking up low hills, but it properly belongs where terrain and weather make previous experience essential for safety. Unlike most sports, it has no widely-applied formal rules or governing body: climbers follow a rich variety of techniques and philosophies.</p>
+<ul class="facts reveal"><li><span>Discipline</span>Alpine, rock, ice &amp; expedition</li><li><span>Governance</span>Self-regulated; ethics-led</li><li><span>Essential skills</span>Navigation, rope work, weather reading</li><li><span>Best practice</span>Train, acclimatise, turn back in time</li></ul></div>
+<figure class="frame reveal"><img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1000&q=80" alt="Climbers on a snowy ridge" loading="lazy"><figcaption>Ridge line, high alpine</figcaption></figure></div></section>
+<!-- ▼ SECTION · Anatomy of a climb — "From idea to summit."
+     CSS  : §2: .section .section--navy .wrap .eyebrow .lead | §30: .sec-ph | §28: .tabs__list .step .step__n
+            (css/style.css — search for the § number)
+     JS   : pages.js: tabs -->
+<section class="section section--navy"><div class="sec-ph" style="background-image:url('https://images.unsplash.com/photo-1522163182402-834f871fd851?auto=format&fit=crop&w=1400&q=70')" aria-hidden="true"></div><div class="wrap"><p class="eyebrow">Anatomy of a climb</p><h2 class="reveal">From idea to summit.</h2><p class="lead reveal">Every successful climb follows the same five stages. Skipping one is how accidents start.</p>
+<div data-tabs><div class="tabs__list" role="tablist" aria-label="Climb stages"><button role="tab" type="button" aria-selected="true">1. Plan</button><button role="tab" type="button" aria-selected="false">2. Approach</button><button role="tab" type="button" aria-selected="false">3. Acclimatise</button><button role="tab" type="button" aria-selected="false">4. Summit push</button><button role="tab" type="button" aria-selected="false">5. Descent</button></div><div role="tabpanel" class="step"><span class="step__n">1</span><div><h3>Plan</h3><p>Choose a mountain that matches your skills, check the season, book permits and build a training plan months ahead. Tell someone your route.</p></div></div><div role="tabpanel" class="step"><span class="step__n">2</span><div><h3>Approach</h3><p>Walk in with a loaded pack, set up camp and check your gear. Easy days now save energy later.</p></div></div><div role="tabpanel" class="step"><span class="step__n">3</span><div><h3>Acclimatise</h3><p>Climb high and sleep low over several days so your body can adapt to the thin air. Rest days are part of the plan.</p></div></div><div role="tabpanel" class="step"><span class="step__n">4</span><div><h3>Summit push</h3><p>Start early, move steadily, and obey your turn-around time. The weather window decides everything.</p></div></div><div role="tabpanel" class="step"><span class="step__n">5</span><div><h3>Descent</h3><p>Most accidents happen on the way down, when you are tired. Stay focused until you are back at camp.</p></div></div></div></div></section>
+<!-- ▼ PHOTO + NUMBERS BAND — "Mountaineering at a glance."
+     CSS  : §28: .band .band__bg | §2: .wrap .eyebrow | §6: .stats .stat   (css/style.css — search for the §
+            number)
+     JS   : main.js: numbers count up -->
+<section class="band"><div class="band__bg" style="background-image:url('https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=2000&q=80')"></div><div class="wrap"><p class="eyebrow">By the numbers</p><h2 class="reveal">Mountaineering at a glance.</h2><div class="stats"><div class="stat"><b data-count=14>0</b><span>Peaks above 8,000 metres</span></div><div class="stat"><b data-count=7>0</b><span>Summits: the highest peak on each continent</span></div><div class="stat"><b data-count=1786>0</b><span>Year of the first Mont Blanc ascent</span></div></div></div></section>
+<!-- ▼ SECTION · Essential gear — "What every climber carries."
+     CSS  : §2: .section .wrap .eyebrow .lead | §8: .split .facts .frame   (css/style.css — search for the §
+            number) -->
+<section class="section"><div class="wrap split"><div><p class="eyebrow">Essential gear</p><h2 class="reveal">What every climber carries.</h2><p class="lead reveal">Good gear does not replace skill, but poor gear can end a trip quickly.</p><ul class="facts reveal"><li><span>Boots</span>Stiff, insulated and fitted over thick socks</li><li><span>Layers</span>Base, insulation and a waterproof shell</li><li><span>Ice axe and crampons</span>For snow and ice, with training to use them</li><li><span>Helmet and harness</span>Against rockfall and for roped travel</li><li><span>Navigation</span>Map, compass, altimeter and a charged phone or radio</li></ul></div><figure class="frame reveal"><img src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=1000&q=80" alt="Climber with a loaded pack on a mountain trail" loading="lazy"><figcaption>Pack light, check twice</figcaption></figure></div></section>
+<!-- ▼ SECTION · Myth or fact? — "Common beliefs, tested."
+     CSS  : §2: .section .wrap .eyebrow | §30: .sec-ph | §28: .flips .flip .flip__in .flip__f .flip__b .t
+            (css/style.css — search for the § number)
+     JS   : pages.js: myth/fact flip cards -->
+<section class="section"><div class="sec-ph" style="background-image:url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1400&q=70')" aria-hidden="true"></div><div class="wrap"><p class="eyebrow">Myth or fact?</p><h2 class="reveal">Common beliefs, tested.</h2><div class="flips"><button class="flip reveal" type="button" aria-pressed="false" style="--d:0.0s"><span class="flip__in"><span class="flip__f"><small>MYTH</small><strong>Mountaineering is only for experts.</strong><em>Tap to reveal the fact ↻</em></span><span class="flip__b"><small>FACT</small><span class="t">Everyone starts somewhere. Courses, guided climbs and smaller peaks let beginners build skills safely.</span><em>Tap to flip back</em></span></span></button><button class="flip reveal" type="button" aria-pressed="false" style="--d:0.12s"><span class="flip__in"><span class="flip__f"><small>MYTH</small><strong>The summit is the goal.</strong><em>Tap to reveal the fact ↻</em></span><span class="flip__b"><small>FACT</small><span class="t">The goal is a safe return. Climbers who turn back are not failures. They are the ones who return to climb again.</span><em>Tap to flip back</em></span></span></button><button class="flip reveal" type="button" aria-pressed="false" style="--d:0.24s"><span class="flip__in"><span class="flip__f"><small>MYTH</small><strong>Bigger mountains are always harder.</strong><em>Tap to reveal the fact ↻</em></span><span class="flip__b"><small>FACT</small><span class="t">Technical difficulty, weather and remoteness matter as much as height. A lower peak can be harder than a higher one.</span><em>Tap to flip back</em></span></span></button></div></div></section>
+<!-- ▼ SECTION · Questions — "Worth knowing."
+     CSS  : §2: .section .section--navy .wrap .eyebrow | §30: .sec-ph | §23: .faq   (css/style.css — search for
+            the § number)
+     JS   : no JS needed (native <details> accordion) -->
+<section class="section section--navy"><div class="sec-ph" style="background-image:url('https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1400&q=70')" aria-hidden="true"></div><div class="wrap"><p class="eyebrow">Questions</p><h2 class="reveal">Worth knowing.</h2><div class="faq reveal"><details><summary>What is the difference between hiking and mountaineering?</summary><p>Hiking follows paths. Mountaineering involves steep, exposed terrain where rope, ice and navigation skills are needed.</p></details><details><summary>How do I start?</summary><p>Begin with hill walking, take a basic mountaineering course, then join experienced partners or a guided climb.</p></details><details><summary>Do I need to be very fit?</summary><p>Good fitness helps, but skills and judgement keep you safe. Train endurance and learn to move efficiently.</p></details></div></div></section>
+<!-- ▼ NEXT-PAGE LINK (big link at the end of the page)
+     CSS  : §11: .next | §2: .wrap   (css/style.css — search for the § number) -->
+<a class="next" href="history.html"><div class="wrap"><small>Next</small><span>History →</span></div></a>
+</main>
+
+<!-- ▼ FOOTER
+     CSS  : §12: .footer | §2: .wrap   (css/style.css — search for the § number) -->
+<footer class="footer"><div class="wrap"><div>© 2026 Alpine Ascents. All rights reserved.</div><ul><li><a href="../index.html">Home</a></li><li><a href="information.html">Information</a></li><li><a href="history.html">History</a></li><li><a href="types-styles.html">Types &amp; Styles</a></li><li><a href="techniques.html">Techniques</a></li><li><a href="sheltering.html">Sheltering</a></li><li><a href="hazards.html">Hazards</a></li><li><a href="records.html">Records</a></li><li><a href="clubs.html">Clubs</a></li><li><a href="success-stories.html">Stories</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="developments.html">Latest</a></li><li><a href="guidelines.html">Guidelines</a></li><li><a href="quiz.html">Quizzes</a></li><li><a href="simulator.html">Simulator</a></li><li><a href="contact.html">Contact</a></li></ul></div></footer>
+
+<!-- ▼ BOTTOM TICKER (live date · time · location)
+     CSS  : §13: .ticker .ticker__track   (css/style.css — search for the § number)
+     JS   : main.js: date, time, location -->
+<div class="ticker" role="marquee" aria-label="Date, time and location"><div class="ticker__track"><span data-tick></span><span data-tick></span><span data-tick></span><span data-tick></span><span data-tick></span><span data-tick></span><span data-tick></span><span data-tick></span></div></div>
+<script src="../js/main.js"></script><script src="../js/motion.js"></script><script src="../js/pages.js"></script>
+</body></html>

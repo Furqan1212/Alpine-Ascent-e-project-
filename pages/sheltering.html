@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sheltering — Alpine Ascents</title><meta name="description" content="Sheltering">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../images/logo.svg"><link rel="icon" type="image/png" sizes="64x64" href="../images/favicon.png"><link rel="stylesheet" href="../css/style.css"><script>if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("motion")</script></head><body>
+<!-- ═══════════════════════════════════════════════════════════════════════════════
+  PAGE      : Sheltering — Alpine Ascents   (pages/sheltering.html)
+  SECTIONS  : A warm place to wait out the storm.  ·  Where climbers sleep.  ·  Digging in safely.  ·  Inside a
+              snow cave.  ·  Why shelter matters.  ·  Dig smart, sleep warm.  ·  Common beliefs, tested.  ·
+              Worth knowing.
+  SHARED    : skip link · scroll bar · navbar with Learn menu + visitor pill · footer · bottom ticker (same on every page)
+  STYLES    : ../css/style.css  (only stylesheet; comments above each section give the § to search for)
+  SCRIPTS   : main.js · motion.js · pages.js
+  HOW TO READ: every "▼" comment below sits right above the HTML it describes and lists its CSS classes + JS file.
+════════════════════════════════════════════════════════════════════════════════ -->
+<!-- ▼ SKIP LINK (keyboard shortcut to the main content)
+     CSS  : §2: .skip   (css/style.css — search for the § number) -->
+<a class="skip" href="#main">Skip to content</a>
+<!-- ▼ SCROLL PROGRESS BAR (thin orange line at the very top)
+     CSS  : §2: .progress   (css/style.css — search for the § number) -->
+<div class="progress" aria-hidden="true"></div>
+<!-- ▼ NAVIGATION BAR (fixed at the top)
+     CSS  : §4: .nav .logo .links .nav__right .visitors .burger | §2: .wrap | §4b: .dd .dd__btn .dd__menu | §4c:
+            .live .vtip   (css/style.css — search for the § number)
+     JS   : main.js: visitor counter + menu, dropdown, active page -->
+<header class="nav"><div class="wrap">
+<!-- ▼ LOGO (images/logo.svg, inline copy)
+     CSS  : §4: .logo   (css/style.css — search for the § number) -->
+<a class="logo" href="../index.html" aria-label="Alpine Ascents home"><svg class="lg" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="lgBg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0d1b31"/><stop offset="1" stop-color="#1c3a60"/></linearGradient><clipPath id="lgClip"><circle cx="24" cy="24" r="22.5"/></clipPath></defs><circle cx="24" cy="24" r="22.5" fill="url(#lgBg)"/><g clip-path="url(#lgClip)"><circle cx="36" cy="12" r="2.2" fill="#ffb38a" opacity=".9"/><path d="M-2 52 L24 21 L26 52Z" fill="#eef6fb"/><path d="M24 21 L50 52 L26 52Z" fill="#8fd3f4"/><path d="M24 21 L19.6 25.6 L22.4 24.6 L24 27.6 L26 24.8 L28.6 26.2Z" fill="#fff"/><path d="M-2 52 L-2 44 L13 36 L19 41 L28 34 L50 46 L50 52Z" fill="#12263f"/></g><g fill="#ff6a2b" stroke="#ff6a2b" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="9.2" r="2.5" stroke="none"/><path d="M24 12.4 V18.2" stroke-width="3"/><path d="M24 18.2 L21.6 21.2 M24 18.2 L26.4 21.2" stroke-width="2.4"/><path d="M24 13.6 L20.4 16.4" stroke-width="2.2"/><g><path d="M24 13.8 L28.2 9.4" stroke-width="2.2"/><path d="M26.2 6.2 L30.8 10.6" stroke-width="1.6" stroke="#eef6fb"/><path d="M26.2 6.2 L28.8 5.4" stroke-width="1.4" stroke="#eef6fb"/></g></g><circle cx="24" cy="24" r="22.5" fill="none" stroke="#8fd3f4" stroke-width="1.3" opacity=".55"/></svg>ALPINE ASCENTS</a>
+<!-- ▼ MAIN MENU (page links + Learn dropdown)
+     CSS  : §4: .links | §4b: .dd .dd__btn .dd__menu   (css/style.css — search for the § number)
+     JS   : main.js: menu, dropdown, active page -->
+<nav aria-label="Primary"><ul class="links" id="menu"><li><a href="../index.html">Home</a></li><li class="dd"><button class="dd__btn" type="button" aria-expanded="false" aria-haspopup="true">Learn <span aria-hidden="true">▾</span></button><ul class="dd__menu"><li><a href="information.html">Information</a></li><li><a href="history.html">History</a></li><li><a href="types-styles.html">Types &amp; Styles</a></li><li><a href="techniques.html">Techniques</a></li><li><a href="sheltering.html">Sheltering</a></li><li><a href="hazards.html">Hazards</a></li><li><a href="records.html">Records</a></li><li><a href="success-stories.html">Success Stories</a></li><li><a href="guidelines.html">Guidelines</a></li><li><a href="quiz.html">Quizzes</a></li></ul></li><li><a href="simulator.html">Simulator</a></li><li><a href="clubs.html">Clubs</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="developments.html">Latest</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
+<!-- ▼ VISITOR COUNTER + MOBILE-MENU BUTTON
+     CSS  : §4: .nav__right .visitors .burger | §4c: .live .vtip   (css/style.css — search for the § number)
+     JS   : main.js: visitor counter -->
+<div class="nav__right"><div class="visitors" tabindex="0" aria-describedby="visTip"><i class="live" aria-hidden="true"></i><b id="visitCount">—</b><span class="lbl">visitors</span><div class="vtip" id="visTip" role="tooltip"><strong id="visTipTitle"></strong><span id="visTipSub"></span><small>Counted in this browser only</small></div></div>
+<button class="burger" aria-expanded="false" aria-controls="menu" aria-label="Toggle menu"><span></span></button></div>
+</div></header>
+
+<!-- ▼ MAIN CONTENT — everything between the navbar and the footer. Each block below is one section of this page. -->
+<main id="main">
+<!-- ▼ PAGE BANNER — "A warm place to wait out the storm."
+     CSS  : §7: .page-hero .page-hero__bg .crumbs | §2: .wrap   (css/style.css — search for the § number) -->
+<section class="page-hero"><div class="page-hero__bg" style="background-image:url('https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=2000&q=80')" role="img" aria-label="A warm place to wait out the storm. banner photograph"></div>
+<div class="wrap"><p class="crumbs"><a href="../index.html">Home</a> / Sheltering</p><h1>A warm place to wait out the storm.</h1></div></section>
+<!-- ▼ SECTION · Options — "Where climbers sleep."
+     CSS  : §2: .section .wrap .eyebrow .lead | §10: .cards .card .card__img .card__body   (css/style.css —
+            search for the § number) -->
+<section class="section"><div class="wrap"><p class="eyebrow">Options</p><h2 class="reveal">Where climbers sleep.</h2><p class="lead reveal">From a one-night bivouac to a six-week base camp, shelter is chosen to match the altitude, the weather and the plan.</p><div class="cards"><article class="card reveal" style="--d:0.0s"><div class="card__img"><img src="https://images.unsplash.com/photo-1454496522488-7a8e488e8606?auto=format&fit=crop&w=900&q=80" alt="Bivouac sack" loading="lazy"></div><div class="card__body"><small>Lightweight</small><h3>Bivouac sack</h3><p>A waterproof shell around the sleeping bag for emergency nights or fast alpine routes.</p></div></article><article class="card reveal" style="--d:0.12s"><div class="card__img"><img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=900&q=80" alt="Four-season tent" loading="lazy"></div><div class="card__body"><small>Standard</small><h3>Four-season tent</h3><p>Strong poles and a low profile shed wind and snow load on exposed camps.</p></div></article><article class="card reveal" style="--d:0.24s"><div class="card__img"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=80" alt="Snow cave" loading="lazy"></div><div class="card__body"><small>Natural</small><h3>Snow cave</h3><p>Dug into a deep drift, it stays near freezing even as the air outside drops far lower.</p></div></article></div></div></section>
+<!-- ▼ SECTION · Know-how — "Digging in safely."
+     CSS  : §2: .section .wrap .eyebrow .lead | §8: .split .facts .frame   (css/style.css — search for the §
+            number) -->
+<section class="section"><div class="wrap split"><div><p class="eyebrow">Know-how</p><h2 class="reveal">Digging in safely.</h2><p class="lead reveal">A snow cave can save your life, but only if it is built with care.</p><p class="reveal" style="color:var(--mist)">Keep the entrance lower than the sleeping platform so cold air drains out, and always poke a ventilation hole through the roof. Check it regularly during snowfall, and keep your shovel inside with you.</p><ul class="facts reveal"><li><span>Entrance</span>Below the sleeping shelf</li><li><span>Ventilation</span>Always keep a roof air hole</li><li><span>Roof</span>Domed, about 30 cm thick</li><li><span>Tools</span>Keep shovel and axe inside</li></ul></div>
+<figure class="frame reveal"><img src="https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=1000&q=80" alt="High alpine camp" loading="lazy"><figcaption>High alpine camp</figcaption></figure></div></section>
+<!-- ▼ SECTION · Interactive — "Inside a snow cave."
+     CSS  : §2: .section .section--navy .wrap .eyebrow .lead | §28: .hs .halo .cave__info   (css/style.css —
+            search for the § number)
+     JS   : pages.js: snow-cave hotspots -->
+<section class="section section--navy"><div class="wrap"><p class="eyebrow">Interactive</p><h2 class="reveal">Inside a snow cave.</h2><p class="lead reveal">Hover or tap the glowing points to see why each part of the design matters.</p>
+<div class="reveal" style="margin-top:36px;max-width:820px"><svg id="cave" viewBox="0 0 640 360" role="img" aria-label="Cross-section of a snow cave showing the entrance, sleeping platform, ventilation hole and domed roof">
+<path d="M10 350C10 165 150 55 320 55S630 165 630 350Z" fill="#dbe9f4"/>
+<path d="M30 350V300H160V320C160 225 230 172 320 172S480 225 480 320V350Z" fill="#0a1220"/>
+<path d="M300 258H480V350H300Z" fill="#b9d3e6"/>
+<path d="M30 318H160" stroke="#8fd3f4" stroke-width="4" stroke-dasharray="6 8"/>
+<path d="M400 172V58" stroke="#ff6a2b" stroke-width="7" stroke-dasharray="3 9" stroke-linecap="round"/>
+<g fill="#8fd3f4" opacity=".9"><path d="M120 296l16 -10v20z"/><path d="M96 300l-14 8h14z"/></g>
+<rect x="330" y="228" width="120" height="26" rx="13" fill="#ff6a2b" opacity=".85"/>
+<g class="hs" data-k="entrance" tabindex="0" role="button" aria-label="Entrance"><circle class="halo" cx="90" cy="288" r="14"/><circle cx="90" cy="288" r="9"/></g>
+<g class="hs" data-k="platform" tabindex="0" role="button" aria-label="Sleeping platform"><circle class="halo" cx="390" cy="285" r="14"/><circle cx="390" cy="285" r="9"/></g>
+<g class="hs" data-k="vent" tabindex="0" role="button" aria-label="Ventilation hole"><circle class="halo" cx="400" cy="100" r="14"/><circle cx="400" cy="100" r="9"/></g>
+<g class="hs" data-k="roof" tabindex="0" role="button" aria-label="Domed roof"><circle class="halo" cx="240" cy="132" r="14"/><circle cx="240" cy="132" r="9"/></g>
+<g font-family="Inter,sans-serif" font-size="14" font-weight="600" pointer-events="none"><text x="52" y="272" fill="#0a1220">Entrance</text><text x="352" y="334" fill="#0a1220">Sleeping platform</text><text x="420" y="104" fill="#0a1220">Vent</text><text x="262" y="136" fill="#0a1220">Roof</text></g></svg><div class="cave__info" aria-live="polite"><h3 id="caveT"></h3><p id="caveD"></p></div></div></div></section>
+<!-- ▼ PHOTO + NUMBERS BAND — "Why shelter matters."
+     CSS  : §28: .band .band__bg | §2: .wrap .eyebrow | §6: .stats .stat   (css/style.css — search for the §
+            number)
+     JS   : main.js: numbers count up -->
+<section class="band"><div class="band__bg" style="background-image:url('https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=2000&q=80')"></div><div class="wrap"><p class="eyebrow">By the numbers</p><h2 class="reveal">Why shelter matters.</h2><div class="stats"><div class="stat"><b data-count=30>0</b><span>Centimetres: roof thickness to aim for</span></div><div class="stat"><b data-count=1>0</b><span>Ventilation hole, always open</span></div><div class="stat"><b >≈0°C</b><span>Inside a cave, even in far colder air</span></div></div></div></section>
+<!-- ▼ SECTION · Choosing a site — "Dig smart, sleep warm."
+     CSS  : §2: .section .wrap .eyebrow .lead | §8: .split .facts .frame   (css/style.css — search for the §
+            number) -->
+<section class="section"><div class="wrap split"><div><p class="eyebrow">Choosing a site</p><h2 class="reveal">Dig smart, sleep warm.</h2><p class="lead reveal">A good shelter starts with a good location and a plan for the storm you hope never arrives.</p><ul class="facts reveal"><li><span>Where</span>Dig on a stable slope that avalanches cannot reach, with deep, firm snow.</li><li><span>When</span>Build early. A cave takes one to two hours and is exhausting after dark.</li><li><span>Check</span>Re-clear the vent and entrance during snowfall, and keep your shovel inside.</li></ul></div><figure class="frame reveal"><img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1000&q=80" alt="Night camp under a starry sky" loading="lazy"><figcaption>High camp, clear night</figcaption></figure></div></section>
+<!-- ▼ SECTION · Myth or fact? — "Common beliefs, tested."
+     CSS  : §2: .section .wrap .eyebrow | §30: .sec-ph | §28: .flips .flip .flip__in .flip__f .flip__b .t
+            (css/style.css — search for the § number)
+     JS   : pages.js: myth/fact flip cards -->
+<section class="section"><div class="sec-ph" style="background-image:url('https://images.unsplash.com/photo-1508739773434-c26b3d09e071?auto=format&fit=crop&w=1400&q=70')" aria-hidden="true"></div><div class="wrap"><p class="eyebrow">Myth or fact?</p><h2 class="reveal">Common beliefs, tested.</h2><div class="flips"><button class="flip reveal" type="button" aria-pressed="false" style="--d:0.0s"><span class="flip__in"><span class="flip__f"><small>MYTH</small><strong>A sealed snow cave is the warmest.</strong><em>Tap to reveal the fact ↻</em></span><span class="flip__b"><small>FACT</small><span class="t">A sealed cave can run out of fresh air. A vent hole is essential, even when it feels colder.</span><em>Tap to flip back</em></span></span></button><button class="flip reveal" type="button" aria-pressed="false" style="--d:0.12s"><span class="flip__in"><span class="flip__f"><small>MYTH</small><strong>Tents are always safer than snow shelters.</strong><em>Tap to reveal the fact ↻</em></span><span class="flip__b"><small>FACT</small><span class="t">A well-built snow cave can outlast a tent in high wind, while a tent can be torn or buried. Good shelters suit the conditions.</span><em>Tap to flip back</em></span></span></button><button class="flip reveal" type="button" aria-pressed="false" style="--d:0.24s"><span class="flip__in"><span class="flip__f"><small>MYTH</small><strong>Sleeping with wet clothes is fine.</strong><em>Tap to reveal the fact ↻</em></span><span class="flip__b"><small>FACT</small><span class="t">Wet clothes lose warmth quickly. Change into dry layers and use a vapour barrier or spare socks.</span><em>Tap to flip back</em></span></span></button></div></div></section>
+<!-- ▼ SECTION · Questions — "Worth knowing."
+     CSS  : §2: .section .section--navy .wrap .eyebrow | §30: .sec-ph | §23: .faq   (css/style.css — search for
+            the § number)
+     JS   : no JS needed (native <details> accordion) -->
+<section class="section section--navy"><div class="sec-ph" style="background-image:url('https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=1400&q=70')" aria-hidden="true"></div><div class="wrap"><p class="eyebrow">Questions</p><h2 class="reveal">Worth knowing.</h2><div class="faq reveal"><details><summary>How long does a snow cave take to dig?</summary><p>Plan on one to two hours for a small cave. Digging with a partner is faster and safer.</p></details><details><summary>Can I use a snow cave anywhere?</summary><p>Only where the snow is deep and firm and the slope is safe from avalanches. Otherwise use a tent or hut.</p></details><details><summary>What if I cannot build a shelter?</summary><p>Use a bivouac sack, stay dry, sit on your pack, insulate from the ground and keep eating and drinking to stay warm.</p></details></div></div></section>
+<!-- ▼ NEXT-PAGE LINK (big link at the end of the page)
+     CSS  : §11: .next | §2: .wrap   (css/style.css — search for the § number) -->
+<a class="next" href="hazards.html"><div class="wrap"><small>Next</small><span>Hazards →</span></div></a>
+</main>
+
+<!-- ▼ FOOTER
+     CSS  : §12: .footer | §2: .wrap   (css/style.css — search for the § number) -->
+<footer class="footer"><div class="wrap"><div>© 2026 Alpine Ascents. All rights reserved.</div><ul><li><a href="../index.html">Home</a></li><li><a href="information.html">Information</a></li><li><a href="history.html">History</a></li><li><a href="types-styles.html">Types &amp; Styles</a></li><li><a href="techniques.html">Techniques</a></li><li><a href="sheltering.html">Sheltering</a></li><li><a href="hazards.html">Hazards</a></li><li><a href="records.html">Records</a></li><li><a href="clubs.html">Clubs</a></li><li><a href="success-stories.html">Stories</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="developments.html">Latest</a></li><li><a href="guidelines.html">Guidelines</a></li><li><a href="quiz.html">Quizzes</a></li><li><a href="simulator.html">Simulator</a></li><li><a href="contact.html">Contact</a></li></ul></div></footer>
+
+<!-- ▼ BOTTOM TICKER (live date · time · location)
+     CSS  : §13: .ticker .ticker__track   (css/style.css — search for the § number)
+     JS   : main.js: date, time, location -->
+<div class="ticker" role="marquee" aria-label="Date, time and location"><div class="ticker__track"><span data-tick></span><span data-tick></span><span data-tick></span><span data-tick></span><span data-tick></span><span data-tick></span><span data-tick></span><span data-tick></span></div></div>
+<script src="../js/main.js"></script><script src="../js/motion.js"></script><script src="../js/pages.js"></script>
+</body></html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mountaineering &amp; Expeditions — Alpine Ascents</title><meta name="description" content="Alpine Ascents: the complete guide to mountaineering.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="images/logo.svg"><link rel="icon" type="image/png" sizes="64x64" href="images/favicon.png"><link rel="stylesheet" href="css/style.css"><script>if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("motion")</script></head><body>
+<!-- ▼ SKIP LINK (keyboard shortcut to the main content)
+     CSS  : §2: .skip   (css/style.css — search for the § number) -->
+<!-- ═══════════════════════════════════════════════════════════════════════════════
+  PAGE      : Mountaineering & Expeditions — Alpine Ascents   (index.html)
+  SECTIONS  : Climb what calls you.  ·  Climb Everest by scrolling  ·  Twelve chapters. One mountain of
+              knowledge.  ·  Everest has never been busier.  ·  See it before you climb it.  ·  Find a club.
+              Plan your climb.
+  SHARED    : skip link · scroll bar · navbar with Learn menu + visitor pill · footer · bottom ticker (same on every page)
+  STYLES    : css/style.css  (only stylesheet; comments above each section give the § to search for)
+  SCRIPTS   : main.js · motion.js · journey.js
+  HOW TO READ: every "▼" comment below sits right above the HTML it describes and lists its CSS classes + JS file.
+════════════════════════════════════════════════════════════════════════════════ -->
+<a class="skip" href="#main">Skip to content</a>
+<!-- ▼ SCROLL PROGRESS BAR (thin orange line at the very top)
+     CSS  : §2: .progress   (css/style.css — search for the § number) -->
+<div class="progress" aria-hidden="true"></div>
+<!-- ▼ NAVIGATION BAR (fixed at the top)
+     CSS  : §4: .nav .logo .links .nav__right .visitors .burger | §2: .wrap | §4b: .dd .dd__btn .dd__menu | §4c:
+            .live .vtip   (css/style.css — search for the § number)
+     JS   : main.js: visitor counter + menu, dropdown, active page -->
+<header class="nav"><div class="wrap">
+<!-- ▼ LOGO (images/logo.svg, inline copy)
+     CSS  : §4: .logo   (css/style.css — search for the § number) -->
+<a class="logo" href="index.html" aria-label="Alpine Ascents home"><svg class="lg" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="lgBg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0d1b31"/><stop offset="1" stop-color="#1c3a60"/></linearGradient><clipPath id="lgClip"><circle cx="24" cy="24" r="22.5"/></clipPath></defs><circle cx="24" cy="24" r="22.5" fill="url(#lgBg)"/><g clip-path="url(#lgClip)"><circle cx="36" cy="12" r="2.2" fill="#ffb38a" opacity=".9"/><path d="M-2 52 L24 21 L26 52Z" fill="#eef6fb"/><path d="M24 21 L50 52 L26 52Z" fill="#8fd3f4"/><path d="M24 21 L19.6 25.6 L22.4 24.6 L24 27.6 L26 24.8 L28.6 26.2Z" fill="#fff"/><path d="M-2 52 L-2 44 L13 36 L19 41 L28 34 L50 46 L50 52Z" fill="#12263f"/></g><g fill="#ff6a2b" stroke="#ff6a2b" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="9.2" r="2.5" stroke="none"/><path d="M24 12.4 V18.2" stroke-width="3"/><path d="M24 18.2 L21.6 21.2 M24 18.2 L26.4 21.2" stroke-width="2.4"/><path d="M24 13.6 L20.4 16.4" stroke-width="2.2"/><g><path d="M24 13.8 L28.2 9.4" stroke-width="2.2"/><path d="M26.2 6.2 L30.8 10.6" stroke-width="1.6" stroke="#eef6fb"/><path d="M26.2 6.2 L28.8 5.4" stroke-width="1.4" stroke="#eef6fb"/></g></g><circle cx="24" cy="24" r="22.5" fill="none" stroke="#8fd3f4" stroke-width="1.3" opacity=".55"/></svg>ALPINE ASCENTS</a>
+<!-- ▼ MAIN MENU (page links + Learn dropdown)
+     CSS  : §4: .links | §4b: .dd .dd__btn .dd__menu   (css/style.css — search for the § number)
+     JS   : main.js: menu, dropdown, active page -->
+<nav aria-label="Primary"><ul class="links" id="menu"><li><a href="index.html">Home</a></li><li class="dd"><button class="dd__btn" type="button" aria-expanded="false" aria-haspopup="true">Learn <span aria-hidden="true">▾</span></button><ul class="dd__menu"><li><a href="pages/information.html">Information</a></li><li><a href="pages/history.html">History</a></li><li><a href="pages/types-styles.html">Types &amp; Styles</a></li><li><a href="pages/techniques.html">Techniques</a></li><li><a href="pages/sheltering.html">Sheltering</a></li><li><a href="pages/hazards.html">Hazards</a></li><li><a href="pages/records.html">Records</a></li><li><a href="pages/success-stories.html">Success Stories</a></li><li><a href="pages/guidelines.html">Guidelines</a></li><li><a href="pages/quiz.html">Quizzes</a></li></ul></li><li><a href="pages/simulator.html">Simulator</a></li><li><a href="pages/clubs.html">Clubs</a></li><li><a href="pages/gallery.html">Gallery</a></li><li><a href="pages/developments.html">Latest</a></li><li><a href="pages/contact.html">Contact</a></li></ul></nav>
+<!-- ▼ VISITOR COUNTER + MOBILE-MENU BUTTON
+     CSS  : §4: .nav__right .visitors .burger | §4c: .live .vtip   (css/style.css — search for the § number)
+     JS   : main.js: visitor counter -->
+<div class="nav__right"><div class="visitors" tabindex="0" aria-describedby="visTip"><i class="live" aria-hidden="true"></i><b id="visitCount">—</b><span class="lbl">visitors</span><div class="vtip" id="visTip" role="tooltip"><strong id="visTipTitle"></strong><span id="visTipSub"></span><small>Counted in this browser only</small></div></div>
+<button class="burger" aria-expanded="false" aria-controls="menu" aria-label="Toggle menu"><span></span></button></div>
+</div></header>
+
+<!-- ▼ MAIN CONTENT — everything between the navbar and the footer. Each block below is one section of this page. -->
+<main id="main">
+<!-- ▼ HOME HERO (full-screen opening) — "Climb what calls you."
+     CSS  : §6: .hero .hero__bg .hero__cta .stats .stat | §2: .wrap .eyebrow | §5: .btn .btn--primary .btn--
+            ghost   (css/style.css — search for the § number)
+     JS   : main.js: numbers count up · motion.js: snow, parallax, headline reveal -->
+<section class="hero" id="home"><div class="hero__bg" style="background-image:url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2000&q=80')" role="img" aria-label="Snow-covered alpine peak at dawn"></div>
+<div class="wrap"><p class="eyebrow">International Mountaineering &amp; Expeditions</p>
+<h1 class="reveal">Climb what <em>calls</em> you.</h1>
+<p class="reveal" style="--d:.15s">Guided by the country’s finest climbers, Alpine Ascents opens the world’s great mountains to every ambition — safely, skilfully, unforgettably.</p>
+<div class="hero__cta reveal" style="--d:.3s"><a class="btn btn--primary" href="pages/information.html">Explore mountaineering →</a><a class="btn btn--ghost" href="pages/history.html">Read the history</a></div>
+<div class="stats"><div class="stat"><b data-count="8849">0</b><span>Metres · Everest</span></div><div class="stat"><b data-count="14">0</b><span>Eight-thousanders</span></div><div class="stat"><b data-count="1953">0</b><span>First Everest ascent</span></div><div class="stat"><b data-count="30">0</b><span>Years guiding</span></div></div></div></section>
+
+<!-- ▼ EVEREST SCROLL JOURNEY — "Climb Everest by scrolling"
+     CSS  : §26: .journey .sr .journey__stage .journey__in .journey__hud .o2bar .journey__body .jcards
+            .journey__hint .jstage .jmeta .jmtn .jmark | §2: .wrap .eyebrow   (css/style.css — search for the §
+            number)
+     JS   : journey.js: scroll-driven climb -->
+<section class="journey" id="journey" aria-labelledby="jTitle"><h2 class="sr" id="jTitle">Climb Everest by scrolling</h2>
+<div class="journey__stage"><div class="wrap journey__in">
+<div class="journey__hud" aria-live="off"><div><small>Altitude</small><b><span id="hAlt">5,364</span> m</b></div><div><small>Oxygen in the air</small><b id="hO2">51%</b><i class="o2bar"><em id="hO2bar"></em></i></div><div><small>Typical temp.</small><b id="hTemp">-10°C</b></div><div><small>Zone</small><b id="hZone">High altitude</b></div></div>
+<div class="journey__body"><div class="jcards"><p class="eyebrow journey__hint">Scroll to climb Everest ↓</p><article class="jstage" data-alt="5364" data-temp="-10"><small>01 / 06</small><h3>Base Camp</h3><p class="jmeta">5,364 m · 51% oxygen · about -10°C</p><p>Six weeks of waiting. Teams rest, eat and acclimatise while Sherpa climbers fix ropes through the icefall above.</p></article><article class="jstage" data-alt="6065" data-temp="-15"><small>02 / 06</small><h3>Camp 1</h3><p class="jmeta">6,065 m · 46% oxygen · about -15°C</p><p>Above the Khumbu Icefall, a shifting maze of ice towers. Teams cross it before dawn, when the cold holds it steady.</p></article><article class="jstage" data-alt="6500" data-temp="-18"><small>03 / 06</small><h3>Camp 2</h3><p class="jmeta">6,500 m · 43% oxygen · about -18°C</p><p>The Western Cwm traps heat like an oven by day and freezes hard at night. Climbers sleep here to adapt to the thin air.</p></article><article class="jstage" data-alt="7200" data-temp="-25"><small>04 / 06</small><h3>Camp 3</h3><p class="jmeta">7,200 m · 39% oxygen · about -25°C</p><p>Tents are pinned to the steep Lhotse Face. Most climbers start breathing bottled oxygen from about here.</p></article><article class="jstage" data-alt="7906" data-temp="-30"><small>05 / 06</small><h3>Camp 4 · South Col</h3><p class="jmeta">7,906 m · 36% oxygen · about -30°C</p><p>The final camp sits inside the death zone. Teams rest a few hours, then leave near midnight for the summit.</p></article><article class="jstage" data-alt="8849" data-temp="-36"><small>06 / 06</small><h3>Summit</h3><p class="jmeta">8,849 m · 31% oxygen · about -36°C</p><p>The top of the world. Climbers stay only minutes before the long descent, where most accidents happen.</p></article></div>
+<svg class="jmtn" viewBox="0 0 800 600" role="img" aria-label="Everest silhouette with the climbing route marked from Base Camp to the summit"><g id="mtnBack"><path d="M0 600V380L120 300L200 340L330 230L430 290L560 180L700 260L800 200V600Z" fill="rgba(60,100,150,.35)"/></g>
+<path d="M0 600V480L90 430L170 455L290 330L380 370L470 190L540 70L600 170L660 140L740 280L800 250V600Z" fill="#0a1220" stroke="rgba(238,246,251,.25)" stroke-width="1.5"/>
+<path d="M470 190L540 70L600 170L560 150L520 175Z" fill="rgba(238,246,251,.55)"/>
+<path d="M120 535C200 505 235 470 300 440S400 385 432 330S500 235 520 165S535 112 540 74" fill="none" stroke="rgba(238,246,251,.18)" stroke-width="3" stroke-dasharray="2 8"/>
+<path id="jRoute" d="M120 535C200 505 235 470 300 440S400 385 432 330S500 235 520 165S535 112 540 74" fill="none" stroke="#ff6a2b" stroke-width="4" stroke-linecap="round"/>
+<g class="jmark"><circle r="9"/><text y="4">1</text></g><g class="jmark"><circle r="9"/><text y="4">2</text></g><g class="jmark"><circle r="9"/><text y="4">3</text></g><g class="jmark"><circle r="9"/><text y="4">4</text></g><g class="jmark"><circle r="9"/><text y="4">5</text></g><g class="jmark"><circle r="9"/><text y="4">6</text></g><g id="jDot"><circle r="16" fill="rgba(255,106,43,.25)"/><circle r="8" fill="#ff6a2b" stroke="#eef6fb" stroke-width="3"/></g></svg></div>
+</div></div></section>
+
+<!-- ▼ SECTION · The complete guide — "Twelve chapters. One mountain of knowledge."
+     CSS  : §2: .section .wrap .eyebrow .lead | §30: .sec-ph | §21: .toc .toc__n .toc__t .toc__d .toc__a
+            (css/style.css — search for the § number) -->
+<section class="section" id="chapters"><div class="sec-ph" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1400&q=70')" aria-hidden="true"></div><div class="wrap"><p class="eyebrow">The complete guide</p><h2 class="reveal">Twelve chapters. One mountain of knowledge.</h2>
+<p class="lead reveal">Begin anywhere. Each chapter stands alone, and together they cover everything a climber needs to know.</p>
+<ul class="toc"><li class="reveal"><a href="pages/information.html"><span class="toc__n">01</span><span class="toc__t">Information</span><span class="toc__d">What mountaineering is, and what it demands.</span><span class="toc__a" aria-hidden="true">→</span></a></li><li class="reveal"><a href="pages/history.html"><span class="toc__n">02</span><span class="toc__t">History</span><span class="toc__d">From Mont Blanc in 1786 to winter K2.</span><span class="toc__a" aria-hidden="true">→</span></a></li><li class="reveal"><a href="pages/types-styles.html"><span class="toc__n">03</span><span class="toc__t">Types &amp; Styles</span><span class="toc__d">Alpine, ice and expedition climbing.</span><span class="toc__a" aria-hidden="true">→</span></a></li><li class="reveal"><a href="pages/techniques.html"><span class="toc__n">04</span><span class="toc__t">Techniques</span><span class="toc__d">Rope work, self-arrest and navigation.</span><span class="toc__a" aria-hidden="true">→</span></a></li><li class="reveal"><a href="pages/sheltering.html"><span class="toc__n">05</span><span class="toc__t">Sheltering</span><span class="toc__d">Bivouacs, tents and snow caves.</span><span class="toc__a" aria-hidden="true">→</span></a></li><li class="reveal"><a href="pages/hazards.html"><span class="toc__n">06</span><span class="toc__t">Hazards</span><span class="toc__d">Avalanches, crevasses and altitude.</span><span class="toc__a" aria-hidden="true">→</span></a></li><li class="reveal"><a href="pages/records.html"><span class="toc__n">07</span><span class="toc__t">Records</span><span class="toc__d">All fourteen 8,000-metre peaks.</span><span class="toc__a" aria-hidden="true">→</span></a></li><li class="reveal"><a href="pages/clubs.html"><span class="toc__n">08</span><span class="toc__t">Clubs &amp; Expeditions</span><span class="toc__d">An interactive map with geolocation.</span><span class="toc__a" aria-hidden="true">→</span></a></li><li class="reveal"><a href="pages/success-stories.html"><span class="toc__n">09</span><span class="toc__t">Success Stories</span><span class="toc__d">Four expeditions, four lessons.</span><span class="toc__a" aria-hidden="true">→</span></a></li><li class="reveal"><a href="pages/gallery.html"><span class="toc__n">10</span><span class="toc__t">Gallery</span><span class="toc__d">Photography and video, full-screen.</span><span class="toc__a" aria-hidden="true">→</span></a></li><li class="reveal"><a href="pages/developments.html"><span class="toc__n">11</span><span class="toc__t">Latest Developments</span><span class="toc__d">The record-breaking 2026 Everest season.</span><span class="toc__a" aria-hidden="true">→</span></a></li><li class="reveal"><a href="pages/guidelines.html"><span class="toc__n">12</span><span class="toc__t">General Guidelines</span><span class="toc__d">Rules of safe climbing, and a checklist.</span><span class="toc__a" aria-hidden="true">→</span></a></li></ul></div></section>
+
+<!-- ▼ SECTION · Latest developments — "Everest has never been busier."
+     CSS  : §2: .section .section--navy .wrap .eyebrow .lead | §8: .split .frame | §6: .stats .stat | §5: .btn
+            .btn--primary   (css/style.css — search for the § number)
+     JS   : main.js: numbers count up -->
+<section class="section section--navy"><div class="wrap split"><div><p class="eyebrow">Latest developments</p><h2 class="reveal">Everest has never been busier.</h2>
+<p class="lead reveal">In spring 2026 Nepal reported a record number of summits, along with fresh debate over crowding and safety.</p>
+<div class="stats reveal" style="grid-template-columns:repeat(2,1fr);margin:40px 0"><div class="stat"><b data-count="1008">0</b><span>Summits this season</span></div><div class="stat"><b data-count="274">0</b><span>Summits in one day</span></div></div>
+<a class="btn btn--primary reveal" href="pages/developments.html">Read the full story →</a></div>
+<figure class="frame reveal"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1000&q=80" alt="Alpine ridge at sunrise" loading="lazy"><figcaption>Everest region, spring season</figcaption></figure></div></section>
+
+<!-- ▼ SECTION · Gallery — "See it before you climb it."
+     CSS  : §2: .section .wrap .eyebrow | §22: .strip | §6: .hero__cta | §5: .btn .btn--ghost   (css/style.css —
+            search for the § number) -->
+<section class="section"><div class="wrap"><p class="eyebrow">Gallery</p><h2 class="reveal">See it before you climb it.</h2><div class="strip"><a href="pages/gallery.html" class="reveal" style="--d:0.0s"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=700&q=80" alt="Alpine ridge at sunrise" loading="lazy"></a><a href="pages/gallery.html" class="reveal" style="--d:0.1s"><img src="https://images.unsplash.com/photo-1522163182402-834f871fd851?auto=format&fit=crop&w=700&q=80" alt="Climber on a rock face" loading="lazy"></a><a href="pages/gallery.html" class="reveal" style="--d:0.2s"><img src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=700&q=80" alt="Trekkers on a trail" loading="lazy"></a><a href="pages/gallery.html" class="reveal" style="--d:0.30000000000000004s"><img src="https://images.unsplash.com/photo-1508739773434-c26b3d09e071?auto=format&fit=crop&w=700&q=80" alt="Sunset over the range" loading="lazy"></a></div>
+<div class="hero__cta" style="margin-top:36px"><a class="btn btn--ghost" href="pages/gallery.html">Open the gallery →</a></div></div></section>
+
+<!-- ▼ CALL-TO-ACTION BAND — "Find a club. Plan your climb."
+     CSS  : §22: .cta .cta__bg | §2: .wrap .eyebrow | §6: .hero__cta | §5: .btn .btn--primary .btn--ghost
+            (css/style.css — search for the § number) -->
+<section class="cta"><div class="cta__bg" style="background-image:url('https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=2000&q=80')"></div><div class="wrap"><p class="eyebrow">Ready when you are</p><h2 class="reveal">Find a club. Plan your climb.</h2>
+<div class="hero__cta reveal"><a class="btn btn--primary" href="pages/simulator.html">Simulate your expedition →</a><a class="btn btn--ghost" href="pages/clubs.html">Find clubs near me</a></div></div></section>
+</main>
+
+<!-- ▼ FOOTER
+     CSS  : §12: .footer | §2: .wrap   (css/style.css — search for the § number) -->
+<footer class="footer"><div class="wrap"><div>© 2026 Alpine Ascents. All rights reserved.</div><ul><li><a href="index.html">Home</a></li><li><a href="pages/information.html">Information</a></li><li><a href="pages/history.html">History</a></li><li><a href="pages/types-styles.html">Types &amp; Styles</a></li><li><a href="pages/techniques.html">Techniques</a></li><li><a href="pages/sheltering.html">Sheltering</a></li><li><a href="pages/hazards.html">Hazards</a></li><li><a href="pages/records.html">Records</a></li><li><a href="pages/clubs.html">Clubs</a></li><li><a href="pages/success-stories.html">Stories</a></li><li><a href="pages/gallery.html">Gallery</a></li><li><a href="pages/developments.html">Latest</a></li><li><a href="pages/guidelines.html">Guidelines</a></li><li><a href="pages/quiz.html">Quizzes</a></li><li><a href="pages/simulator.html">Simulator</a></li><li><a href="pages/contact.html">Contact</a></li></ul></div></footer>
+
+<!-- ▼ BOTTOM TICKER (live date · time · location)
+     CSS  : §13: .ticker .ticker__track   (css/style.css — search for the § number)
+     JS   : main.js: date, time, location -->
+<div class="ticker" role="marquee" aria-label="Date, time and location"><div class="ticker__track"><span data-tick></span><span data-tick></span><span data-tick></span><span data-tick></span><span data-tick></span><span data-tick></span><span data-tick></span><span data-tick></span></div></div>
+<script src="js/main.js"></script><script src="js/motion.js"></script><script src="js/journey.js"></script>
+</body></html>

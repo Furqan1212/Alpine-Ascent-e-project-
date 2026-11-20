@@ -1,0 +1,1136 @@
+/* ╔══════════════════════════════════════════════════════════════════════════════╗
+   ║  ALPINE ASCENTS — css/style.css  (the ONLY stylesheet; every page loads it)  ║
+   ╠══════════════════════════════════════════════════════════════════════════════╣
+   ║  HOW TO FIND THINGS                                                          ║
+   ║   • HTML → CSS : each HTML section has a comment listing its classes and the ║
+   ║                  §number here. Search this file for the class name.          ║
+   ║   • CSS → HTML : every class has a "▸ .class — <tag> on: pages" line above   ║
+   ║                  its first rule, and each §section header says where it is.  ║
+   ║   • Colours, fonts, spacing live in §1 (:root). Change them there only.      ║
+   ║   • Mobile rules are in the @media blocks inside each section and in §15.    ║
+   ╠══════════════════════════════════════════════════════════════════════════════╣
+   ║  TABLE OF CONTENTS (search for "§N" to jump)                                 ║
+   ╚══════════════════════════════════════════════════════════════════════════════╝
+   §1   DESIGN TOKENS
+   §2   BASE + LAYOUT HELPERS
+   §4   NAVIGATION
+   §5   BUTTONS
+   §6   HOME HERO
+   §8   SPLIT LAYOUT, FRAME, FACTS
+   §9   TIMELINE
+   §10  CARDS
+   §7   INNER-PAGE HERO
+   §11  NEXT-PAGE BAND
+   §12  FOOTER
+   §13  BOTTOM TICKER
+   §14  SCROLL REVEAL
+   §15  RESPONSIVE + REDUCED MOTION
+   §16  TABLE + FILTER CHIPS
+   §17  CLUBS MAP
+   §18  STORIES
+   §19  GALLERY + LIGHTBOX
+   §20  CHECKLIST + METER
+   §21  CONTENTS INDEX
+   §22  PHOTO STRIP + CALL-TO-ACTION BAND
+   §23  CONTACT FORM + FAQ
+   §24  MOTION LAYER
+   §4b  LEARN DROPDOWN
+   §25  EXPEDITION SIMULATOR
+   §26  EVEREST JOURNEY
+   §27  QUIZZES
+   §28  PAGE COMPONENTS
+   §17b CLUBS DIRECTORY
+   §29  COMPARE TWO PEAKS
+   §17c COMPACT DIRECTORY CARDS
+   §30  SECTION PHOTOS
+   §17d SMOOTH CARD SCROLLING
+   §4c  VISITOR COUNTER
+   §31  TIMELINE PHOTO, CHECKLIST HEADINGS, COMPARE CHART
+   §4d  LOGO
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+/* ==================================================================
+   §1 DESIGN TOKENS  (:root)
+   Variables used by every rule below. Change colours/fonts HERE only.
+   HTML: none directly — applies to <html>. Pages: ALL.
+   ================================================================== */
+/* ==================================================================
+   §2 BASE + LAYOUT HELPERS
+   body, h1-h3, a, img  → every page
+   .wrap      → <div class="wrap"> centred 1240px container. HTML: <!-- CSS §2 --> ALL pages
+   .section / .section--navy → <section class="section"> content bands. Pages: all inner pages + index
+   .eyebrow   → <p class="eyebrow"> small orange label above headings. ALL pages
+   .lead      → <p class="lead"> intro paragraph under h2. ALL pages
+   .skip      → <a class="skip"> accessibility skip link (top of <body>). ALL pages
+   .progress  → <div class="progress"> scroll-progress bar. ALL pages (width set by js/main.js)
+   ================================================================== */
+
+:root{
+  --ink:#0a0f18; --navy:#0f1b2e; --slate:#1b2a44; --line:rgba(238,246,251,.14);
+  --glacier:#8fd3f4; --ice:#eef6fb; --mist:#a9b8c9; --ember:#ff6a2b;
+  --f-display:'Fraunces',Georgia,serif; --f-body:'Inter',system-ui,sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1); --wrap:1240px; --nav-h:76px; --tick-h:40px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:var(--nav-h)}
+body{margin:0;background:var(--ink);color:var(--ice);font:400 1.05rem/1.7 var(--f-body);padding-bottom:var(--tick-h);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:var(--f-display);font-weight:600;line-height:1.05;letter-spacing:-.02em;margin:0}
+/* ▸ .wrap — <div class="…wrap…"> on: all pages (§2) */
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+/* ▸ .skip — <a class="…skip…"> on: all pages (§2) */
+.skip{position:absolute;left:-999px;top:8px;background:var(--ember);color:#fff;padding:8px 14px;z-index:999}
+.skip:focus{left:8px}
+:focus-visible{outline:2px solid var(--glacier);outline-offset:3px}
+/* ▸ .eyebrow — <p class="…eyebrow…"> on: all pages (§2) */
+.eyebrow{font-size:.75rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--ember);display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.eyebrow::before{content:"";width:36px;height:1px;background:currentColor}
+/* ▸ .section — <section class="…section…"> on: all pages (§2) */
+.section{padding:clamp(80px,12vw,160px) 0;position:relative}
+/* ▸ .section--navy — <section class="…section--navy…"> on: all pages (§2) */
+.section--navy{background:var(--navy)}
+.section h2{font-size:clamp(2.2rem,5vw,4.2rem);max-width:16ch;margin-bottom:28px}
+/* ▸ .lead — <p class="…lead…"> on: all pages (§2) */
+.lead{font-size:1.2rem;color:var(--mist);max-width:60ch}
+/* ▸ .progress — <div class="…progress…"> on: all pages (§2) */
+.progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--ember);z-index:300}
+
+/* ==================================================================
+   §4 NAVIGATION
+   .nav        → <header class="nav"> fixed top bar; .scrolled added by JS. ALL pages
+   .logo       → <a class="logo"> SVG mark + wordmark inside .nav. ALL pages
+   .links a    → <ul class="links"> menu items. Hover/active = underline + colour. ALL pages
+               .active is set by js/main.js from the current page filename
+   .visitors   → <div class="visitors"> top-right visitor counter (#visitCount). ALL pages
+   .burger     → <button class="burger"> mobile menu toggle (<960px). ALL pages
+   .nav__right → wrapper of .visitors + .burger. ALL pages
+   ================================================================== */
+
+/* ▸ .nav — <header class="…nav…"> on: all pages (§4) */
+.nav{position:fixed;inset:0 0 auto 0;height:var(--nav-h);z-index:200;display:flex;align-items:center;transition:background .4s var(--ease),height .4s var(--ease)}
+/* ▸ .scrolled — state class switched on/off by js/main.js (§4) */
+.nav.scrolled{background:rgba(10,15,24,.82);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);height:64px}
+.nav .wrap{max-width:1600px;display:flex;align-items:center;justify-content:space-between;width:100%;gap:24px}
+/* ▸ .logo — <a class="…logo…"> on: all pages (§4) */
+.logo{white-space:nowrap;flex:none;display:flex;align-items:center;gap:12px;font-family:var(--f-display);font-weight:600;font-size:1.25rem;letter-spacing:.04em;position:relative;z-index:210}
+.logo svg{width:42px;height:42px}
+/* ▸ .links — <ul class="…links…"> on: all pages (§4) */
+.links{display:flex;gap:6px;list-style:none;margin:0;padding:0}
+.links a{display:block;white-space:nowrap;padding:8px 14px;font-size:.88rem;font-weight:500;color:var(--mist);position:relative;transition:color .3s}
+.links a::after{content:"";position:absolute;left:14px;right:14px;bottom:2px;height:2px;background:var(--ember);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+.links a:hover{color:var(--glacier)}
+/* ▸ .active — state class switched on/off by js/clubs.js (§4) */
+.links a.active{color:var(--ice)}
+.links a:hover::after,.links a.active::after{transform:scaleX(1)}
+/* ▸ .nav__right — <div class="…nav__right…"> on: all pages (§4) */
+.nav__right{display:flex;align-items:center;gap:14px;position:relative;z-index:210}
+/* ▸ .visitors — <div class="…visitors…"> on: all pages (§4) */
+.visitors{display:flex;align-items:center;gap:8px;font-size:.78rem;color:var(--mist);border:1px solid var(--line);border-radius:99px;padding:6px 14px;white-space:nowrap}
+.visitors b{color:var(--glacier);font-variant-numeric:tabular-nums;font-size:.95rem}
+/* ▸ .burger — <button class="…burger…"> on: all pages (§4) */
+.burger{display:none;background:none;border:1px solid var(--line);border-radius:50%;width:44px;height:44px;cursor:pointer;color:var(--ice);position:relative}
+.burger span,.burger span::before{position:absolute;left:12px;width:18px;height:2px;background:currentColor;transition:transform .4s var(--ease)}
+.burger span{top:21px}.burger span::before{content:"";left:0;top:-6px}
+.burger[aria-expanded=true] span{transform:rotate(45deg)}
+.burger[aria-expanded=true] span::before{transform:translateY(6px) rotate(-90deg)}
+
+/* ==================================================================
+   §5 BUTTONS
+   .btn / .btn--primary / .btn--ghost → <a class="btn ...">
+   Pages: index.html (hero), .next band on every inner page
+   ================================================================== */
+
+/* ▸ .btn — <a class="…btn…"> on: home, clubs, contact, guidelines, simulator +1 more (§5) */
+.btn{background:none;color:var(--ice);font-family:var(--f-body);line-height:1.2;display:inline-flex;align-items:center;gap:10px;padding:16px 30px;border-radius:99px;font-weight:600;font-size:.92rem;border:1px solid transparent;cursor:pointer;transition:transform .4s var(--ease),background .3s,color .3s,border-color .3s}
+/* ▸ .btn--primary — <a class="…btn--primary…"> on: home, clubs, contact, simulator, types-styles (§5) */
+.btn--primary{background:var(--ember);color:#fff}
+.btn--primary:hover{background:#ff8450;transform:translateY(-3px)}
+/* ▸ .btn--ghost — <a class="…btn--ghost…"> on: home, contact, guidelines, simulator, types-styles (§5) */
+.btn--ghost{border-color:var(--line);color:var(--ice)}
+.btn--ghost:hover{border-color:var(--glacier);color:var(--glacier);transform:translateY(-3px)}
+
+/* ==================================================================
+   §6 HOME HERO
+   .hero       → <section class="hero"> full-screen opening. Pages: index.html ONLY
+   .hero__bg   → parallax photo layer (moved by js/main.js)
+   .hero h1 em → italic glacier-blue word in the headline
+   .stats/.stat→ <div class="stats"> count-up numbers (data-count). Pages: index.html
+   ================================================================== */
+
+/* ▸ .hero — <section class="…hero…"> on: home (§6) */
+.hero{min-height:100svh;display:flex;align-items:flex-end;position:relative;overflow:hidden;background:linear-gradient(160deg,#16253f,#0a0f18)}
+/* ▸ .hero__bg — <div class="…hero__bg…"> on: home (§6) */
+.hero__bg{position:absolute;inset:-8% 0 0;background:center/cover no-repeat;will-change:transform}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,15,24,.55) 0%,rgba(10,15,24,.15) 40%,var(--ink) 100%)}
+.hero .wrap{position:relative;z-index:2;padding-top:calc(var(--nav-h) + 56px);padding-bottom:clamp(60px,9vw,110px);width:100%}
+.hero h1{font-size:clamp(3rem,8vw,7.2rem);max-width:11ch}
+.hero h1 em{font-style:italic;color:var(--glacier);font-weight:400}
+.hero p{font-size:1.2rem;max-width:48ch;color:var(--ice);opacity:.85;margin:28px 0 38px}
+.hero .eyebrow{font-size:.75rem;color:var(--ember);opacity:1;max-width:none;margin:0 0 22px}
+/* ▸ .hero__cta — <div class="…hero__cta…"> on: home, contact, guidelines, simulator, types-styles (§6) */
+.hero__cta{display:flex;gap:14px;flex-wrap:wrap}
+/* ▸ .stats — <div class="…stats…"> on: home, contact, developments, gallery, guidelines +9 more (§6) */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);margin-top:70px}
+/* ▸ .stat — <div class="…stat…"> on: home, contact, developments, gallery, guidelines +9 more (§6) */
+.stat{padding:22px 0 0}
+.stat b{font-family:var(--f-display);font-size:clamp(1.8rem,3.4vw,2.8rem);font-weight:500;display:block;line-height:1}
+.stat span{font-size:.78rem;color:var(--mist);letter-spacing:.08em;text-transform:uppercase}
+
+/* ==================================================================
+   §8 SPLIT LAYOUT, FRAME, FACTS
+   .split      → <div class="wrap split"> two columns text + photo. Pages: information.html
+   .frame      → <figure class="frame"> photo with zoom-on-hover + caption
+   .facts      → <ul class="facts"> ruled key/value list. Pages: information.html
+   ================================================================== */
+
+/* ▸ .split — <div class="…split…"> on: home, clubs, hazards, information, sheltering +3 more (§8) */
+.split{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(40px,7vw,110px);align-items:center}
+/* ▸ .frame — <figure class="…frame…"> on: home, clubs, contact, developments, hazards +7 more (§8) */
+.frame{position:relative;border-radius:4px;overflow:hidden;aspect-ratio:4/5;background:var(--slate);margin:0}
+.frame img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.frame:hover img{transform:scale(1.05)}
+.frame figcaption{position:absolute;left:0;bottom:0;padding:18px 22px;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;background:linear-gradient(transparent,rgba(10,15,24,.85));width:100%}
+/* ▸ .facts — <ul class="…facts…"> on: clubs, hazards, information, sheltering, simulator +2 more (§8) */
+.facts{list-style:none;padding:0;margin:36px 0 0;border-top:1px solid var(--line)}
+.facts li{display:flex;justify-content:space-between;gap:20px;padding:16px 0;border-bottom:1px solid var(--line);font-size:.95rem}
+.facts span{color:var(--mist)}
+
+/* ==================================================================
+   §9 TIMELINE
+   .timeline   → <div class="timeline"> vertical rule. Pages: history.html
+   .tl         → <div class="tl"> one milestone (<time>, <h3>, <p>)
+   ================================================================== */
+
+/* ▸ .timeline — <div class="…timeline…"> on: contact, developments, history, records (§9) */
+.timeline{margin-top:64px;border-left:1px solid var(--line);margin-left:6px}
+/* ▸ .tl — <div class="…tl…"> on: contact, developments, history, records (§9) */
+.tl{position:relative;padding:0 0 56px 44px;max-width:720px}
+.tl::before{content:"";position:absolute;left:-6px;top:10px;width:11px;height:11px;border-radius:50%;background:var(--ink);border:2px solid var(--ember);transition:background .3s}
+.tl:hover::before{background:var(--ember)}
+.tl time{font-family:var(--f-display);font-size:2.2rem;color:var(--glacier);display:block;line-height:1.2}
+.tl h3{font-size:1.5rem;margin:6px 0 8px}
+.tl p{margin:0;color:var(--mist)}
+
+/* ==================================================================
+   §10 CARDS
+   .cards      → <div class="cards"> 3-col grid (1-col <960px). Pages: index.html, types-styles.html
+   .card       → <article class="card"> with .card__img, .card__body, <small> tag, h3, p
+   (when a card is an <a>, whole card is the link)
+   ================================================================== */
+
+/* ▸ .cards — <div class="…cards…"> on: developments, guidelines, hazards, quiz, sheltering +2 more (§10) */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:64px}
+/* ▸ .card — <article class="…card…"> on: developments, guidelines, hazards, quiz, sheltering +2 more (§10) */
+.card{background:var(--navy);border:1px solid var(--line);border-radius:6px;overflow:hidden;transition:transform .5s var(--ease),border-color .3s}
+.section--navy .card{background:var(--ink)}
+.card:hover{transform:translateY(-8px);border-color:rgba(143,211,244,.5)}
+/* ▸ .card__img — <div class="…card__img…"> on: developments, guidelines, hazards, quiz, sheltering +2 more (§10) */
+.card__img{aspect-ratio:3/2;overflow:hidden;background:var(--slate)}
+.card__img img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.card:hover .card__img img{transform:scale(1.08)}
+/* ▸ .card__body — <div class="…card__body…"> on: developments, guidelines, hazards, quiz, sheltering +2 more (§10) */
+.card__body{padding:28px}
+.card small{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ember);font-weight:600}
+.card h3{font-size:1.6rem;margin:8px 0 10px}
+.card p{margin:0;color:var(--mist);font-size:.97rem}
+
+/* ==================================================================
+   §7 INNER-PAGE HERO
+   .page-hero  → <section class="page-hero"> banner at top of every page EXCEPT index.html
+   .page-hero__bg → photo layer, set with inline background-image
+   .crumbs     → <p class="crumbs"> breadcrumb (Home / Page)
+   ================================================================== */
+/* ▸ .page-hero — <section class="…page-hero…"> on: all pages (§7) */
+.page-hero{position:relative;min-height:62vh;display:flex;align-items:flex-end;overflow:hidden;background:linear-gradient(160deg,#16253f,#0a0f18)}
+/* ▸ .page-hero__bg — <div class="…page-hero__bg…"> on: all pages (§7) */
+.page-hero__bg{position:absolute;inset:0;background:center/cover no-repeat}
+.page-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,15,24,.6),rgba(10,15,24,.2) 45%,var(--ink))}
+.page-hero .wrap{position:relative;z-index:2;padding-bottom:64px;padding-top:140px;width:100%}
+.page-hero h1{font-size:clamp(2.8rem,8vw,6.5rem)}
+/* ▸ .crumbs — <p class="…crumbs…"> on: all pages (§7) */
+.crumbs{font-size:.8rem;color:var(--mist);letter-spacing:.08em;margin:0 0 18px}
+.crumbs a:hover{color:var(--glacier)}
+/* ==================================================================
+   §11 NEXT-PAGE BAND
+   .next       → <a class="next"> big link to the following page, end of <main>. Pages: every inner page
+   ================================================================== */
+/* ▸ .next — <a class="…next…"> on: all pages (§11) */
+.next{display:block;border-top:1px solid var(--line);padding:70px 0;transition:background .4s var(--ease)}
+.next:hover{background:var(--navy)}
+.next small{display:block;font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ember);font-weight:600}
+.next span{font-family:var(--f-display);font-size:clamp(2rem,5vw,4rem);display:block;transition:transform .5s var(--ease),color .3s}
+.next:hover span{transform:translateX(14px);color:var(--glacier)}
+/* ==================================================================
+   §12 FOOTER
+   .footer     → <footer class="footer"> site-wide links + copyright. ALL pages
+   ================================================================== */
+/* ▸ .footer — <footer class="…footer…"> on: all pages (§12) */
+.footer{border-top:1px solid var(--line);padding:56px 0 40px;color:var(--mist);font-size:.9rem}
+.footer .wrap{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
+.footer ul{list-style:none;margin:0;padding:0;display:flex;gap:22px;flex-wrap:wrap}
+.footer a:hover{color:var(--glacier)}
+
+/* ==================================================================
+   §13 BOTTOM TICKER
+   .ticker       → <div class="ticker"> fixed bottom bar. ALL pages
+   .ticker__track→ scrolling strip; each <span data-tick> is filled with date·time·location by js/main.js
+   ================================================================== */
+
+/* ▸ .ticker — <div class="…ticker…"> on: all pages (§13) */
+.ticker{position:fixed;inset:auto 0 0 0;height:var(--tick-h);background:var(--ember);color:#fff;z-index:250;overflow:hidden;display:flex;align-items:center;font-size:.82rem;font-weight:600;letter-spacing:.04em}
+/* ▸ .ticker__track — <div class="…ticker__track…"> on: all pages (§13) */
+.ticker__track{display:flex;width:max-content;animation:tick 40s linear infinite}
+.ticker:hover .ticker__track{animation-play-state:paused}
+.ticker__track span{padding:0 36px;white-space:nowrap}
+.ticker__track span::before{content:"▲";margin-right:36px;font-size:.6rem;opacity:.7}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* ==================================================================
+   §14 SCROLL REVEAL
+   .reveal / .reveal.in → any element that fades up on scroll. ALL pages (.in added by IntersectionObserver in js/main.js)
+   --d inline style = stagger delay
+   ================================================================== */
+
+/* ▸ .reveal — <h2 class="…reveal…"> on: all pages (§14) */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
+/* ▸ .in — state class switched on/off by js/main.js (§14) */
+.reveal.in{opacity:1;transform:none}
+
+/* ==================================================================
+   §15 RESPONSIVE + REDUCED MOTION
+   ≤1100px hides visitor label · ≤960px mobile menu, 1-col grids · prefers-reduced-motion disables animation. ALL pages
+   ================================================================== */
+
+@media(max-width:1400px){.links{gap:0}.links a{padding:8px 7px;font-size:.8rem}.links a::after{left:7px;right:7px}.logo{font-size:1.05rem}.logo svg{width:36px;height:36px}.visitors .lbl{display:none}.nav .wrap{gap:14px}}
+@media(max-width:1100px){
+  .burger{display:block}
+  .links{position:fixed;inset:0;background:var(--ink);flex-direction:column;justify-content:center;align-items:center;gap:10px;opacity:0;visibility:hidden;transition:opacity .5s var(--ease),visibility .5s;z-index:205}
+  .links.open{opacity:1;visibility:visible}
+  .links a{font-family:var(--f-display);font-size:2.2rem;color:var(--ice);padding:6px 12px}
+}
+@media(max-width:1100px){.visitors .lbl{display:none}}
+@media(max-width:960px){
+  .split,.cards{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr);gap:20px 0}
+  .frame{aspect-ratio:4/3}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
+
+/* ==================================================================
+   §16 TABLE + FILTER CHIPS  (appended)
+   .chips / .chip → <div class="chips"><button class="chip"> filter buttons. Pages: records.html, clubs.html
+                    .chip.on = active filter (toggled by js/records.js and js/clubs.js)
+   .tbl           → <div class="tbl"><table> records table; scrolls sideways on phones. Pages: records.html
+   tr.hide        → row hidden by filter (js/records.js)
+   ================================================================== */
+/* ▸ .chips — <div class="…chips…"> on: clubs, gallery, history, records, simulator (§16) */
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin:36px 0 24px}
+/* ▸ .chip — <button class="…chip…"> on: clubs, gallery, history, records (§16) */
+.chip{background:none;color:var(--mist);border:1px solid var(--line);border-radius:99px;padding:9px 20px;font:500 .85rem var(--f-body);cursor:pointer;transition:all .3s var(--ease)}
+.chip:hover{color:var(--glacier);border-color:var(--glacier)}
+/* ▸ .on — <button class="…on…"> on: clubs, gallery, history, records (§16) */
+.chip.on{background:var(--ice);color:var(--ink);border-color:var(--ice)}
+/* ▸ .tbl — <div class="…tbl…"> on: history, records, types-styles (§16) */
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:6px}
+.tbl table{width:100%;border-collapse:collapse;min-width:640px;font-size:.95rem}
+.tbl th{text-align:left;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ember);padding:16px 20px;border-bottom:1px solid var(--line);background:var(--navy)}
+.tbl td{padding:16px 20px;border-bottom:1px solid var(--line);color:var(--mist)}
+#peaks td:nth-child(2){color:var(--ice);font-family:var(--f-display);font-size:1.15rem}
+.tbl tr{transition:background .3s}.tbl tbody tr:hover{background:rgba(143,211,244,.07)}
+/* ▸ .hide — state class switched on/off by js/gallery.js (§16) */
+.tbl tr.hide{display:none}
+
+/* ==================================================================
+   §17 CLUBS MAP  (appended)
+   .atlas      → <div class="wrap atlas"> list + map two-column layout. Pages: clubs.html
+   .atlas__list→ <ul> built by js/clubs.js; each <button class="place"> flies the map to a pin
+   #map        → <div id="map"> Leaflet map (Esri terrain tiles by default; layer switcher adds Esri satellite)
+   .pin--club / .pin--peak → Leaflet divIcon dots (ember = clubs, glacier = peaks)
+   .geo        → <p class="geo"> status line for the Geolocation button (aria-live)
+   ================================================================== */
+/* ▸ .atlas — <div class="…atlas…"> on: clubs (§17) */
+.atlas{display:grid;grid-template-columns:.8fr 1.2fr;gap:28px;align-items:start}
+/* ▸ .atlas__list — <ul class="…atlas__list…"> on: clubs (§17) */
+.atlas__list{list-style:none;margin:0;padding:0;max-height:560px;overflow:auto;border:1px solid var(--line);border-radius:6px}
+/* ▸ .place — element built by js/clubs.js (not in the HTML files) (§17) */
+.place{display:block;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);color:var(--ice);padding:16px 20px;cursor:pointer;font:inherit;transition:background .3s}
+.place:hover,.place:focus-visible{background:rgba(143,211,244,.08)}
+.place b{display:block;font-family:var(--f-display);font-size:1.15rem;font-weight:500}
+.place span{font-size:.82rem;color:var(--mist)}
+.place i{font-style:normal;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ember);margin-right:8px}
+/* ▸ .peak — element built by js/clubs.js (not in the HTML files) (§17) */
+.place.peak i{color:var(--glacier)}
+#map{height:560px;border-radius:6px;border:1px solid var(--line);background:var(--slate);z-index:1}
+/* ▸ .leaflet-control-layers — Leaflet map library element, restyled here to match the theme (§17) */
+/* ▸ .leaflet-bar — Leaflet map library element, restyled here to match the theme (§17) */
+#map .leaflet-control-layers,#map .leaflet-bar a{background:var(--navy);color:var(--ice);border-color:var(--line)}
+#map .leaflet-bar a:hover{background:var(--slate)}
+#map .leaflet-control-layers{border:1px solid var(--line);border-radius:6px}
+/* ▸ .pin — map pin icon created by js/clubs.js and js/simulator.js (§17) */
+.pin{border-radius:50%;border:3px solid var(--ice);box-shadow:0 0 0 6px rgba(255,106,43,.25)}
+/* ▸ .pin--club — map pin icon created by js/clubs.js and js/simulator.js (§17) */
+.pin--club{background:var(--ember)}/* ▸ .pin--peak — map pin icon created by js/clubs.js and js/simulator.js (§17) */
+.pin--peak{background:var(--glacier);box-shadow:0 0 0 6px rgba(143,211,244,.25)}
+/* ▸ .pin--me — map pin icon created by js/clubs.js and js/simulator.js (§17) */
+.pin--me{background:var(--ice);border-color:var(--ember)}
+/* ▸ .leaflet-popup-content — Leaflet map library element, restyled here to match the theme (§17) */
+.leaflet-popup-content{font-family:var(--f-body);color:#0a0f18}
+/* ▸ .geo — <p class="…geo…"> on: clubs, developments, guidelines, records (§17) */
+.geo{color:var(--mist);margin:18px 0 0;min-height:1.6em}
+@media(max-width:960px){.atlas{grid-template-columns:1fr}#map{height:420px}.atlas__list{max-height:320px}}
+
+/* ==================================================================
+   §18 STORIES  (appended)
+   .split--rev → modifier on <div class="wrap split split--rev"> flips photo to the left. Pages: success-stories.html
+   .story__year→ <span class="story__year"> big outline year above each story heading
+   (rest of the layout reuses §8 .split, .frame, .facts)
+   ================================================================== */
+/* ▸ .split--rev — <div class="…split--rev…"> on: success-stories (§18) */
+.split--rev>:first-child{order:2}
+/* ▸ .story__year — <span class="…story__year…"> on: success-stories (§18) */
+.story__year{font-family:var(--f-display);font-size:clamp(3rem,8vw,6rem);line-height:1;color:transparent;-webkit-text-stroke:1px var(--glacier);display:block;margin-bottom:10px}
+/* ▸ .story — <div class="…story…"> on: success-stories (§18) */
+.story+.story{margin-top:clamp(70px,10vw,130px)}
+@media(max-width:960px){.split--rev>:first-child{order:0}}
+
+/* ==================================================================
+   §19 GALLERY + LIGHTBOX  (appended)
+   .gallery    → <div class="gallery"> CSS-columns masonry. Pages: gallery.html
+   .tile       → <button class="tile" data-type data-src data-cat data-cap> thumbnail; .tile--video shows a play badge
+   .tile.hide  → hidden by filter chips (§16) via js/gallery.js
+   .lb         → <div class="lb"> fullscreen lightbox (role=dialog). Pages: gallery.html
+   .lb__close/.lb__prev/.lb__next/.lb__cap → controls + caption inside .lb
+   ================================================================== */
+/* ▸ .gallery — <div class="…gallery…"> on: gallery (§19) */
+.gallery{columns:3;column-gap:18px;margin-top:10px}
+/* ▸ .tile — <button class="…tile…"> on: gallery (§19) */
+.tile{display:block;position:relative;width:100%;margin:0 0 18px;padding:0;border:0;border-radius:6px;overflow:hidden;cursor:zoom-in;background:var(--slate);break-inside:avoid}
+.tile img{width:100%;height:auto;transition:transform 1s var(--ease),filter .5s}
+.tile:hover img{transform:scale(1.06);filter:brightness(.75)}
+.tile::after{content:attr(data-cap);position:absolute;left:0;right:0;bottom:0;padding:40px 18px 16px;text-align:left;font:500 .85rem var(--f-body);color:var(--ice);background:linear-gradient(transparent,rgba(10,15,24,.9));opacity:0;transform:translateY(10px);transition:all .5s var(--ease)}
+.tile:hover::after,.tile:focus-visible::after{opacity:1;transform:none}
+/* ▸ .tile--video — <button class="…tile--video…"> on: gallery (§19) */
+.tile--video{cursor:pointer}
+.tile--video::before{content:"▶";position:absolute;top:50%;left:50%;width:68px;height:68px;margin:-34px 0 0 -34px;border-radius:50%;background:var(--ember);color:#fff;display:grid;place-items:center;font-size:1.2rem;z-index:2;padding-left:4px;transition:transform .4s var(--ease)}
+.tile--video:hover::before{transform:scale(1.15)}
+.tile.hide{display:none}
+/* ▸ .lb — <div class="…lb…"> on: gallery (§19) */
+.lb{position:fixed;inset:0;z-index:400;background:rgba(6,9,15,.96);display:none;align-items:center;justify-content:center;flex-direction:column;padding:70px 20px 40px}
+/* ▸ .open — state class switched on/off by js/gallery.js (§19) */
+.lb.open{display:flex;animation:lbin .4s var(--ease)}
+@keyframes lbin{from{opacity:0}}
+/* ▸ .lb__stage — <div class="…lb__stage…"> on: gallery (§19) */
+.lb__stage{max-width:min(1200px,100%);max-height:78vh;display:flex;justify-content:center}
+.lb__stage img,.lb__stage video{max-width:100%;max-height:78vh;border-radius:4px}
+/* ▸ .lb__cap — <p class="…lb__cap…"> on: gallery (§19) */
+.lb__cap{margin:18px 0 0;color:var(--mist);font-size:.9rem;text-align:center;min-height:1.5em}
+/* ▸ .lb__btn — <button class="…lb__btn…"> on: gallery (§19) */
+.lb__btn{position:absolute;background:none;border:1px solid var(--line);color:var(--ice);width:48px;height:48px;border-radius:50%;font-size:1.3rem;cursor:pointer;transition:all .3s}
+.lb__btn:hover{border-color:var(--glacier);color:var(--glacier)}
+/* ▸ .lb__close — <button class="…lb__close…"> on: gallery (§19) */
+.lb__close{top:20px;right:20px}/* ▸ .lb__prev — <button class="…lb__prev…"> on: gallery (§19) */
+.lb__prev{left:20px;top:50%}/* ▸ .lb__next — <button class="…lb__next…"> on: gallery (§19) */
+.lb__next{right:20px;top:50%}
+@media(max-width:960px){.gallery{columns:2}.lb__prev{left:8px}.lb__next{right:8px}}
+@media(max-width:560px){.gallery{columns:1}}
+
+/* ==================================================================
+   §20 CHECKLIST + METER  (appended)
+   .meter / .meter__bar → <div class="meter"> progress track + fill; width set by js/checklist.js. Pages: guidelines.html
+   .checks     → <div class="checks"> grid of checklist groups
+   .check      → <label class="check"><input type="checkbox"> custom tick row; .check input:checked styles the tick
+   .sources    → <ul class="sources"> external reference links. Pages: developments.html
+   ================================================================== */
+/* ▸ .meter — <div class="…meter…"> on: guidelines (§20) */
+.meter{height:6px;background:var(--line);border-radius:9px;overflow:hidden;margin:30px 0 8px}
+/* ▸ .meter__bar — <div class="…meter__bar…"> on: guidelines (§20) */
+.meter__bar{height:100%;width:0;background:linear-gradient(90deg,var(--glacier),var(--ember));transition:width .6s var(--ease)}
+/* ▸ .checks — <div class="…checks…"> on: guidelines, hazards (§20) */
+.checks{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:40px}
+.checks fieldset{border:1px solid var(--line);border-radius:6px;padding:26px 28px;margin:0;background:var(--navy)}
+.checks legend{font-family:var(--f-display);font-size:1.4rem;padding:0 10px}
+/* ▸ .check — <label class="…check…"> on: contact, guidelines, hazards, simulator (§20) */
+.check{display:flex;gap:14px;align-items:center;padding:11px 0;cursor:pointer;color:var(--mist);transition:color .3s}
+.check:hover{color:var(--ice)}
+.check input{-webkit-appearance:none;appearance:none;flex:none;width:22px;height:22px;border:1.5px solid var(--mist);border-radius:50%;display:grid;place-items:center;cursor:pointer;transition:all .3s var(--ease)}
+.check input::after{content:"✓";font-size:.8rem;color:#fff;transform:scale(0);transition:transform .3s var(--ease)}
+.check input:checked{background:var(--ember);border-color:var(--ember)}
+.check input:checked::after{transform:scale(1)}
+.check input:checked+span{color:var(--ice);text-decoration:line-through;text-decoration-color:var(--ember)}
+/* ▸ .sources — <ul class="…sources…"> on: developments, simulator (§20) */
+.sources{list-style:none;padding:0;margin:30px 0 0}
+.sources li{border-bottom:1px solid var(--line)}
+.sources a{display:flex;justify-content:space-between;gap:16px;padding:15px 0;color:var(--mist);transition:color .3s,padding .4s var(--ease)}
+.sources a:hover{color:var(--glacier);padding-left:10px}
+@media(max-width:960px){.checks{grid-template-columns:1fr}}
+
+/* ==================================================================
+   §21 CONTENTS INDEX  (appended)
+   .toc        → <ul class="toc"> editorial list of all chapters. Pages: index.html
+   .toc a      → one row: .toc__n number | .toc__t title | .toc__d description | .toc__a arrow
+                 hover: row slides right, title turns glacier, arrow moves
+   ================================================================== */
+/* ▸ .toc — <ul class="…toc…"> on: home (§21) */
+.toc{list-style:none;margin:64px 0 0;padding:0;border-top:1px solid var(--line)}
+.toc a{display:grid;grid-template-columns:70px 1fr 1.1fr 40px;align-items:center;gap:20px;padding:26px 0;border-bottom:1px solid var(--line);transition:padding .5s var(--ease),background .3s}
+.toc a:hover{padding-left:18px;background:linear-gradient(90deg,rgba(143,211,244,.08),transparent)}
+/* ▸ .toc__n — <span class="…toc__n…"> on: home (§21) */
+.toc__n{font-size:.8rem;letter-spacing:.2em;color:var(--ember);font-weight:600}
+/* ▸ .toc__t — <span class="…toc__t…"> on: home (§21) */
+.toc__t{font-family:var(--f-display);font-size:clamp(1.5rem,3vw,2.4rem);line-height:1.1;transition:color .3s}
+/* ▸ .toc__d — <span class="…toc__d…"> on: home (§21) */
+.toc__d{color:var(--mist);font-size:.95rem}
+/* ▸ .toc__a — <span class="…toc__a…"> on: home (§21) */
+.toc__a{font-size:1.4rem;color:var(--mist);transition:transform .5s var(--ease),color .3s}
+.toc a:hover .toc__t,.toc a:hover .toc__a{color:var(--glacier)}
+.toc a:hover .toc__a{transform:translateX(8px)}
+@media(max-width:760px){.toc a{grid-template-columns:44px 1fr 28px}.toc__d{display:none}}
+
+/* ==================================================================
+   §22 PHOTO STRIP + CALL-TO-ACTION BAND  (appended)
+   .strip      → <div class="strip"> 4 portrait photos, each an <a> to the gallery. Pages: index.html
+   .cta        → <section class="cta"> full-width closing band with .cta__bg photo. Pages: index.html
+   ================================================================== */
+/* ▸ .strip — <div class="…strip…"> on: home (§22) */
+.strip{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:50px}
+.strip a{display:block;aspect-ratio:3/4;overflow:hidden;border-radius:6px;background:var(--slate)}
+.strip img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease),filter .5s}
+.strip a:hover img{transform:scale(1.08);filter:brightness(.8)}
+.strip a:nth-child(even){transform:translateY(34px)}
+/* ▸ .cta — <section class="…cta…"> on: home, types-styles (§22) */
+.cta{position:relative;padding:clamp(100px,14vw,200px) 0;overflow:hidden;text-align:center;background:var(--navy)}
+/* ▸ .cta__bg — <div class="…cta__bg…"> on: home, types-styles (§22) */
+.cta__bg{position:absolute;inset:0;background:center/cover no-repeat}
+.cta::after{content:"";position:absolute;inset:0;background:rgba(10,15,24,.72)}
+.cta .wrap{position:relative;z-index:2}
+.cta .eyebrow{justify-content:center}
+.cta h2{font-size:clamp(2.6rem,7vw,6rem);max-width:14ch;margin:0 auto 38px}
+.cta .hero__cta{justify-content:center}
+@media(max-width:760px){.strip{grid-template-columns:repeat(2,1fr)}.strip a:nth-child(even){transform:none}}
+
+/* ==================================================================
+   §23 CONTACT FORM + FAQ  (appended)
+   .contact    → <div class="wrap contact"> two columns: form + details. Pages: contact.html
+   .form       → <form class="form" novalidate> validated by js/contact.js
+   .field      → <div class="field"> label + input/select/textarea + .field__err message
+                 .field.bad = invalid state (red border, message shown)
+   .form__ok   → <div class="form__ok"> success panel that replaces the form after sending
+   .info       → <ul class="info"> contact details list
+   .faq        → <div class="faq"><details> accordion. Pages: contact.html
+   ================================================================== */
+/* ▸ .contact — <div class="…contact…"> on: contact (§23) */
+.contact{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(36px,6vw,90px);align-items:start}
+/* ▸ .form — <form class="…form…"> on: contact (§23) */
+.form{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+/* ▸ .field — <div class="…field…"> on: clubs, contact (§23) */
+.field{display:flex;flex-direction:column;gap:8px}
+/* ▸ .field--full — <div class="…field--full…"> on: contact (§23) */
+.field--full{grid-column:1/-1}
+.field label{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mist);font-weight:600}
+.field input,.field select,.field textarea{background:var(--navy);border:1px solid var(--line);border-radius:6px;color:var(--ice);font:inherit;font-size:1rem;padding:14px 16px;transition:border-color .3s,box-shadow .3s;width:100%}
+.field textarea{min-height:170px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:0;border-color:var(--glacier);box-shadow:0 0 0 3px rgba(143,211,244,.18)}
+/* ▸ .field__err — <span class="…field__err…"> on: contact (§23) */
+.field__err{font-size:.82rem;color:#ff8f73;min-height:1.2em}
+/* ▸ .bad — state class switched on/off by js/contact.js (§23) */
+.field.bad input,.field.bad select,.field.bad textarea{border-color:#ff6a4d}
+/* ▸ .field__count — <span class="…field__count…"> on: contact (§23) */
+.field__count{font-size:.78rem;color:var(--mist);text-align:right}
+/* ▸ .form__ok — <div class="…form__ok…"> on: contact (§23) */
+.form__ok{display:none;border:1px solid var(--glacier);border-radius:8px;padding:clamp(28px,4vw,48px);background:var(--navy)}
+/* ▸ .show — state class switched on/off by js/contact.js (§23) */
+.form__ok.show{display:block;animation:lbin .6s var(--ease)}
+.form__ok h3{font-size:2rem;margin-bottom:12px}
+.form__ok p{color:var(--mist)}
+.form__ok b{color:var(--glacier);font-family:var(--f-display);font-weight:500}
+/* ▸ .info — <ul class="…info…"> on: contact (§23) */
+.info{list-style:none;margin:30px 0 0;padding:0;border-top:1px solid var(--line)}
+.info li{padding:18px 0;border-bottom:1px solid var(--line)}
+.info small{display:block;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ember);font-weight:600}
+/* ▸ .faq — <div class="…faq…"> on: clubs, contact, developments, gallery, guidelines +9 more (§23) */
+.faq{margin-top:50px;border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;list-style:none;padding:24px 0;font-family:var(--f-display);font-size:1.4rem;display:flex;justify-content:space-between;gap:20px;transition:color .3s}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--ember);font-size:1.8rem;line-height:1;transition:transform .4s var(--ease)}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq summary:hover{color:var(--glacier)}
+.faq details p{margin:0 0 24px;color:var(--mist);max-width:70ch}
+@media(max-width:960px){.contact{grid-template-columns:1fr}.form{grid-template-columns:1fr}}
+/* §23 (cont.) stop grid children from forcing the page wider on phones */
+.contact>*,.form>*,.field{min-width:0}
+.info li{overflow-wrap:anywhere}
+.field .check input{width:22px;height:22px;padding:0;flex:none;border-radius:50%;box-shadow:none}
+.field .check input:focus-visible{outline:2px solid var(--glacier);outline-offset:3px}
+
+/* ==================================================================
+   §24 MOTION LAYER  (appended) — every rule is gated by html.motion, which is only added
+   (inline script in each <head>) when the visitor has NOT asked for reduced motion.
+   .w / .w>span        → words inside <h1>/<h2> split by js/motion.js; rise out of a mask (.split-in triggers)
+   .hero__bg           → home photo: CSS `scale` = slow camera push, `transform` = scroll + mouse parallax (--py,--mx,--my)
+   .snow               → <canvas class="snow"> falling snow, inserted into .hero by js/motion.js. Pages: index.html
+   .wipe               → <div class="wipe"> ridge-line page transition overlay (.go = covers, .cover = start covered)
+   .frame.reveal       → photos unmask upward and settle from a zoom as they scroll in. Pages: information, success-stories, contact, index
+   .card::before       → spotlight that follows the cursor (--x,--y). Pages: index, types-styles, techniques, sheltering, hazards, guidelines, developments
+   .btn                → magnetic pull toward the cursor using the `translate` property (--tx,--ty)
+   ================================================================== */
+/* ▸ .motion — element built by js/journey.js (not in the HTML files) (§24) */
+.motion .hero h1,.motion .page-hero h1,.motion .section h2,.motion .cta h2{visibility:hidden}
+/* ▸ .split-ready — state class switched on/off by js/motion.js (§24) */
+.motion .split-ready{visibility:visible!important}
+/* ▸ .w — element built by js/motion.js (not in the HTML files) (§24) */
+.motion .w{display:inline-block;overflow:hidden;vertical-align:top;padding:0 .04em .1em;margin-bottom:-.1em}
+.motion .w>span{display:inline-block;transform:translateY(112%);transition:transform 1.1s var(--ease);transition-delay:calc(var(--i)*65ms)}
+/* ▸ .split-in — state class switched on/off by js/motion.js (§24) */
+.motion .split-in .w>span{transform:none}
+.motion .hero__bg{transform:translate3d(var(--mx,0px),calc(var(--py,0px) + var(--my,0px)),0);animation:push 2.6s var(--ease) both}
+@keyframes push{from{scale:1.16}to{scale:1.04}}
+/* ▸ .snow — element built by js/motion.js (not in the HTML files) (§24) */
+.snow{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+/* ▸ .wipe — element built by js/motion.js (not in the HTML files) (§24) */
+.wipe{position:fixed;left:0;right:0;top:0;height:calc(100% + 120px);z-index:600;pointer-events:none;background:var(--navy);
+  clip-path:polygon(0 120px,7% 70px,15% 105px,25% 25px,35% 95px,45% 45px,57% 110px,69% 30px,81% 90px,92% 55px,100% 105px,100% 100%,0 100%);
+  transform:translateY(calc(-100% - 10px));transition:transform .7s var(--ease)}
+/* ▸ .go — state class switched on/off by js/motion.js (§24) */
+.wipe.go{transform:translateY(-120px)}
+/* ▸ .cover — state class switched on/off by js/motion.js (§24) */
+.wipe.cover{transform:translateY(-120px);transition:none}
+/* NOTE: the clip is on the <img>, NOT on .frame. A fully clipped element is never "visible" to IntersectionObserver, so clipping .frame itself meant it never revealed. */
+.motion .frame.reveal{opacity:1;transform:none}
+.motion .frame.reveal img{clip-path:inset(100% 0 0 0);scale:1.3;transition:clip-path 1.4s var(--ease),transform 1.2s var(--ease),scale 1.8s var(--ease)}
+.motion .frame.reveal.in img{clip-path:inset(0);scale:1}
+.card{position:relative}
+.card::before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;opacity:0;transition:opacity .4s;background:radial-gradient(380px circle at var(--x,50%) var(--y,50%),rgba(143,211,244,.15),transparent 45%)}
+.card:hover::before{opacity:1}
+.btn{translate:var(--tx,0px) var(--ty,0px);transition:transform .4s var(--ease),translate .25s var(--ease),background .3s,color .3s,border-color .3s}
+
+/* ==================================================================
+   §4b LEARN DROPDOWN  (appended; belongs to §4 NAVIGATION)
+   .dd / .dd__btn / .dd__menu → <li class="dd"> in .links: "Learn" button + panel of 9 chapter links. ALL pages
+   Desktop: opens on hover, focus or click. Mobile (<=1100px): panel is always open, as a 2-column list inside the full-screen menu.
+   ================================================================== */
+/* ▸ .dd — <li class="…dd…"> on: all pages (§4b) */
+.dd{position:relative}
+/* ▸ .dd__btn — <button class="…dd__btn…"> on: all pages (§4b) */
+.dd__btn{background:none;border:0;cursor:pointer;font:500 .88rem var(--f-body);color:var(--mist);padding:8px 14px;position:relative;transition:color .3s}
+.dd__btn::after{content:"";position:absolute;left:14px;right:14px;bottom:2px;height:2px;background:var(--ember);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+.dd__btn:hover,.dd.open .dd__btn,.dd__btn.active{color:var(--ice)}
+.dd__btn:hover::after,.dd__btn.active::after,.dd.open .dd__btn::after{transform:scaleX(1)}
+/* ▸ .dd__menu — <ul class="…dd__menu…"> on: all pages (§4b) */
+.dd__menu{list-style:none;margin:0;padding:8px;position:absolute;top:100%;left:0;min-width:250px;background:#0b111c;border:1px solid rgba(238,246,251,.18);box-shadow:0 24px 60px rgba(0,0,0,.65);border-radius:8px;opacity:0;visibility:hidden;transform:translateY(10px);transition:all .35s var(--ease)}
+.dd:hover .dd__menu,.dd:focus-within .dd__menu,.dd.open .dd__menu{opacity:1;visibility:visible;transform:none}
+.dd__menu a{padding:10px 14px;border-radius:5px}
+.dd__menu a::after{display:none}
+.dd__menu a:hover,.dd__menu a.active{background:rgba(143,211,244,.09)}
+@media(max-width:1100px){
+  .links{justify-content:flex-start;padding:96px 20px 70px;overflow-y:auto}
+  .dd__btn{font:600 2.2rem var(--f-display);color:var(--ice);pointer-events:none}
+  .dd__btn span,.dd__btn::after{display:none}
+  .dd__menu{position:static;opacity:1;visibility:visible;transform:none;background:none;border:0;box-shadow:none;backdrop-filter:none;display:grid;grid-template-columns:1fr 1fr;gap:0 28px;padding:0 0 14px;min-width:0}
+  .links .dd__menu a{font-size:1.1rem;padding:5px 8px;text-align:center}
+}
+
+/* ==================================================================
+   §25 EXPEDITION SIMULATOR  (appended). Pages: simulator.html. Logic: js/simulator.js, data/sim-peaks.js
+   #simMap         → Leaflet map with a pin per mountain (.pin--sel marks the chosen one)
+   #peakChips      → buttons built by JS (reuse §16 .chip)
+   .sim            → <div class="wrap sim"> controls column + sticky results column
+   .panel          → boxed card used for controls and each result block
+   .ctl            → one control row: label + value + slider/select/segmented buttons
+   .seg            → <div class="seg"> three radio buttons styled as a segmented control
+   .total          → big animated cost number (#rTotal); .bars → cost breakdown list, <i> grows to --w
+   .dial / .ring   → SVG gauges for difficulty and success chance (stroke-dashoffset animates)
+   .badge--best|shoulder|out → season pill;  .risks → bullet list of dangers;  .win → better value in compare table
+   ================================================================== */
+#simMap{height:440px;border-radius:6px;border:1px solid var(--line);background:var(--slate);margin-top:36px;z-index:1}
+#simMap .leaflet-bar a{background:var(--navy);color:var(--ice);border-color:var(--line)}
+/* ▸ .pin--sel — map pin icon created by js/clubs.js and js/simulator.js (§25) */
+.pin--sel{background:var(--ice)!important;box-shadow:0 0 0 8px rgba(255,106,43,.5)!important}
+#peakChips{margin:24px 0 0}
+#peakChips .chip small{opacity:.6;font-size:.72rem;margin-left:4px}
+/* ▸ .sim — <div class="…sim…"> on: simulator (§25) */
+.sim{display:grid;grid-template-columns:1fr 1.1fr;gap:28px;align-items:start}
+/* ▸ .panel — <div class="…panel…"> on: hazards, quiz, simulator (§25) */
+.panel{background:var(--navy);border:1px solid var(--line);border-radius:8px;padding:clamp(22px,3vw,34px)}
+/* ▸ .sim__res — <div class="…sim__res…"> on: simulator (§25) */
+.sim__res{position:sticky;top:90px;display:grid;gap:20px}
+/* ▸ .ctl — <div class="…ctl…"> on: simulator (§25) */
+.ctl{display:grid;gap:10px;padding:18px 0;border-bottom:1px solid var(--line)}
+.ctl:last-child{border:0}
+/* ▸ .l — <span class="…l…"> on: simulator (§25) */
+.ctl>label,.ctl>span.l{display:flex;justify-content:space-between;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mist);font-weight:600}
+.ctl output{color:var(--glacier);letter-spacing:0;text-transform:none;font-size:.95rem}
+.ctl input[type=range]{width:100%;accent-color:var(--ember)}
+.ctl select{background:var(--ink);color:var(--ice);border:1px solid var(--line);border-radius:6px;padding:12px 14px;font:inherit}
+.ctl small{color:var(--mist);font-size:.82rem}
+/* ▸ .seg — <div class="…seg…"> on: simulator (§25) */
+.seg{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:99px;overflow:hidden}
+.seg label{text-align:center;padding:0;cursor:pointer;font-size:.88rem;color:var(--mist);letter-spacing:0;text-transform:none;display:block;font-weight:500}
+.seg label span{display:block;padding:11px 6px;border-radius:99px;transition:background .3s,color .3s}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg input:checked+span{background:var(--ember);color:#fff}
+.seg label:focus-within{outline:2px solid var(--glacier);outline-offset:-2px;border-radius:99px}
+/* ▸ .total — <span class="…total…"> on: simulator (§25) */
+.total{font-family:var(--f-display);font-size:clamp(2.8rem,6vw,4.6rem);line-height:1;display:block;margin:6px 0}
+/* ▸ .res__top — <div class="…res__top…"> on: simulator (§25) */
+.res__top small{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ember);font-weight:600}
+.res__top p{margin:6px 0 0;color:var(--mist)}
+/* ▸ .bars — <ul class="…bars…"> on: simulator (§25) */
+.bars{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:14px}
+.bars li{display:grid;grid-template-columns:1fr auto;gap:2px 12px;font-size:.9rem;color:var(--mist)}
+.bars b{color:var(--ice);font-weight:500}
+.bars i{grid-column:1/-1;height:6px;border-radius:9px;background:linear-gradient(90deg,var(--glacier),var(--ember));width:0;transition:width 1s var(--ease)}
+.bars i.on{width:var(--w)}
+/* ▸ .gauges — <div class="…gauges…"> on: simulator (§25) */
+.gauges{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+/* ▸ .gauge — <div class="…gauge…"> on: simulator (§25) */
+.gauge{text-align:center}
+.gauge svg{width:100%;max-width:210px}
+/* ▸ .trk — <path class="…trk…"> on: simulator (§25) */
+.gauge .trk{fill:none;stroke:var(--line);stroke-width:9;stroke-linecap:round}
+/* ▸ .arc — <path class="…arc…"> on: simulator (§25) */
+.gauge .arc{fill:none;stroke:var(--ember);stroke-width:9;stroke-linecap:round;transition:stroke-dashoffset 1.1s var(--ease)}
+/* ▸ .ring — <circle class="…ring…"> on: simulator (§25) */
+.gauge .ring{stroke:var(--glacier)}
+.gauge text{fill:var(--ice);font-family:var(--f-display);font-size:26px;text-anchor:middle}
+.gauge p{margin:4px 0 0;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mist)}
+/* ▸ .badge — <span class="…badge…"> on: simulator (§25) */
+.badge{display:inline-block;border-radius:99px;padding:7px 16px;font-size:.82rem;font-weight:600}
+/* ▸ .badge--best — element built by js/simulator.js (not in the HTML files) (§25) */
+.badge--best{background:rgba(120,220,160,.15);color:#8ae6b0}/* ▸ .badge--shoulder — element built by js/simulator.js (not in the HTML files) (§25) */
+.badge--shoulder{background:rgba(255,200,90,.15);color:#ffd27a}/* ▸ .badge--out — element built by js/simulator.js (not in the HTML files) (§25) */
+.badge--out{background:rgba(255,106,77,.18);color:#ff9d85}
+/* ▸ .risks — <ul class="…risks…"> on: simulator (§25) */
+/* ▸ .advice — <ul class="…advice…"> on: simulator (§25) */
+.risks,.advice{margin:12px 0 0;padding-left:20px;color:var(--mist);display:grid;gap:8px}
+.panel h3{font-size:1.3rem;margin-bottom:6px}
+/* ▸ .cmp — <div class="…cmp…"> on: simulator (§25) */
+/* ▸ .win — element built by js/simulator.js (not in the HTML files) (§25) */
+.cmp td.win{color:#8ae6b0;font-weight:600}
+@media(max-width:960px){.sim{grid-template-columns:1fr}.sim__res{position:static}#simMap{height:340px}.gauges{grid-template-columns:1fr 1fr}}
+@media(max-width:1100px){.dd{width:100%;text-align:center}.dd__btn{display:block;width:100%}}
+
+/* ==================================================================
+   §26 EVEREST JOURNEY  (appended). Pages: index.html ONLY. Logic: js/journey.js
+   .journey            → <section class="journey"> tall scroll track (650vh when html.motion); sets --sky-top/--sky-bot
+   .journey__stage     → sticky full-screen viewport inside the track
+   .journey__hud       → altitude / oxygen / temperature / zone readout; .o2bar>em fills with oxygen %
+   .jcards > .jstage   → six camp cards (altitude in data-alt, temp in data-temp); .on = current camp. Without html.motion they stack as a plain list
+   .jmtn               → SVG mountain; #jRoute is the orange route (stroke-dashoffset = progress), #jDot the climber, .jmark the 6 camp markers (.reached when passed)
+   .sr                 → visually-hidden text for screen readers
+   ================================================================== */
+/* ▸ .sr — <label class="…sr…"> on: home, records (§26) */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* ▸ .journey — <section class="…journey…"> on: home (§26) */
+.journey{background:var(--navy);padding:clamp(70px,10vw,120px) 0}
+/* ▸ .journey__in — <div class="…journey__in…"> on: home (§26) */
+.journey__in{width:100%}
+/* ▸ .jstage — <article class="…jstage…"> on: home (§26) */
+.jstage{border-top:1px solid var(--line);padding:26px 0}
+.jstage small{font-size:.72rem;letter-spacing:.2em;color:var(--ember);font-weight:600}
+.jstage h3{font-size:clamp(2rem,4vw,3.2rem);margin:6px 0}
+/* ▸ .jmeta — <p class="…jmeta…"> on: home (§26) */
+.jmeta{color:var(--glacier);font-size:.9rem;margin:0 0 10px}
+.jstage p:last-child{margin:0;color:var(--mist);max-width:46ch}
+/* ▸ .journey__hud — <div class="…journey__hud…"> on: home (§26) */
+/* ▸ .journey__hint — <p class="…journey__hint…"> on: home (§26) */
+/* ▸ .jmtn — <svg class="…jmtn…"> on: home (§26) */
+.journey__hud,.journey__hint,.jmtn{display:none}
+.motion .journey{height:650vh;padding:0;--sky-top:rgb(20,57,95);--sky-bot:rgb(61,120,173)}
+/* ▸ .journey__stage — <div class="…journey__stage…"> on: home (§26) */
+.motion .journey__stage{position:sticky;top:0;height:100vh;overflow:hidden;background:linear-gradient(var(--sky-top),var(--sky-bot))}
+.motion .journey__in{height:100%;display:flex;flex-direction:column;justify-content:center;gap:clamp(18px,4vh,44px);padding-top:calc(var(--nav-h) + 8px);padding-bottom:calc(var(--tick-h) + 12px)}
+.motion .journey__hud{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;border-bottom:1px solid rgba(238,246,251,.2);padding-bottom:18px}
+.journey__hud small{display:block;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(238,246,251,.65)}
+.journey__hud b{font-family:var(--f-display);font-weight:500;font-size:clamp(1.5rem,3.4vw,2.8rem);line-height:1.15;display:block;font-variant-numeric:tabular-nums}
+.journey__hud #hZone{font-size:clamp(1rem,1.9vw,1.5rem);padding-top:.5em}
+/* ▸ .hot — state class switched on/off by js/journey.js (§26) */
+.journey__hud #hZone.hot{color:#ff9d85}
+/* ▸ .o2bar — <i class="…o2bar…"> on: home (§26) */
+.o2bar{display:block;height:5px;border-radius:9px;background:rgba(238,246,251,.2);margin-top:8px;overflow:hidden}
+.o2bar em{display:block;height:100%;background:var(--glacier);width:51%}
+/* ▸ .journey__body — <div class="…journey__body…"> on: home (§26) */
+.motion .journey__body{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(20px,4vw,60px);align-items:center;flex:1;min-height:0}
+/* ▸ .jcards — <div class="…jcards…"> on: home (§26) */
+.motion .jcards{position:relative;min-height:290px}
+.motion .journey__hint{display:flex;position:absolute;top:-6px;left:0;transition:opacity .4s;margin:0}
+.motion .jstage{position:absolute;inset:0;border:0;padding:30px 0 0;opacity:0;transform:translateY(24px);transition:opacity .6s var(--ease),transform .8s var(--ease);pointer-events:none}
+.motion .jstage.on{opacity:1;transform:none}
+.motion .jmtn{display:block;width:100%;max-height:100%;filter:drop-shadow(0 20px 40px rgba(0,0,0,.35))}
+/* ▸ .jmark — <g class="…jmark…"> on: home (§26) */
+.jmark circle{fill:#0a1220;stroke:rgba(238,246,251,.6);stroke-width:2;transition:all .4s}
+.jmark text{fill:#eef6fb;font:600 10px var(--f-body);text-anchor:middle}
+/* ▸ .reached — state class switched on/off by js/journey.js (§26) */
+.jmark.reached circle{fill:#ff6a2b;stroke:#eef6fb}
+@media(max-width:960px){
+  .motion .journey__hud{grid-template-columns:repeat(2,1fr);gap:10px 16px;padding-bottom:12px}
+  .motion .journey__body{grid-template-columns:1fr;gap:6px;align-content:start}
+  .motion .jmtn{order:-1;max-height:30vh}
+  .motion .jcards{min-height:230px}
+  .motion .jstage{padding-top:16px}
+  .jstage h3{font-size:1.9rem}
+}
+/* §26 (cont.) fade the SVG's hard left/bottom edges into the sky */
+.motion .jmtn{-webkit-mask-image:linear-gradient(to right,transparent 0,#000 12%),linear-gradient(to bottom,#000 86%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent 0,#000 12%),linear-gradient(to bottom,#000 86%,transparent);mask-composite:intersect}
+
+/* ==================================================================
+   §27 QUIZZES  (appended). Pages: quiz.html. Logic: js/quiz.js (data lives at the top of that file)
+   .qtabs / .qtab → two big buttons that switch quiz. .qtab[aria-selected=true] is active
+   .quiz          → <div class="panel quiz"> holds the current question or the result; .qstep animates in
+   .qmeta         → "Question 3 of 8" + .meter progress bar (§20)
+   .qopts / .qopt → answer buttons. After answering (safety quiz): .correct / .wrong; .qopt:disabled locks them
+   .qexp          → explanation shown after an answer
+   .qres          → result screen: .gauge ring (§25) or .qbars score bars, headline, text, action buttons
+   ================================================================== */
+/* ▸ .qtabs — <div class="…qtabs…"> on: quiz (§27) */
+.qtabs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:40px 0 26px}
+/* ▸ .qtab — <button class="…qtab…"> on: quiz (§27) */
+.qtab{text-align:left;background:var(--navy);border:1px solid var(--line);border-radius:8px;padding:22px 26px;color:var(--mist);cursor:pointer;font:inherit;transition:all .4s var(--ease)}
+.qtab b{display:block;font-family:var(--f-display);font-size:1.5rem;font-weight:500;color:var(--ice);margin-bottom:4px}
+.qtab:hover{border-color:var(--glacier);transform:translateY(-3px)}
+.qtab[aria-selected=true]{border-color:var(--ember);background:linear-gradient(135deg,rgba(255,106,43,.14),var(--navy))}
+/* ▸ .quiz — <div class="…quiz…"> on: quiz (§27) */
+.quiz{min-height:430px}
+/* ▸ .qstep — element built by js/quiz.js (not in the HTML files) (§27) */
+.qstep{animation:qin .6s var(--ease)}
+@keyframes qin{from{opacity:0;transform:translateX(26px)}}
+/* ▸ .qmeta — element built by js/quiz.js (not in the HTML files) (§27) */
+.qmeta{display:flex;justify-content:space-between;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mist);font-weight:600}
+/* ▸ .qq — element built by js/quiz.js (not in the HTML files) (§27) */
+.qq{font-size:clamp(1.6rem,3.2vw,2.5rem);margin:26px 0 28px;max-width:26ch;outline:0}
+/* ▸ .qopts — element built by js/quiz.js (not in the HTML files) (§27) */
+.qopts{display:grid;gap:12px}
+/* ▸ .qopt — element built by js/quiz.js (not in the HTML files) (§27) */
+.qopt{display:flex;gap:16px;align-items:center;text-align:left;width:100%;background:var(--ink);border:1px solid var(--line);border-radius:8px;padding:18px 22px;color:var(--ice);font:inherit;cursor:pointer;transition:all .35s var(--ease)}
+.qopt i{flex:none;width:30px;height:30px;border-radius:50%;border:1px solid var(--mist);display:grid;place-items:center;font-style:normal;font-size:.8rem;color:var(--mist);transition:all .3s}
+.qopt:hover:not(:disabled){border-color:var(--glacier);transform:translateX(6px)}
+.qopt:disabled{cursor:default}
+/* ▸ .correct — state class switched on/off by js/quiz.js (§27) */
+.qopt.correct{border-color:#5fd4a0;background:rgba(95,212,160,.12)}.qopt.correct i{background:#5fd4a0;border-color:#5fd4a0;color:#06251a}
+/* ▸ .wrong — state class switched on/off by js/quiz.js (§27) */
+.qopt.wrong{border-color:#ff6a4d;background:rgba(255,106,77,.12)}.qopt.wrong i{background:#ff6a4d;border-color:#ff6a4d;color:#2b0b04}
+/* ▸ .qexp — element built by js/quiz.js (not in the HTML files) (§27) */
+.qexp{margin:22px 0 0;padding:18px 22px;border-left:3px solid var(--glacier);background:rgba(143,211,244,.07);color:var(--mist);border-radius:0 8px 8px 0}
+.qexp b{color:var(--ice)}
+/* ▸ .qres — element built by js/quiz.js (not in the HTML files) (§27) */
+.qres{text-align:center;padding:10px 0}
+.qres .gauge{margin:0 auto 14px;max-width:230px}
+.qres h3{font-size:clamp(2rem,4.5vw,3.4rem);margin:8px 0 12px}
+.qres p{color:var(--mist);max-width:56ch;margin:0 auto 12px}
+/* ▸ .qbars — element built by js/quiz.js (not in the HTML files) (§27) */
+.qbars{list-style:none;margin:26px auto;padding:0;max-width:460px;display:grid;gap:14px;text-align:left}
+.qbars li{display:grid;grid-template-columns:130px 1fr 44px;align-items:center;gap:14px;font-size:.9rem;color:var(--mist)}
+.qbars i{height:8px;border-radius:9px;background:var(--line);overflow:hidden;display:block}
+.qbars em{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--glacier),var(--ember));transition:width 1.2s var(--ease)}
+/* ▸ .qmiss — element built by js/quiz.js (not in the HTML files) (§27) */
+.qmiss{text-align:left;max-width:560px;margin:22px auto 0;padding:0;list-style:none;display:grid;gap:10px}
+.qmiss li{border:1px solid var(--line);border-radius:8px;padding:14px 18px;font-size:.92rem;color:var(--mist)}
+.qmiss b{color:var(--ice);display:block}
+@media(max-width:700px){.qtabs{grid-template-columns:1fr}.qbars li{grid-template-columns:96px 1fr 38px}}
+
+/* ==================================================================
+   §28 PAGE COMPONENTS  (appended). Logic: js/pages.js. Used on: hazards, techniques, sheltering (more pages to follow)
+   .band / .band__bg   → <section class="band"> full-width photo band holding .stats counters (§6). Pages: hazards, techniques, sheltering
+   .flips > .flip      → <div class="flips"> of <button class="flip"> myth/fact cards; aria-pressed=true shows the back (.flip__b)
+   [data-tabs]         → <div data-tabs> with .tabs__list [role=tab] + [role=tabpanel] panels (.step = a panel's layout). Pages: techniques
+   .sym / .sym__res    → altitude symptom checker: <form id="symForm"> + result panel with .lvl0/.lvl1/.lvl2 colours. Pages: hazards
+   #cave / .hs         → snow-cave SVG; .hs are hotspots (.on = selected) that update #caveT/#caveD. Pages: sheltering
+   ================================================================== */
+/* ▸ .band — <section class="…band…"> on: contact, gallery, guidelines, hazards, history +7 more (§28) */
+.band{position:relative;padding:clamp(80px,11vw,150px) 0;overflow:hidden;background:var(--navy)}
+/* ▸ .band__bg — <div class="…band__bg…"> on: contact, gallery, guidelines, hazards, history +7 more (§28) */
+.band__bg{position:absolute;inset:0;background:center/cover no-repeat;opacity:.55}
+.band::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,15,24,.88),rgba(10,15,24,.45))}
+.band .wrap{position:relative;z-index:2}
+.band h2{margin-bottom:46px}
+.band .stats{grid-template-columns:repeat(3,1fr);border:0;margin:0;gap:24px}
+.band .stat{border-top:1px solid rgba(238,246,251,.3);padding-top:22px}
+.band .stat b{font-size:clamp(2.6rem,6vw,5rem);color:var(--ice)}
+/* ▸ .flips — <div class="…flips…"> on: clubs, contact, developments, gallery, guidelines +9 more (§28) */
+.flips{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:56px}
+/* ▸ .flip — <button class="…flip…"> on: clubs, contact, developments, gallery, guidelines +9 more (§28) */
+.flip{perspective:1100px;background:none;border:0;padding:0;cursor:pointer;height:300px;text-align:left;font:inherit;color:inherit}
+/* ▸ .flip__in — <span class="…flip__in…"> on: clubs, contact, developments, gallery, guidelines +9 more (§28) */
+.flip__in{position:relative;display:block;width:100%;height:100%;transition:transform .85s var(--ease);transform-style:preserve-3d}
+.flip[aria-pressed=true] .flip__in{transform:rotateY(180deg)}
+/* ▸ .flip__f — <span class="…flip__f…"> on: clubs, contact, developments, gallery, guidelines +9 more (§28) */
+/* ▸ .flip__b — <span class="…flip__b…"> on: clubs, contact, developments, gallery, guidelines +9 more (§28) */
+.flip__f,.flip__b{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:8px;padding:30px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--line)}
+.flip__f{background:var(--navy)}
+.section--navy .flip__f{background:var(--ink)}
+.flip__b{background:linear-gradient(135deg,#17304f,var(--navy));transform:rotateY(180deg);border-color:var(--glacier)}
+.flip small{font-size:.72rem;letter-spacing:.22em;font-weight:700;color:var(--ember)}
+.flip__b small{color:var(--glacier)}
+.flip strong{font-family:var(--f-display);font-weight:500;font-size:1.55rem;line-height:1.2;display:block}
+/* ▸ .t — <span class="…t…"> on: clubs, contact, developments, gallery, guidelines +9 more (§28) */
+.flip__b span.t{color:var(--ice);font-size:1.02rem;line-height:1.6}
+.flip em{font-style:normal;font-size:.8rem;color:var(--mist)}
+.flip:hover .flip__f{border-color:var(--glacier)}
+/* ▸ .tabs__list — <div class="…tabs__list…"> on: gallery, guidelines, information, techniques (§28) */
+.tabs__list{display:flex;gap:10px;flex-wrap:wrap;margin:38px 0 22px}
+.tabs__list [role=tab]{background:none;color:var(--mist);border:1px solid var(--line);border-radius:99px;padding:11px 22px;font:500 .9rem var(--f-body);cursor:pointer;transition:all .3s var(--ease)}
+.tabs__list [role=tab]:hover{color:var(--glacier);border-color:var(--glacier)}
+.tabs__list [role=tab][aria-selected=true]{background:var(--ember);border-color:var(--ember);color:#fff}
+/* ▸ .step — <div class="…step…"> on: gallery, guidelines, information, techniques (§28) */
+.step{display:grid;grid-template-columns:auto 1fr;gap:clamp(20px,4vw,56px);align-items:start;animation:qin .6s var(--ease)}
+.step[hidden]{display:none}
+/* ▸ .step__n — <span class="…step__n…"> on: gallery, guidelines, information, techniques (§28) */
+.step__n{font-family:var(--f-display);font-size:clamp(5rem,12vw,9rem);line-height:.9;color:transparent;-webkit-text-stroke:1px var(--glacier)}
+.step h3{font-size:clamp(1.8rem,3.4vw,2.8rem);margin-bottom:10px}
+.step p{color:var(--mist);max-width:56ch;margin:0 0 14px}
+/* ▸ .tip — <p class="…tip…"> on: techniques (§28) */
+.step .tip{border-left:3px solid var(--ember);padding:4px 0 4px 16px;color:var(--ice)}
+/* ▸ .sym — <div class="…sym…"> on: hazards (§28) */
+.sym{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:start;margin-top:44px}
+.sym .checks{margin:0;grid-template-columns:1fr 1fr}
+.sym .checks fieldset{background:var(--ink)}
+.sym .checks fieldset:first-child{grid-column:1/-1}
+/* ▸ .sym__res — <div class="…sym__res…"> on: hazards (§28) */
+.sym__res{position:sticky;top:90px;border-left:4px solid var(--glacier)}
+.sym__res h3{font-size:1.8rem;margin-bottom:10px}
+.sym__res p{color:var(--mist);margin:0 0 12px}
+/* ▸ .lvl1 — element built by js/pages.js (not in the HTML files) (§28) */
+.sym__res.lvl1{border-left-color:#ffd27a}/* ▸ .lvl2 — element built by js/pages.js (not in the HTML files) (§28) */
+.sym__res.lvl2{border-left-color:#ff6a4d;background:linear-gradient(135deg,rgba(255,106,77,.14),var(--navy))}
+.sym__res small{display:block;color:var(--mist);font-size:.8rem;margin-top:16px}
+#cave{width:100%;height:auto}
+/* ▸ .hs — <g class="…hs…"> on: sheltering (§28) */
+#cave .hs{cursor:pointer;outline:0}
+#cave .hs circle{fill:var(--ember);stroke:#fff;stroke-width:3;transition:r .3s,fill .3s}
+/* ▸ .halo — <circle class="…halo…"> on: sheltering (§28) */
+#cave .hs circle.halo{fill:rgba(255,106,43,.25);stroke:none;animation:pulse 2.2s ease-in-out infinite}
+#cave .hs.on circle:not(.halo),#cave .hs:focus-visible circle:not(.halo){fill:var(--glacier)}
+@keyframes pulse{50%{r:20px;opacity:.2}}
+/* ▸ .cave__info — <div class="…cave__info…"> on: sheltering (§28) */
+.cave__info{border:1px solid var(--line);border-radius:8px;padding:22px 26px;background:var(--navy);margin-top:18px;min-height:128px}
+.cave__info h3{font-size:1.5rem;margin-bottom:6px}
+.cave__info p{margin:0;color:var(--mist)}
+@media(max-width:960px){.flips{grid-template-columns:1fr}.flip{height:250px}.band .stats{grid-template-columns:1fr}.sym{grid-template-columns:1fr}.sym__res{position:static}.sym .checks{grid-template-columns:1fr}.step{grid-template-columns:1fr}}
+/* §28 (cont.) symptom ticks should read as "present", not "done" */
+.sym .check input:checked+span{text-decoration:none;color:var(--ice);font-weight:600}
+
+/* §28 (cont.) [data-filter] blocks: chips (§16) hide/show items by data-era. Pages: history. .tl.hide = filtered out */
+.tl.hide{display:none}
+
+/* ==================================================================
+   §17b CLUBS DIRECTORY  (appended; replaces the earlier plain list styling of §17). Pages: clubs.html. Logic: js/clubs.js
+   .atlas              → map on the LEFT (#map), scrolling card list on the RIGHT (#placeList)
+   .place              → <button class="place club|peak"> one card: <i> tag, <b> name, .place__loc, .place__desc, .place__trips
+   .place.active       → card of the selected pin (two-way: click a card = map flies there; click a pin = card highlights)
+   .dir__bar           → search box + filter chip rows (data-group="t" for type, "r" for region) above the map
+   .pin--me            → the visitor's own pulsing white dot
+   ================================================================== */
+/* ▸ .dir__bar — <div class="…dir__bar…"> on: clubs (§17b) */
+.dir__bar{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:end;margin-top:36px}
+.dir__bar .field{max-width:420px}
+/* ▸ .dir__rows — <div class="…dir__rows…"> on: clubs (§17b) */
+.dir__rows{display:grid;gap:4px}
+.dir__rows .chips{margin:8px 0 0}
+/* ▸ .dir__meta — <div class="…dir__meta…"> on: clubs (§17b) */
+.dir__meta{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:18px 0 14px;color:var(--mist);font-size:.88rem}
+.atlas{grid-template-columns:1.15fr .85fr}
+.atlas #map{order:-1;height:600px}
+.atlas__list{max-height:600px;border:0;border-radius:0;display:grid;gap:12px;padding:0 8px 0 0;}
+.atlas__list li[hidden]{display:none}
+.place{border:1px solid var(--line);border-radius:10px;background:var(--navy);padding:18px 20px;transition:border-color .3s,transform .4s var(--ease),background .3s}
+.place:hover{border-color:rgba(143,211,244,.5);transform:translateX(-4px);background:var(--navy)}
+.place.active{border-color:var(--ember);background:linear-gradient(135deg,rgba(255,106,43,.13),var(--navy))}
+.place i{display:inline-block;margin:0 0 6px}
+.place b{font-size:1.22rem;margin-bottom:4px}
+/* ▸ .place__loc — element built by js/clubs.js (not in the HTML files) (§17b) */
+.place__loc{display:flex;align-items:center;gap:6px;color:var(--glacier)!important;font-size:.86rem!important}
+.place__loc svg{width:13px;height:13px;fill:var(--ember);flex:none}
+/* ▸ .place__desc — element built by js/clubs.js (not in the HTML files) (§17b) */
+.place__desc{margin:10px 0 8px;color:var(--mist);font-size:.92rem;line-height:1.55}
+/* ▸ .place__trips — element built by js/clubs.js (not in the HTML files) (§17b) */
+.place__trips{margin:0;font-size:.88rem;color:var(--ice)}
+.place__trips strong{color:var(--ice)}
+.pin--me{background:#fff!important;border-color:var(--ember)!important;box-shadow:0 0 0 0 rgba(255,255,255,.7)!important;animation:me 1.8s infinite}
+@keyframes me{to{box-shadow:0 0 0 18px rgba(255,255,255,0)}}
+@media(max-width:960px){.dir__bar{grid-template-columns:1fr}.atlas{grid-template-columns:1fr}.atlas #map{height:380px}.atlas__list{max-height:420px}}
+
+/* ==================================================================
+   §29 COMPARE TWO PEAKS  (appended). Pages: records.html. Logic: js/records.js (reads the #peaks table rows)
+   .vs / .vs__col / .vs__mid → two columns with a "VS" divider; each col has a <select>, a .vs__bar mountain and a .vs__facts list
+   .vs__bar i → triangle whose height (--h) animates; .vs__bar b → height label that rides on top of the triangle
+   ================================================================== */
+/* ▸ .vs — <div class="…vs…"> on: records (§29) */
+.vs{display:grid;grid-template-columns:1fr auto 1fr;gap:clamp(16px,3vw,40px);align-items:end;margin-top:46px}
+/* ▸ .vs__col — <div class="…vs__col…"> on: records (§29) */
+.vs__col select{width:100%;background:var(--ink);color:var(--ice);border:1px solid var(--line);border-radius:6px;padding:13px 16px;font:inherit;font-size:1rem}
+/* ▸ .vs__bar — <div class="…vs__bar…"> on: records (§29) */
+.vs__bar{position:relative;height:300px;border-bottom:1px solid var(--line);margin:18px 0 20px}
+.vs__bar i{position:absolute;left:10%;right:10%;bottom:0;height:var(--h,10%);background:linear-gradient(0deg,rgba(143,211,244,.12),var(--glacier));clip-path:polygon(0 100%,50% 0,100% 100%);transition:height 1.1s var(--ease)}
+.vs__bar b{position:absolute;left:0;right:0;bottom:calc(var(--h,10%) + 10px);text-align:center;font-family:var(--f-display);font-weight:500;font-size:clamp(1.3rem,2.4vw,2rem);transition:bottom 1.1s var(--ease)}
+/* ▸ .vs__facts — <ul class="…vs__facts…"> on: records (§29) */
+.vs__facts{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.vs__facts li{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:.93rem;color:var(--ice)}
+.vs__facts span{color:var(--mist)}
+/* ▸ .vs__mid — <div class="…vs__mid…"> on: records (§29) */
+.vs__mid{font-family:var(--f-display);font-size:2.2rem;color:var(--ember);text-align:center;padding-bottom:140px}
+.vs__mid p{font:400 .88rem var(--f-body);color:var(--mist);max-width:16ch;margin:8px auto 0}
+/* ▸ .vs__note — <p class="…vs__note…"> on: records (§29) */
+.vs__note{color:var(--mist);font-size:.85rem;margin:20px 0 0}
+@media(max-width:760px){.vs{grid-template-columns:1fr}.vs__mid{padding:0}.vs__mid p{max-width:none}.vs__bar{height:220px}}
+
+/* ==================================================================
+   §17c COMPACT DIRECTORY CARDS  (appended; overrides §17b sizes). Pages: clubs.html
+   Smaller cards so more fit beside the map; the hover no longer slides the card toward the map; description clamps to 2 lines.
+   ================================================================== */
+.atlas>*{min-width:0}
+.atlas #map{height:560px}
+.atlas__list{max-height:560px;gap:8px;padding-right:6px}
+.place{padding:11px 15px;border-radius:8px}
+.place:hover{transform:none;border-color:rgba(143,211,244,.6)}
+.place i{display:inline;margin:0 8px 0 0;font-size:.6rem;vertical-align:middle}
+.place b{display:inline!important;font-size:1.02rem;margin:0}
+.place__loc{margin-top:3px;font-size:.78rem!important}
+.place__loc svg{width:11px;height:11px}
+.place__desc{margin:6px 0 4px;font-size:.84rem;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.place__trips{font-size:.78rem}
+@media(max-width:960px){.atlas #map{height:380px}.atlas__list{max-height:420px}}
+/* §17c (cont.) very small cards: only name + place until a card is selected, then it expands with the details */
+.place{padding:9px 14px}
+.place__loc{margin-top:1px}
+.place__desc,.place__trips{display:none}
+.place.active{padding-bottom:12px}
+.place.active .place__desc{display:-webkit-box}
+.place.active .place__trips{display:block}
+.atlas__list{gap:6px}
+
+/* ==================================================================
+   §30 SECTION PHOTOS  (appended). Pages: every page. Gives each content section that has no other picture an atmospheric photo.
+   .sec-ph → <div class="sec-ph" aria-hidden="true"> faded photo at the top-right of a .section, behind its heading. It never blocks clicks.
+   ================================================================== */
+/* overflow:clip (not hidden): hidden turns the section into a scroll container, which switches OFF position:sticky for everything inside it */
+.section{overflow:hidden;overflow:clip}
+.section>.wrap{position:relative;z-index:1}
+/* ▸ .sec-ph — <div class="…sec-ph…"> on: all pages (§30) */
+.sec-ph{position:absolute;top:0;right:0;width:52%;height:min(460px,75%);background:center/cover no-repeat,var(--slate);opacity:.34;pointer-events:none;
+  -webkit-mask-image:linear-gradient(to left,#000 10%,transparent 95%),linear-gradient(to bottom,#000 55%,transparent);-webkit-mask-composite:source-in;
+  mask-image:linear-gradient(to left,#000 10%,transparent 95%),linear-gradient(to bottom,#000 55%,transparent);mask-composite:intersect}
+@media(max-width:960px){.sec-ph{width:100%;height:260px;opacity:.2}}
+
+/* ==================================================================
+   §17d SMOOTH CARD SCROLLING  (appended; refines §17b/§17c). Pages: clubs.html
+   .atlas__list fades its top and bottom edges (no card is ever sliced by a hard line), snaps cards into place,
+   and uses a slim scrollbar with no arrow buttons.
+   ================================================================== */
+.atlas__list{padding:20px 8px 44px 0;scroll-snap-type:y proximity;scroll-padding:20px 0 44px;overscroll-behavior:contain;
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 20px,#000 calc(100% - 52px),transparent 100%);
+  mask-image:linear-gradient(to bottom,transparent 0,#000 20px,#000 calc(100% - 52px),transparent 100%)}
+.atlas__list li{scroll-snap-align:start}
+.atlas__list::-webkit-scrollbar{width:6px}
+.atlas__list::-webkit-scrollbar-button{display:none;width:0;height:0}
+.atlas__list::-webkit-scrollbar-track{background:transparent}
+.atlas__list::-webkit-scrollbar-thumb{background:rgba(143,211,244,.28);border-radius:6px}
+.atlas__list::-webkit-scrollbar-thumb:hover{background:rgba(143,211,244,.55)}
+@supports not selector(::-webkit-scrollbar){.atlas__list{scrollbar-width:thin;scrollbar-color:rgba(143,211,244,.35) transparent}}
+.place{transition:border-color .3s,background .3s}
+
+/* §4b (cont.) slimmer, tidier Learn dropdown */
+.dd__menu{min-width:196px;padding:6px}
+.dd__menu a{padding:7px 12px;font-size:.84rem}
+
+/* §4b (cont.) dropdown is exactly as wide as its longest item (desktop only; the mobile menu lays it out as a grid) */
+@media(min-width:1101px){.dd__menu{width:max-content;min-width:0}.dd__menu a{white-space:nowrap}}
+
+/* §4b (cont.) desktop dropdown: centred under the "Learn" button, item names centred, box hugs the text */
+@media(min-width:1101px){
+  .dd__menu{left:50%;transform:translate(-50%,10px);padding:6px}
+  .dd:hover .dd__menu,.dd:focus-within .dd__menu,.dd.open .dd__menu{transform:translate(-50%,0)}
+  .dd__menu a{text-align:center;padding:8px 22px}
+}
+
+/* ==================================================================
+   §4c VISITOR COUNTER  (appended; belongs to §4 NAVIGATION). Pages: ALL. Logic: js/main.js "Visitor counter"
+   .visitors  → <div class="visitors" tabindex="0"> top-right pill (hover/focus shows .vtip)
+   .live      → pulsing green dot meaning "live"
+   #visitCount → number built from .odo digit columns that roll up to the final digit (.odo__col, --d = target digit)
+   .vtip      → hover card: "Climber #N", your own visit count, first-seen date
+   ================================================================== */
+.visitors{position:relative;cursor:default;outline:0}
+.visitors:focus-visible{outline:2px solid var(--glacier);outline-offset:3px}
+/* ▸ .live — <i class="…live…"> on: all pages (§4c) */
+.live{width:8px;height:8px;border-radius:50%;background:#5fd4a0;flex:none;animation:livepulse 2s ease-out infinite}
+@keyframes livepulse{0%{box-shadow:0 0 0 0 rgba(95,212,160,.65)}100%{box-shadow:0 0 0 9px rgba(95,212,160,0)}}
+.visitors b{display:inline-flex;height:1.2em;line-height:1.2em;overflow:hidden;font-size:.95rem}
+/* ▸ .odo — element built by js/main.js (not in the HTML files) (§4c) */
+.odo{display:inline-block;height:1.2em;overflow:hidden}
+/* ▸ .odo__col — element built by js/main.js (not in the HTML files) (§4c) */
+.odo__col{display:flex;flex-direction:column;transform:translateY(calc(var(--d,0) * -1.2em));transition:transform 1.7s cubic-bezier(.16,1,.3,1)}
+.odo__col span{display:block;height:1.2em}
+/* ▸ .vtip — <div class="…vtip…"> on: all pages (§4c) */
+.vtip{position:absolute;top:calc(100% + 10px);right:0;z-index:5;display:grid;gap:3px;min-width:220px;padding:13px 16px;text-align:left;white-space:nowrap;
+  background:#0b111c;border:1px solid rgba(238,246,251,.18);border-radius:10px;box-shadow:0 20px 50px rgba(0,0,0,.6);
+  opacity:0;visibility:hidden;transform:translateY(6px);transition:all .3s var(--ease)}
+.visitors:hover .vtip,.visitors:focus .vtip,.visitors:focus-within .vtip{opacity:1;visibility:visible;transform:none}
+.vtip strong{font-family:var(--f-display);font-weight:500;font-size:1.1rem;color:var(--ice)}
+.vtip span{font-size:.8rem;color:var(--mist)}
+.vtip small{font-size:.7rem;color:var(--mist);opacity:.65;margin-top:4px}
+
+/* §28 (cont.) FLIP CARD SAFETY: backface-visibility alone is not reliable in every browser or screenshot tool (the back face showed up mirrored).
+   The face that is turned away is also faded out at the half-way point of the flip, so only the correct face is ever visible. */
+.flip__f,.flip__b{transition:opacity .01s linear .42s}
+.flip__f{opacity:1}
+.flip__b{opacity:0}
+.flip[aria-pressed=true] .flip__f{opacity:0}
+.flip[aria-pressed=true] .flip__b{opacity:1}
+
+/* ==================================================================
+   §31 TIMELINE PHOTO, CHECKLIST HEADINGS, COMPARE CHART  (appended)
+   .tl__wrap / .tl__photo → History: timeline on the left, a sticky photo on the right that crossfades by era (js/pages.js). Pages: history.html
+   .cards--4              → a 4-column card grid (Techniques "Four to master first")
+   .checks legend         → legends now sit INSIDE the box as a heading (they used to straddle the border). Pages: hazards, guidelines
+   .vs__bar               → Records compare: more room above the bar so the height label can never cover the dropdown
+   ================================================================== */
+/* ▸ .tl__wrap — <div class="…tl__wrap…"> on: contact, developments, history, records (§31) */
+.tl__wrap{display:grid;grid-template-columns:1fr .85fr;gap:clamp(30px,6vw,90px);align-items:start}
+/* ▸ .tl__photo — <aside class="…tl__photo…"> on: contact, developments, history, records (§31) */
+.tl__photo{position:sticky;top:110px}
+.tl__photo .frame{aspect-ratio:4/5}
+.tl__photo .frame img{position:absolute;inset:0;opacity:0;transition:opacity 1s var(--ease),transform 1.2s var(--ease)}
+.tl__photo .frame img.on{opacity:1}
+@media(max-width:960px){.tl__wrap{grid-template-columns:1fr}.tl__photo{position:static;order:-1;margin-bottom:34px}.tl__photo .frame{aspect-ratio:16/9}}
+/* ▸ .cards--4 — <div class="…cards--4…"> on: techniques (§31) */
+.cards--4{grid-template-columns:repeat(4,1fr)}
+.cards--4 .card__body{padding:22px}
+.cards--4 .card h3{font-size:1.35rem}
+@media(max-width:1100px) and (min-width:961px){.cards--4{grid-template-columns:repeat(2,1fr)}}
+.checks fieldset{padding:22px 28px 14px}
+.checks legend{float:left;width:100%;padding:0 0 12px;margin:0 0 8px;font-size:1.3rem;border-bottom:1px solid var(--line)}
+.checks legend+*{clear:both}
+.vs__col select{position:relative;z-index:2}
+.vs__bar{margin:72px 0 20px}
+.vs__bar b{pointer-events:none}
+
+/* §31 (cont.) the pinned timeline photo is sized to the WINDOW height, so it is never cut off while it follows you.
+   Used on: history, records, developments, contact. */
+.tl__photo{top:96px}
+.tl__photo .frame{aspect-ratio:auto;height:min(500px,calc(100vh - 170px));min-height:240px}
+@supports (height:1dvh){.tl__photo .frame{height:min(500px,calc(100dvh - 170px))}}
+@media(max-width:960px){.tl__photo .frame{height:230px;min-height:0}}
+
+/* §19 (cont.) YouTube film inside the lightbox
+   .lb__video → <div class="lb__video"> holds the <iframe> (16:9, sized to fit the window height) and the "Watch on YouTube" link */
+/* ▸ .lb__video — element built by js/gallery.js (not in the HTML files) (§19) */
+.lb__video{display:grid;gap:14px;justify-items:center;width:100%}
+.lb__video iframe{width:min(1000px,92vw,calc((78vh - 80px) * 16 / 9));aspect-ratio:16/9;height:auto;border:0;border-radius:6px;background:#000}
+.lb__video .btn{padding:11px 24px}
+
+/* §4d LOGO (belongs to §4 NAVIGATION): the mark is a STILL image - images/logo.svg (inline copy .lg in every <a class="logo">) and images/logo.png. No hover animation, by request. Pages: ALL */
+
+/* §19 (cont.) video tiles show the real YouTube thumbnail (cropped to 16:9); the lightbox shows it big with a play button
+   .lb__poster → 16:9 box holding the thumbnail + .lb__play button (turns into the player on http(s) pages; opens YouTube on local files) */
+.tile--video img{aspect-ratio:16/9;object-fit:cover;width:100%;height:auto}
+/* ▸ .lb__poster — element built by js/gallery.js (not in the HTML files) (§19) */
+.lb__poster{position:relative;width:min(1000px,92vw,calc((78vh - 80px) * 16 / 9));aspect-ratio:16/9;background:#000;border-radius:6px;overflow:hidden}
+.lb__poster img{width:100%;height:100%;max-height:none;object-fit:cover;display:block;border-radius:0}
+.lb__poster iframe{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto}
+/* ▸ .lb__play — element built by js/gallery.js (not in the HTML files) (§19) */
+.lb__play{position:absolute;top:50%;left:50%;width:88px;height:88px;margin:-44px 0 0 -44px;border:0;border-radius:50%;background:var(--ember);color:#fff;font-size:1.9rem;padding-left:7px;cursor:pointer;box-shadow:0 12px 44px rgba(0,0,0,.55);transition:transform .35s var(--ease),background .3s}
+.lb__play:hover,.lb__play:focus-visible{transform:scale(1.1);background:#ff8450}

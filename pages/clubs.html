@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Clubs — Alpine Ascents</title><meta name="description" content="Clubs">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../images/logo.svg"><link rel="icon" type="image/png" sizes="64x64" href="../images/favicon.png"><link rel="stylesheet" href="../css/style.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css"><script>if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("motion")</script></head><body>
+<!-- ▼ SKIP LINK (keyboard shortcut to the main content)
+     CSS  : §2: .skip   (css/style.css — search for the § number) -->
+<!-- ═══════════════════════════════════════════════════════════════════════════════
+  PAGE      : Clubs — Alpine Ascents   (pages/clubs.html)
+  SECTIONS  : Where climbers gather.  ·  Find your people. Find your peak.  ·  How to choose a club or guide.  ·
+              Common beliefs, tested.  ·  Worth knowing.
+  SHARED    : skip link · scroll bar · navbar with Learn menu + visitor pill · footer · bottom ticker (same on every page)
+  STYLES    : ../css/style.css  (only stylesheet; comments above each section give the § to search for)
+  SCRIPTS   : main.js · motion.js · pages.js · cdnjs.cloudflare.com · clubs.js · clubs.js
+  HOW TO READ: every "▼" comment below sits right above the HTML it describes and lists its CSS classes + JS file.
+════════════════════════════════════════════════════════════════════════════════ -->
+<a class="skip" href="#main">Skip to content</a>
+<!-- ▼ SCROLL PROGRESS BAR (thin orange line at the very top)
+     CSS  : §2: .progress   (css/style.css — search for the § number) -->
+<div class="progress" aria-hidden="true"></div>
+<!-- ▼ NAVIGATION BAR (fixed at the top)
+     CSS  : §4: .nav .logo .links .nav__right .visitors .burger | §2: .wrap | §4b: .dd .dd__btn .dd__menu | §4c:
+            .live .vtip   (css/style.css — search for the § number)
+     JS   : main.js: visitor counter + menu, dropdown, active page -->
+<header class="nav"><div class="wrap">
+<!-- ▼ LOGO (images/logo.svg, inline copy)
+     CSS  : §4: .logo   (css/style.css — search for the § number) -->
+<a class="logo" href="../index.html" aria-label="Alpine Ascents home"><svg class="lg" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="lgBg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0d1b31"/><stop offset="1" stop-color="#1c3a60"/></linearGradient><clipPath id="lgClip"><circle cx="24" cy="24" r="22.5"/></clipPath></defs><circle cx="24" cy="24" r="22.5" fill="url(#lgBg)"/><g clip-path="url(#lgClip)"><circle cx="36" cy="12" r="2.2" fill="#ffb38a" opacity=".9"/><path d="M-2 52 L24 21 L26 52Z" fill="#eef6fb"/><path d="M24 21 L50 52 L26 52Z" fill="#8fd3f4"/><path d="M24 21 L19.6 25.6 L22.4 24.6 L24 27.6 L26 24.8 L28.6 26.2Z" fill="#fff"/><path d="M-2 52 L-2 44 L13 36 L19 41 L28 34 L50 46 L50 52Z" fill="#12263f"/></g><g fill="#ff6a2b" stroke="#ff6a2b" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="9.2" r="2.5" stroke="none"/><path d="M24 12.4 V18.2" stroke-width="3"/><path d="M24 18.2 L21.6 21.2 M24 18.2 L26.4 21.2" stroke-width="2.4"/><path d="M24 13.6 L20.4 16.4" stroke-width="2.2"/><g><path d="M24 13.8 L28.2 9.4" stroke-width="2.2"/><path d="M26.2 6.2 L30.8 10.6" stroke-width="1.6" stroke="#eef6fb"/><path d="M26.2 6.2 L28.8 5.4" stroke-width="1.4" stroke="#eef6fb"/></g></g><circle cx="24" cy="24" r="22.5" fill="none" stroke="#8fd3f4" stroke-width="1.3" opacity=".55"/></svg>ALPINE ASCENTS</a>
+<!-- ▼ MAIN MENU (page links + Learn dropdown)
+     CSS  : §4: .links | §4b: .dd .dd__btn .dd__menu   (css/style.css — search for the § number)
+     JS   : main.js: menu, dropdown, active page -->
+<nav aria-label="Primary"><ul class="links" id="menu"><li><a href="../index.html">Home</a></li><li class="dd"><button class="dd__btn" type="button" aria-expanded="false" aria-haspopup="true">Learn <span aria-hidden="true">▾</span></button><ul class="dd__menu"><li><a href="information.html">Information</a></li><li><a href="history.html">History</a></li><li><a href="types-styles.html">Types &amp; Styles</a></li><li><a href="techniques.html">Techniques</a></li><li><a href="sheltering.html">Sheltering</a></li><li><a href="hazards.html">Hazards</a></li><li><a href="records.html">Records</a></li><li><a href="success-stories.html">Success Stories</a></li><li><a href="guidelines.html">Guidelines</a></li><li><a href="quiz.html">Quizzes</a></li></ul></li><li><a href="simulator.html">Simulator</a></li><li><a href="clubs.html">Clubs</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="developments.html">Latest</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
+<!-- ▼ VISITOR COUNTER + MOBILE-MENU BUTTON
+     CSS  : §4: .nav__right .visitors .burger | §4c: .live .vtip   (css/style.css — search for the § number)
+     JS   : main.js: visitor counter -->
+<div class="nav__right"><div class="visitors" tabindex="0" aria-describedby="visTip"><i class="live" aria-hidden="true"></i><b id="visitCount">—</b><span class="lbl">visitors</span><div class="vtip" id="visTip" role="tooltip"><strong id="visTipTitle"></strong><span id="visTipSub"></span><small>Counted in this browser only</small></div></div>
+<button class="burger" aria-expanded="false" aria-controls="menu" aria-label="Toggle menu"><span></span></button></div>
+</div></header>
+
+<!-- ▼ MAIN CONTENT — everything between the navbar and the footer. Each block below is one section of this page. -->
+<main id="main">
+<!-- ▼ PAGE BANNER — "Where climbers gather."
+     CSS  : §7: .page-hero .page-hero__bg .crumbs | §2: .wrap   (css/style.css — search for the § number) -->
+<section class="page-hero"><div class="page-hero__bg" style="background-image:url('https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=2000&q=80')" role="img" aria-label="Where climbers gather. banner photograph"></div>
+<div class="wrap"><p class="crumbs"><a href="../index.html">Home</a> / Clubs</p><h1>Where climbers gather.</h1></div></section>
+<!-- ▼ SECTION · Clubs &amp; expeditions — "Find your people. Find your peak."
+     CSS  : §2: .section .wrap .eyebrow .lead | §30: .sec-ph | §17b: .dir__bar .dir__rows .dir__meta | §23:
+            .field | §5: .btn .btn--primary | §16: .chips .chip | §17: .atlas .atlas__list .geo   (css/style.css
+            — search for the § number)
+     JS   : clubs.js: directory cards + map + near me -->
+<section class="section"><div class="sec-ph" style="background-image:url('https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=1400&q=70')" aria-hidden="true"></div><div class="wrap"><p class="eyebrow">Clubs &amp; expeditions</p><h2 class="reveal">Find your people. Find your peak.</h2>
+<p class="lead reveal">A directory of mountaineering clubs and great peaks. Click any card to fly the map there, or click a pin to see its card. Your browser can also find the nearest club.</p>
+<div class="dir__bar reveal"><div class="field"><label for="placeSearch">Search clubs and peaks</label><input id="placeSearch" type="search" placeholder="Try Pakistan, Alps or huts…" autocomplete="off"></div>
+<button class="btn btn--primary" id="geoBtn" type="button">Find clubs near me</button></div>
+<div class="dir__rows reveal"><div class="chips" data-group="t" role="group" aria-label="Filter by type"><button class="chip on" data-f="all" aria-pressed="true">All</button><button class="chip" data-f="club" aria-pressed="false">Clubs</button><button class="chip" data-f="peak" aria-pressed="false">Expedition peaks</button></div>
+<div class="chips" data-group="r" role="group" aria-label="Filter by region"><button class="chip on" data-f="all" aria-pressed="true">Worldwide</button><button class="chip" data-f="asia" aria-pressed="false">Asia</button><button class="chip" data-f="europe" aria-pressed="false">Europe</button><button class="chip" data-f="americas" aria-pressed="false">Americas</button><button class="chip" data-f="africa" aria-pressed="false">Africa</button></div></div>
+<div class="dir__meta"><span id="placeCount" aria-live="polite"></span><span>Pins: orange = club · blue = peak · pulsing white = you</span></div>
+<div class="atlas reveal"><ul class="atlas__list" id="placeList" aria-label="Clubs and expedition peaks"></ul><div id="map" role="application" aria-label="Interactive map of clubs and expedition peaks"></div></div>
+<p class="geo" id="placeEmpty" hidden>No matches. Try a different search or filter.</p><p class="geo" id="geoStatus" aria-live="polite"></p></div></section>
+
+<!-- ▼ SECTION · Choosing wisely — "How to choose a club or guide."
+     CSS  : §2: .section .section--navy .wrap .eyebrow .lead | §8: .split .facts .frame   (css/style.css —
+            search for the § number) -->
+<section class="section section--navy"><div class="wrap split"><div><p class="eyebrow">Choosing wisely</p><h2 class="reveal">How to choose a club or guide.</h2><p class="lead reveal">The right team matters as much as the right mountain. Ask these four questions before you book.</p><ul class="facts reveal"><li><span>Accreditation</span>Look for guides certified by a national association affiliated with the IFMGA, the international guides federation.</li><li><span>Safety record</span>Ask about past incidents, the rescue plan, and how often the team turns back in poor weather.</li><li><span>Ratios</span>A smaller number of climbers per guide means more attention and faster decisions on the mountain.</li><li><span>Local staff</span>Choose operators that pay porters and Sherpa guides fairly and provide proper kit and insurance.</li></ul></div>
+<figure class="frame reveal"><img src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=1000&q=80" alt="Guide and climbers on a mountain trail" loading="lazy"><figcaption>A good guide is worth the cost</figcaption></figure></div></section>
+<!-- ▼ SECTION · Myth or fact? — "Common beliefs, tested."
+     CSS  : §2: .section .wrap .eyebrow | §30: .sec-ph | §28: .flips .flip .flip__in .flip__f .flip__b .t
+            (css/style.css — search for the § number)
+     JS   : pages.js: myth/fact flip cards -->
+<section class="section"><div class="sec-ph" style="background-image:url('https://images.unsplash.com/photo-1454496522488-7a8e488e8606?auto=format&fit=crop&w=1400&q=70')" aria-hidden="true"></div><div class="wrap"><p class="eyebrow">Myth or fact?</p><h2 class="reveal">Common beliefs, tested.</h2><div class="flips"><button class="flip reveal" type="button" aria-pressed="false" style="--d:0.0s"><span class="flip__in"><span class="flip__f"><small>MYTH</small><strong>Any club can take you up any mountain.</strong><em>Tap to reveal the fact ↻</em></span><span class="flip__b"><small>FACT</small><span class="t">Clubs differ in size, focus and region. Choose one that matches your goals, and check what training and safety support it offers.</span><em>Tap to flip back</em></span></span></button><button class="flip reveal" type="button" aria-pressed="false" style="--d:0.12s"><span class="flip__in"><span class="flip__f"><small>MYTH</small><strong>Joining a club is only for experienced climbers.</strong><em>Tap to reveal the fact ↻</em></span><span class="flip__b"><small>FACT</small><span class="t">Most clubs welcome beginners and run introductory courses, which is the safest way to learn.</span><em>Tap to flip back</em></span></span></button><button class="flip reveal" type="button" aria-pressed="false" style="--d:0.24s"><span class="flip__in"><span class="flip__f"><small>MYTH</small><strong>The cheapest operator is the best deal.</strong><em>Tap to reveal the fact ↻</em></span><span class="flip__b"><small>FACT</small><span class="t">Very low prices can mean thin safety margins, poor equipment or underpaid staff. Compare what is included.</span><em>Tap to flip back</em></span></span></button></div></div></section>
+<!-- ▼ SECTION · Questions — "Worth knowing."
+     CSS  : §2: .section .section--navy .wrap .eyebrow | §30: .sec-ph | §23: .faq   (css/style.css — search for
+            the § number)
+     JS   : no JS needed (native <details> accordion) -->
+<section class="section section--navy"><div class="sec-ph" style="background-image:url('https://images.unsplash.com/photo-1522163182402-834f871fd851?auto=format&fit=crop&w=1400&q=70')" aria-hidden="true"></div><div class="wrap"><p class="eyebrow">Questions</p><h2 class="reveal">Worth knowing.</h2><div class="faq reveal"><details><summary>Do I need to be a member to climb with a club?</summary><p>Usually yes. Membership often includes insurance, hut discounts and access to courses and meets.</p></details><details><summary>How do I find the nearest club?</summary><p>Use the "Find clubs near me" button above. If you decline location access, search by country or region instead.</p></details><details><summary>What is the IFMGA?</summary><p>The International Federation of Mountain Guides Associations. Its certified guides meet high international training standards.</p></details></div></div></section>
+<!-- ▼ NEXT-PAGE LINK (big link at the end of the page)
+     CSS  : §11: .next | §2: .wrap   (css/style.css — search for the § number) -->
+<a class="next" href="success-stories.html"><div class="wrap"><small>Next</small><span>Success stories →</span></div></a>
+</main>
+
+<!-- ▼ FOOTER
+     CSS  : §12: .footer | §2: .wrap   (css/style.css — search for the § number) -->
+<footer class="footer"><div class="wrap"><div>© 2026 Alpine Ascents. All rights reserved.</div><ul><li><a href="../index.html">Home</a></li><li><a href="information.html">Information</a></li><li><a href="history.html">History</a></li><li><a href="types-styles.html">Types &amp; Styles</a></li><li><a href="techniques.html">Techniques</a></li><li><a href="sheltering.html">Sheltering</a></li><li><a href="hazards.html">Hazards</a></li><li><a href="records.html">Records</a></li><li><a href="clubs.html">Clubs</a></li><li><a href="success-stories.html">Stories</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="developments.html">Latest</a></li><li><a href="guidelines.html">Guidelines</a></li><li><a href="quiz.html">Quizzes</a></li><li><a href="simulator.html">Simulator</a></li><li><a href="contact.html">Contact</a></li></ul></div></footer>
+
+<!-- ▼ BOTTOM TICKER (live date · time · location)
+     CSS  : §13: .ticker .ticker__track   (css/style.css — search for the § number)
+     JS   : main.js: date, time, location -->
+<div class="ticker" role="marquee" aria-label="Date, time and location"><div class="ticker__track"><span data-tick></span><span data-tick></span><span data-tick></span><span data-tick></span><span data-tick></span><span data-tick></span><span data-tick></span><span data-tick></span></div></div>
+<script src="../js/main.js"></script><script src="../js/motion.js"></script><script src="../js/pages.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script><script src="../data/clubs.js"></script><script src="../js/clubs.js"></script></body></html>

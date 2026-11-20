@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hazards — Alpine Ascents</title><meta name="description" content="Hazards">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../images/logo.svg"><link rel="icon" type="image/png" sizes="64x64" href="../images/favicon.png"><link rel="stylesheet" href="../css/style.css"><script>if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("motion")</script></head><body>
+<!-- ▼ SKIP LINK (keyboard shortcut to the main content)
+     CSS  : §2: .skip   (css/style.css — search for the § number) -->
+<!-- ═══════════════════════════════════════════════════════════════════════════════
+  PAGE      : Hazards — Alpine Ascents   (pages/hazards.html)
+  SECTIONS  : Respect the mountain.  ·  What can go wrong.  ·  Decide before you climb.  ·  Altitude symptom
+              checker.  ·  The numbers behind the risk.  ·  Common beliefs, tested.  ·  Worth knowing.
+  SHARED    : skip link · scroll bar · navbar with Learn menu + visitor pill · footer · bottom ticker (same on every page)
+  STYLES    : ../css/style.css  (only stylesheet; comments above each section give the § to search for)
+  SCRIPTS   : main.js · motion.js · pages.js
+  HOW TO READ: every "▼" comment below sits right above the HTML it describes and lists its CSS classes + JS file.
+════════════════════════════════════════════════════════════════════════════════ -->
+<a class="skip" href="#main">Skip to content</a>
+<!-- ▼ SCROLL PROGRESS BAR (thin orange line at the very top)
+     CSS  : §2: .progress   (css/style.css — search for the § number) -->
+<div class="progress" aria-hidden="true"></div>
+<!-- ▼ NAVIGATION BAR (fixed at the top)
+     CSS  : §4: .nav .logo .links .nav__right .visitors .burger | §2: .wrap | §4b: .dd .dd__btn .dd__menu | §4c:
+            .live .vtip   (css/style.css — search for the § number)
+     JS   : main.js: visitor counter + menu, dropdown, active page -->
+<header class="nav"><div class="wrap">
+<!-- ▼ LOGO (images/logo.svg, inline copy)
+     CSS  : §4: .logo   (css/style.css — search for the § number) -->
+<a class="logo" href="../index.html" aria-label="Alpine Ascents home"><svg class="lg" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="lgBg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0d1b31"/><stop offset="1" stop-color="#1c3a60"/></linearGradient><clipPath id="lgClip"><circle cx="24" cy="24" r="22.5"/></clipPath></defs><circle cx="24" cy="24" r="22.5" fill="url(#lgBg)"/><g clip-path="url(#lgClip)"><circle cx="36" cy="12" r="2.2" fill="#ffb38a" opacity=".9"/><path d="M-2 52 L24 21 L26 52Z" fill="#eef6fb"/><path d="M24 21 L50 52 L26 52Z" fill="#8fd3f4"/><path d="M24 21 L19.6 25.6 L22.4 24.6 L24 27.6 L26 24.8 L28.6 26.2Z" fill="#fff"/><path d="M-2 52 L-2 44 L13 36 L19 41 L28 34 L50 46 L50 52Z" fill="#12263f"/></g><g fill="#ff6a2b" stroke="#ff6a2b" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="9.2" r="2.5" stroke="none"/><path d="M24 12.4 V18.2" stroke-width="3"/><path d="M24 18.2 L21.6 21.2 M24 18.2 L26.4 21.2" stroke-width="2.4"/><path d="M24 13.6 L20.4 16.4" stroke-width="2.2"/><g><path d="M24 13.8 L28.2 9.4" stroke-width="2.2"/><path d="M26.2 6.2 L30.8 10.6" stroke-width="1.6" stroke="#eef6fb"/><path d="M26.2 6.2 L28.8 5.4" stroke-width="1.4" stroke="#eef6fb"/></g></g><circle cx="24" cy="24" r="22.5" fill="none" stroke="#8fd3f4" stroke-width="1.3" opacity=".55"/></svg>ALPINE ASCENTS</a>
+<!-- ▼ MAIN MENU (page links + Learn dropdown)
+     CSS  : §4: .links | §4b: .dd .dd__btn .dd__menu   (css/style.css — search for the § number)
+     JS   : main.js: menu, dropdown, active page -->
+<nav aria-label="Primary"><ul class="links" id="menu"><li><a href="../index.html">Home</a></li><li class="dd"><button class="dd__btn" type="button" aria-expanded="false" aria-haspopup="true">Learn <span aria-hidden="true">▾</span></button><ul class="dd__menu"><li><a href="information.html">Information</a></li><li><a href="history.html">History</a></li><li><a href="types-styles.html">Types &amp; Styles</a></li><li><a href="techniques.html">Techniques</a></li><li><a href="sheltering.html">Sheltering</a></li><li><a href="hazards.html">Hazards</a></li><li><a href="records.html">Records</a></li><li><a href="success-stories.html">Success Stories</a></li><li><a href="guidelines.html">Guidelines</a></li><li><a href="quiz.html">Quizzes</a></li></ul></li><li><a href="simulator.html">Simulator</a></li><li><a href="clubs.html">Clubs</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="developments.html">Latest</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
+<!-- ▼ VISITOR COUNTER + MOBILE-MENU BUTTON
+     CSS  : §4: .nav__right .visitors .burger | §4c: .live .vtip   (css/style.css — search for the § number)
+     JS   : main.js: visitor counter -->
+<div class="nav__right"><div class="visitors" tabindex="0" aria-describedby="visTip"><i class="live" aria-hidden="true"></i><b id="visitCount">—</b><span class="lbl">visitors</span><div class="vtip" id="visTip" role="tooltip"><strong id="visTipTitle"></strong><span id="visTipSub"></span><small>Counted in this browser only</small></div></div>
+<button class="burger" aria-expanded="false" aria-controls="menu" aria-label="Toggle menu"><span></span></button></div>
+</div></header>
+
+<!-- ▼ MAIN CONTENT — everything between the navbar and the footer. Each block below is one section of this page. -->
+<main id="main">
+<!-- ▼ PAGE BANNER — "Respect the mountain."
+     CSS  : §7: .page-hero .page-hero__bg .crumbs | §2: .wrap   (css/style.css — search for the § number) -->
+<section class="page-hero"><div class="page-hero__bg" style="background-image:url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2000&q=80')" role="img" aria-label="Respect the mountain. banner photograph"></div>
+<div class="wrap"><p class="crumbs"><a href="../index.html">Home</a> / Hazards</p><h1>Respect the mountain.</h1></div></section>
+<!-- ▼ SECTION · Objective dangers — "What can go wrong."
+     CSS  : §2: .section .section--navy .wrap .eyebrow .lead | §10: .cards .card .card__img .card__body
+            (css/style.css — search for the § number) -->
+<section class="section section--navy"><div class="wrap"><p class="eyebrow">Objective dangers</p><h2 class="reveal">What can go wrong.</h2><p class="lead reveal">Most mountaineering accidents come from a small number of well-known hazards. Learn to recognise them early.</p><div class="cards"><article class="card reveal" style="--d:0.0s"><div class="card__img"><img src="https://images.unsplash.com/photo-1454496522488-7a8e488e8606?auto=format&fit=crop&w=900&q=80" alt="Avalanches" loading="lazy"></div><div class="card__body"><small>Snow</small><h3>Avalanches</h3><p>Check the bulletin, avoid steep loaded slopes, and carry a beacon, probe and shovel.</p></div></article><article class="card reveal" style="--d:0.12s"><div class="card__img"><img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=900&q=80" alt="Crevasses" loading="lazy"></div><div class="card__body"><small>Ice</small><h3>Crevasses</h3><p>Hidden beneath snow bridges, they are the reason glacier travel is always roped.</p></div></article><article class="card reveal" style="--d:0.24s"><div class="card__img"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=80" alt="Mountain sickness" loading="lazy"></div><div class="card__body"><small>Altitude</small><h3>Mountain sickness</h3><p>Headache and nausea above 2,500 m are warnings. Descending is the only reliable cure.</p></div></article></div></div></section>
+<!-- ▼ SECTION · Rules of thumb — "Decide before you climb."
+     CSS  : §2: .section .wrap .eyebrow .lead | §8: .split .facts .frame   (css/style.css — search for the §
+            number) -->
+<section class="section"><div class="wrap split"><div><p class="eyebrow">Rules of thumb</p><h2 class="reveal">Decide before you climb.</h2><p class="lead reveal">Set turn-around times and honour them, however close the summit looks.</p><p class="reveal" style="color:var(--mist)">Weather, fatigue and altitude combine quickly. Most fatal mistakes happen on the descent, so keep energy and daylight in reserve.</p><ul class="facts reveal"><li><span>Altitude</span>Climb high, sleep low</li><li><span>Weather</span>Check forecasts daily</li><li><span>Death zone</span>Above 8,000 m the body cannot acclimatise</li><li><span>Turn-around</span>Fixed time, not a feeling</li></ul></div>
+<figure class="frame reveal"><img src="https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=1000&q=80" alt="Storm approaching a ridge" loading="lazy"><figcaption>Storm approaching a ridge</figcaption></figure></div></section>
+<!-- ▼ SECTION · Interactive — "Altitude symptom checker."
+     CSS  : §2: .section .section--navy .wrap .eyebrow .lead | §30: .sec-ph | §28: .sym .sym__res | §20: .checks
+            .check | §25: .panel   (css/style.css — search for the § number)
+     JS   : pages.js: symptom checker -->
+<section class="section section--navy"><div class="sec-ph" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1400&q=70')" aria-hidden="true"></div><div class="wrap"><p class="eyebrow">Interactive</p><h2 class="reveal">Altitude symptom checker.</h2>
+<p class="lead reveal">Tick anything you or a teammate feel after gaining height. The checker shows the usual response. It is a learning tool, not medical advice.</p>
+<div class="sym"><form id="symForm" onsubmit="return false"><div class="checks">
+<fieldset><legend>Common symptoms</legend><label class="check"><input type="checkbox" id="s1" name="headache" data-g="ams"><span>Headache</span></label><label class="check"><input type="checkbox" id="s2" name="nausea" data-g="ams"><span>Nausea or poor appetite</span></label><label class="check"><input type="checkbox" id="s3" name="dizzy" data-g="ams"><span>Dizziness</span></label><label class="check"><input type="checkbox" id="s4" name="tired" data-g="ams"><span>Unusual tiredness</span></label><label class="check"><input type="checkbox" id="s5" name="sleep" data-g="ams"><span>Poor sleep</span></label></fieldset>
+<fieldset><legend>Brain warning signs</legend><label class="check"><input type="checkbox" id="s6" name="confused" data-g="hace"><span>Confusion or odd behaviour</span></label><label class="check"><input type="checkbox" id="s7" name="balance" data-g="hace"><span>Cannot walk in a straight line</span></label></fieldset>
+<fieldset><legend>Lung warning signs</legend><label class="check"><input type="checkbox" id="s8" name="breath" data-g="hape"><span>Breathless even at rest</span></label><label class="check"><input type="checkbox" id="s9" name="cough" data-g="hape"><span>Wet cough or gurgling breath</span></label></fieldset>
+</div></form>
+<div class="panel sym__res lvl0" id="symBox" aria-live="polite"><h3></h3><p id="symOut"></p><small>If in doubt, descend and ask for help. Never ignore warning signs.</small></div></div></div></section>
+<!-- ▼ PHOTO + NUMBERS BAND — "The numbers behind the risk."
+     CSS  : §28: .band .band__bg | §2: .wrap .eyebrow | §6: .stats .stat   (css/style.css — search for the §
+            number)
+     JS   : main.js: numbers count up -->
+<section class="band"><div class="band__bg" style="background-image:url('https://images.unsplash.com/photo-1454496522488-7a8e488e8606?auto=format&fit=crop&w=2000&q=80')"></div><div class="wrap"><p class="eyebrow">By the numbers</p><h2 class="reveal">The numbers behind the risk.</h2><div class="stats"><div class="stat"><b data-count=2500>0</b><span>Metres: altitude illness can begin</span></div><div class="stat"><b data-count=8000>0</b><span>Metres: the death zone starts</span></div><div class="stat"><b data-count=45>0</b><span>Degrees: upper range of avalanche slopes</span></div></div></div></section>
+<!-- ▼ SECTION · Myth or fact? — "Common beliefs, tested."
+     CSS  : §2: .section .wrap .eyebrow | §30: .sec-ph | §28: .flips .flip .flip__in .flip__f .flip__b .t
+            (css/style.css — search for the § number)
+     JS   : pages.js: myth/fact flip cards -->
+<section class="section"><div class="sec-ph" style="background-image:url('https://images.unsplash.com/photo-1508739773434-c26b3d09e071?auto=format&fit=crop&w=1400&q=70')" aria-hidden="true"></div><div class="wrap"><p class="eyebrow">Myth or fact?</p><h2 class="reveal">Common beliefs, tested.</h2><div class="flips"><button class="flip reveal" type="button" aria-pressed="false" style="--d:0.0s"><span class="flip__in"><span class="flip__f"><small>MYTH</small><strong>Fit people do not get altitude sickness.</strong><em>Tap to reveal the fact ↻</em></span><span class="flip__b"><small>FACT</small><span class="t">Fitness does not protect you. Altitude illness depends on how fast you ascend and your own body, so anyone can be affected.</span><em>Tap to flip back</em></span></span></button><button class="flip reveal" type="button" aria-pressed="false" style="--d:0.12s"><span class="flip__in"><span class="flip__f"><small>MYTH</small><strong>A sleeping pill and a drink help you adapt.</strong><em>Tap to reveal the fact ↻</em></span><span class="flip__b"><small>FACT</small><span class="t">Alcohol and sedatives can slow your breathing and make altitude illness worse. Rest, water and a slower ascent help instead.</span><em>Tap to flip back</em></span></span></button><button class="flip reveal" type="button" aria-pressed="false" style="--d:0.24s"><span class="flip__in"><span class="flip__f"><small>MYTH</small><strong>Avalanches only happen in deep winter.</strong><em>Tap to reveal the fact ↻</em></span><span class="flip__b"><small>FACT</small><span class="t">Avalanches can happen whenever snow is loaded by new snowfall, wind or rapid warming, including in spring and summer.</span><em>Tap to flip back</em></span></span></button></div></div></section>
+<!-- ▼ SECTION · Questions — "Worth knowing."
+     CSS  : §2: .section .section--navy .wrap .eyebrow | §30: .sec-ph | §23: .faq   (css/style.css — search for
+            the § number)
+     JS   : no JS needed (native <details> accordion) -->
+<section class="section section--navy"><div class="sec-ph" style="background-image:url('https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=1400&q=70')" aria-hidden="true"></div><div class="wrap"><p class="eyebrow">Questions</p><h2 class="reveal">Worth knowing.</h2><div class="faq reveal"><details><summary>What is the safest response to altitude sickness?</summary><p>Do not go higher. Rest and drink water. If symptoms worsen, descend. Descending is the only reliable treatment.</p></details><details><summary>What is a crevasse and why is it dangerous?</summary><p>A crevasse is a deep crack in a glacier. Snow can hide it, so teams travel roped together to stop a fall.</p></details><details><summary>How can I check avalanche risk?</summary><p>Read the local avalanche bulletin, avoid steep loaded slopes, and carry a beacon, probe and shovel, and know how to use them.</p></details><details><summary>What should I do if bad weather arrives?</summary><p>Turn back early. Storms bring whiteouts and cold, and descent is much harder once visibility is lost.</p></details></div></div></section>
+<!-- ▼ NEXT-PAGE LINK (big link at the end of the page)
+     CSS  : §11: .next | §2: .wrap   (css/style.css — search for the § number) -->
+<a class="next" href="records.html"><div class="wrap"><small>Next</small><span>Records →</span></div></a>
+</main>
+
+<!-- ▼ FOOTER
+     CSS  : §12: .footer | §2: .wrap   (css/style.css — search for the § number) -->
+<footer class="footer"><div class="wrap"><div>© 2026 Alpine Ascents. All rights reserved.</div><ul><li><a href="../index.html">Home</a></li><li><a href="information.html">Information</a></li><li><a href="history.html">History</a></li><li><a href="types-styles.html">Types &amp; Styles</a></li><li><a href="techniques.html">Techniques</a></li><li><a href="sheltering.html">Sheltering</a></li><li><a href="hazards.html">Hazards</a></li><li><a href="records.html">Records</a></li><li><a href="clubs.html">Clubs</a></li><li><a href="success-stories.html">Stories</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="developments.html">Latest</a></li><li><a href="guidelines.html">Guidelines</a></li><li><a href="quiz.html">Quizzes</a></li><li><a href="simulator.html">Simulator</a></li><li><a href="contact.html">Contact</a></li></ul></div></footer>
+
+<!-- ▼ BOTTOM TICKER (live date · time · location)
+     CSS  : §13: .ticker .ticker__track   (css/style.css — search for the § number)
+     JS   : main.js: date, time, location -->
+<div class="ticker" role="marquee" aria-label="Date, time and location"><div class="ticker__track"><span data-tick></span><span data-tick></span><span data-tick></span><span data-tick></span><span data-tick></span><span data-tick></span><span data-tick></span><span data-tick></span></div></div>
+<script src="../js/main.js"></script><script src="../js/motion.js"></script><script src="../js/pages.js"></script>
+</body></html>

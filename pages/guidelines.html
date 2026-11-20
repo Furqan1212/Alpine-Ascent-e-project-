@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>General guidelines — Alpine Ascents</title><meta name="description" content="General guidelines">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../images/logo.svg"><link rel="icon" type="image/png" sizes="64x64" href="../images/favicon.png"><link rel="stylesheet" href="../css/style.css"><script>if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("motion")</script></head><body>
+<!-- ▼ SKIP LINK (keyboard shortcut to the main content)
+     CSS  : §2: .skip   (css/style.css — search for the § number) -->
+<!-- ═══════════════════════════════════════════════════════════════════════════════
+  PAGE      : General guidelines — Alpine Ascents   (pages/guidelines.html)
+  SECTIONS  : Climb well. Come home.  ·  Three habits of safe climbers.  ·  Are you ready?  ·  Seven principles
+              for fragile places.  ·  Small habits, big difference.  ·  Common beliefs, tested.  ·  Worth
+              knowing.
+  SHARED    : skip link · scroll bar · navbar with Learn menu + visitor pill · footer · bottom ticker (same on every page)
+  STYLES    : ../css/style.css  (only stylesheet; comments above each section give the § to search for)
+  SCRIPTS   : main.js · motion.js · pages.js · checklist.js
+  HOW TO READ: every "▼" comment below sits right above the HTML it describes and lists its CSS classes + JS file.
+════════════════════════════════════════════════════════════════════════════════ -->
+<a class="skip" href="#main">Skip to content</a>
+<!-- ▼ SCROLL PROGRESS BAR (thin orange line at the very top)
+     CSS  : §2: .progress   (css/style.css — search for the § number) -->
+<div class="progress" aria-hidden="true"></div>
+<!-- ▼ NAVIGATION BAR (fixed at the top)
+     CSS  : §4: .nav .logo .links .nav__right .visitors .burger | §2: .wrap | §4b: .dd .dd__btn .dd__menu | §4c:
+            .live .vtip   (css/style.css — search for the § number)
+     JS   : main.js: visitor counter + menu, dropdown, active page -->
+<header class="nav"><div class="wrap">
+<!-- ▼ LOGO (images/logo.svg, inline copy)
+     CSS  : §4: .logo   (css/style.css — search for the § number) -->
+<a class="logo" href="../index.html" aria-label="Alpine Ascents home"><svg class="lg" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="lgBg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0d1b31"/><stop offset="1" stop-color="#1c3a60"/></linearGradient><clipPath id="lgClip"><circle cx="24" cy="24" r="22.5"/></clipPath></defs><circle cx="24" cy="24" r="22.5" fill="url(#lgBg)"/><g clip-path="url(#lgClip)"><circle cx="36" cy="12" r="2.2" fill="#ffb38a" opacity=".9"/><path d="M-2 52 L24 21 L26 52Z" fill="#eef6fb"/><path d="M24 21 L50 52 L26 52Z" fill="#8fd3f4"/><path d="M24 21 L19.6 25.6 L22.4 24.6 L24 27.6 L26 24.8 L28.6 26.2Z" fill="#fff"/><path d="M-2 52 L-2 44 L13 36 L19 41 L28 34 L50 46 L50 52Z" fill="#12263f"/></g><g fill="#ff6a2b" stroke="#ff6a2b" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="9.2" r="2.5" stroke="none"/><path d="M24 12.4 V18.2" stroke-width="3"/><path d="M24 18.2 L21.6 21.2 M24 18.2 L26.4 21.2" stroke-width="2.4"/><path d="M24 13.6 L20.4 16.4" stroke-width="2.2"/><g><path d="M24 13.8 L28.2 9.4" stroke-width="2.2"/><path d="M26.2 6.2 L30.8 10.6" stroke-width="1.6" stroke="#eef6fb"/><path d="M26.2 6.2 L28.8 5.4" stroke-width="1.4" stroke="#eef6fb"/></g></g><circle cx="24" cy="24" r="22.5" fill="none" stroke="#8fd3f4" stroke-width="1.3" opacity=".55"/></svg>ALPINE ASCENTS</a>
+<!-- ▼ MAIN MENU (page links + Learn dropdown)
+     CSS  : §4: .links | §4b: .dd .dd__btn .dd__menu   (css/style.css — search for the § number)
+     JS   : main.js: menu, dropdown, active page -->
+<nav aria-label="Primary"><ul class="links" id="menu"><li><a href="../index.html">Home</a></li><li class="dd"><button class="dd__btn" type="button" aria-expanded="false" aria-haspopup="true">Learn <span aria-hidden="true">▾</span></button><ul class="dd__menu"><li><a href="information.html">Information</a></li><li><a href="history.html">History</a></li><li><a href="types-styles.html">Types &amp; Styles</a></li><li><a href="techniques.html">Techniques</a></li><li><a href="sheltering.html">Sheltering</a></li><li><a href="hazards.html">Hazards</a></li><li><a href="records.html">Records</a></li><li><a href="success-stories.html">Success Stories</a></li><li><a href="guidelines.html">Guidelines</a></li><li><a href="quiz.html">Quizzes</a></li></ul></li><li><a href="simulator.html">Simulator</a></li><li><a href="clubs.html">Clubs</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="developments.html">Latest</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
+<!-- ▼ VISITOR COUNTER + MOBILE-MENU BUTTON
+     CSS  : §4: .nav__right .visitors .burger | §4c: .live .vtip   (css/style.css — search for the § number)
+     JS   : main.js: visitor counter -->
+<div class="nav__right"><div class="visitors" tabindex="0" aria-describedby="visTip"><i class="live" aria-hidden="true"></i><b id="visitCount">—</b><span class="lbl">visitors</span><div class="vtip" id="visTip" role="tooltip"><strong id="visTipTitle"></strong><span id="visTipSub"></span><small>Counted in this browser only</small></div></div>
+<button class="burger" aria-expanded="false" aria-controls="menu" aria-label="Toggle menu"><span></span></button></div>
+</div></header>
+
+<!-- ▼ MAIN CONTENT — everything between the navbar and the footer. Each block below is one section of this page. -->
+<main id="main">
+<!-- ▼ PAGE BANNER — "Climb well. Come home."
+     CSS  : §7: .page-hero .page-hero__bg .crumbs | §2: .wrap   (css/style.css — search for the § number) -->
+<section class="page-hero"><div class="page-hero__bg" style="background-image:url('https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=2000&q=80')" role="img" aria-label="Climb well. Come home. banner photograph"></div>
+<div class="wrap"><p class="crumbs"><a href="../index.html">Home</a> / General guidelines</p><h1>Climb well. Come home.</h1></div></section>
+<!-- ▼ SECTION · Golden rules — "Three habits of safe climbers."
+     CSS  : §2: .section .wrap .eyebrow | §10: .cards .card .card__img .card__body   (css/style.css — search for
+            the § number) -->
+<section class="section"><div class="wrap"><p class="eyebrow">Golden rules</p><h2 class="reveal">Three habits of safe climbers.</h2><div class="cards">
+<article class="card reveal" style="--d:0s"><div class="card__img"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=80" alt="Turn back on time" loading="lazy"></div><div class="card__body"><small>Rule 01</small><h3>Turn back on time</h3><p>The summit is optional. Reaching the bottom is mandatory.</p></div></article>
+<article class="card reveal" style="--d:0.12s"><div class="card__img"><img src="https://images.unsplash.com/photo-1454496522488-7a8e488e8606?auto=format&fit=crop&w=900&q=80" alt="Acclimatise slowly" loading="lazy"></div><div class="card__body"><small>Rule 02</small><h3>Acclimatise slowly</h3><p>Climb high, sleep low, and rest. Descend at the first sign of serious altitude illness.</p></div></article>
+<article class="card reveal" style="--d:0.24s"><div class="card__img"><img src="https://images.unsplash.com/photo-1522163182402-834f871fd851?auto=format&fit=crop&w=900&q=80" alt="Never climb alone untrained" loading="lazy"></div><div class="card__body"><small>Rule 03</small><h3>Never climb alone untrained</h3><p>Partners, guides and clear plans catch the mistakes you cannot see.</p></div></article>
+</div></div></section>
+<!-- ▼ SECTION · Interactive — "Are you ready?"
+     CSS  : §2: .section .section--navy .wrap .eyebrow .lead | §30: .sec-ph | §20: .meter .meter__bar .checks
+            .check | §17: .geo | §6: .hero__cta | §5: .btn .btn--ghost   (css/style.css — search for the §
+            number)
+     JS   : checklist.js: saved checklist + progress bar -->
+<section class="section section--navy"><div class="sec-ph" style="background-image:url('https://images.unsplash.com/photo-1508739773434-c26b3d09e071?auto=format&fit=crop&w=1400&q=70')" aria-hidden="true"></div><div class="wrap"><p class="eyebrow">Interactive</p><h2 class="reveal">Are you ready?</h2>
+<p class="lead reveal">Tick each item as you complete it. Your progress is saved in this browser.</p>
+<div class="meter" role="progressbar" aria-label="Preparation progress"><div class="meter__bar"></div></div>
+<p class="geo" id="checkOut" aria-live="polite"></p>
+<div class="checks"><fieldset class="reveal"><legend>Train</legend><label class="check"><input type="checkbox" id="c1"><span>Build aerobic base for 3–6 months</span></label><label class="check"><input type="checkbox" id="c2"><span>Practise carrying a loaded pack uphill</span></label><label class="check"><input type="checkbox" id="c3"><span>Complete a first-aid or wilderness course</span></label><label class="check"><input type="checkbox" id="c4"><span>Learn rope work and self-arrest</span></label></fieldset><fieldset class="reveal"><legend>Pack</legend><label class="check"><input type="checkbox" id="c5"><span>Layered clothing: base, insulation, shell</span></label><label class="check"><input type="checkbox" id="c6"><span>Boots, crampons and ice axe fitted</span></label><label class="check"><input type="checkbox" id="c7"><span>Helmet, harness and headlamp with spare batteries</span></label><label class="check"><input type="checkbox" id="c8"><span>Sun protection: goggles, hat, high-SPF sunscreen</span></label></fieldset><fieldset class="reveal"><legend>Plan</legend><label class="check"><input type="checkbox" id="c9"><span>Share route and return time with someone</span></label><label class="check"><input type="checkbox" id="c10"><span>Check weather and avalanche forecast</span></label><label class="check"><input type="checkbox" id="c11"><span>Set a firm turn-around time</span></label><label class="check"><input type="checkbox" id="c12"><span>Carry map, compass and a charged phone or radio</span></label></fieldset><fieldset class="reveal"><legend>Respect</legend><label class="check"><input type="checkbox" id="c13"><span>Take all rubbish down with you</span></label><label class="check"><input type="checkbox" id="c14"><span>Stay on established paths and camps</span></label><label class="check"><input type="checkbox" id="c15"><span>Hire local guides and pay fair wages</span></label><label class="check"><input type="checkbox" id="c16"><span>Know the permit and park rules</span></label></fieldset></div>
+<div class="hero__cta" style="margin-top:36px"><button class="btn btn--ghost" id="checkReset" type="button">Reset checklist</button></div></div></section>
+<!-- ▼ SECTION · Leave no trace — "Seven principles for fragile places."
+     CSS  : §2: .section .wrap .eyebrow .lead | §30: .sec-ph | §28: .tabs__list .step .step__n   (css/style.css
+            — search for the § number)
+     JS   : pages.js: tabs -->
+<section class="section"><div class="sec-ph" style="background-image:url('https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=1400&q=70')" aria-hidden="true"></div><div class="wrap"><p class="eyebrow">Leave no trace</p><h2 class="reveal">Seven principles for fragile places.</h2><p class="lead reveal">The mountains are shared by everyone, and by everyone who comes after you.</p><div data-tabs><div class="tabs__list" role="tablist" aria-label="Leave No Trace principles"><button role="tab" type="button" aria-selected="true">1. Plan ahead and prepare</button><button role="tab" type="button" aria-selected="false">2. Use durable surfaces</button><button role="tab" type="button" aria-selected="false">3. Dispose of waste properly</button><button role="tab" type="button" aria-selected="false">4. Leave what you find</button><button role="tab" type="button" aria-selected="false">5. Minimise campfire impact</button><button role="tab" type="button" aria-selected="false">6. Respect wildlife</button><button role="tab" type="button" aria-selected="false">7. Be considerate of others</button></div><div role="tabpanel" class="step"><span class="step__n">1</span><div><h3>Plan ahead and prepare</h3><p>Know the rules, weather and terrain. Good planning prevents most emergencies.</p></div></div><div role="tabpanel" class="step"><span class="step__n">2</span><div><h3>Use durable surfaces</h3><p>Camp and walk on rock, snow or established paths to protect fragile ground.</p></div></div><div role="tabpanel" class="step"><span class="step__n">3</span><div><h3>Dispose of waste properly</h3><p>Pack out all rubbish. Follow local rules for human waste, which is often carried out at high camps.</p></div></div><div role="tabpanel" class="step"><span class="step__n">4</span><div><h3>Leave what you find</h3><p>Leave rocks, plants and historic objects where they are.</p></div></div><div role="tabpanel" class="step"><span class="step__n">5</span><div><h3>Minimise campfire impact</h3><p>Use a stove instead of a fire. Wood is scarce high in the mountains.</p></div></div><div role="tabpanel" class="step"><span class="step__n">6</span><div><h3>Respect wildlife</h3><p>Observe from a distance and never feed animals.</p></div></div><div role="tabpanel" class="step"><span class="step__n">7</span><div><h3>Be considerate of others</h3><p>Share trails and huts, keep noise down and be kind to local communities.</p></div></div></div></div></section>
+<!-- ▼ PHOTO + NUMBERS BAND — "Small habits, big difference."
+     CSS  : §28: .band .band__bg | §2: .wrap .eyebrow | §6: .stats .stat   (css/style.css — search for the §
+            number)
+     JS   : main.js: numbers count up -->
+<section class="band"><div class="band__bg" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=2000&q=80')"></div><div class="wrap"><p class="eyebrow">By the numbers</p><h2 class="reveal">Small habits, big difference.</h2><div class="stats"><div class="stat"><b data-count=7>0</b><span>Leave No Trace principles</span></div><div class="stat"><b data-count=3>0</b><span>Golden rules in this guide</span></div><div class="stat"><b data-count=100>0</b><span>Percent of rubbish to carry out</span></div></div></div></section>
+<!-- ▼ SECTION · Myth or fact? — "Common beliefs, tested."
+     CSS  : §2: .section .section--navy .wrap .eyebrow | §30: .sec-ph | §28: .flips .flip .flip__in .flip__f
+            .flip__b .t   (css/style.css — search for the § number)
+     JS   : pages.js: myth/fact flip cards -->
+<section class="section section--navy"><div class="sec-ph" style="background-image:url('https://images.unsplash.com/photo-1454496522488-7a8e488e8606?auto=format&fit=crop&w=1400&q=70')" aria-hidden="true"></div><div class="wrap"><p class="eyebrow">Myth or fact?</p><h2 class="reveal">Common beliefs, tested.</h2><div class="flips"><button class="flip reveal" type="button" aria-pressed="false" style="--d:0.0s"><span class="flip__in"><span class="flip__f"><small>MYTH</small><strong>One piece of rubbish does not matter.</strong><em>Tap to reveal the fact ↻</em></span><span class="flip__b"><small>FACT</small><span class="t">High camps collect rubbish over decades. Everyone carrying out their own is the only way they stay clean.</span><em>Tap to flip back</em></span></span></button><button class="flip reveal" type="button" aria-pressed="false" style="--d:0.12s"><span class="flip__in"><span class="flip__f"><small>MYTH</small><strong>Guides handle all the safety decisions.</strong><em>Tap to reveal the fact ↻</em></span><span class="flip__b"><small>FACT</small><span class="t">Guides lead, but every climber is responsible for their own fitness, gear and honesty about how they feel.</span><em>Tap to flip back</em></span></span></button><button class="flip reveal" type="button" aria-pressed="false" style="--d:0.24s"><span class="flip__in"><span class="flip__f"><small>MYTH</small><strong>Checklists are for beginners.</strong><em>Tap to reveal the fact ↻</em></span><span class="flip__b"><small>FACT</small><span class="t">Experienced climbers use checklists the most, because small omissions cause serious accidents.</span><em>Tap to flip back</em></span></span></button></div></div></section>
+<!-- ▼ SECTION · Questions — "Worth knowing."
+     CSS  : §2: .section .wrap .eyebrow | §30: .sec-ph | §23: .faq   (css/style.css — search for the § number)
+     JS   : no JS needed (native <details> accordion) -->
+<section class="section"><div class="sec-ph" style="background-image:url('https://images.unsplash.com/photo-1522163182402-834f871fd851?auto=format&fit=crop&w=1400&q=70')" aria-hidden="true"></div><div class="wrap"><p class="eyebrow">Questions</p><h2 class="reveal">Worth knowing.</h2><div class="faq reveal"><details><summary>What should I pack first?</summary><p>Start with layers, boots that fit, a headlamp, water and a first-aid kit. Add technical gear for your route.</p></details><details><summary>How early should I start training?</summary><p>Three to six months before a big trip is a good rule, and longer for expedition peaks.</p></details><details><summary>What if the weather turns?</summary><p>Turn back early, keep your team together, and shelter if you cannot descend safely.</p></details></div></div></section>
+<!-- ▼ NEXT-PAGE LINK (big link at the end of the page)
+     CSS  : §11: .next | §2: .wrap   (css/style.css — search for the § number) -->
+<a class="next" href="contact.html"><div class="wrap"><small>Next</small><span>Contact us →</span></div></a>
+</main>
+
+<!-- ▼ FOOTER
+     CSS  : §12: .footer | §2: .wrap   (css/style.css — search for the § number) -->
+<footer class="footer"><div class="wrap"><div>© 2026 Alpine Ascents. All rights reserved.</div><ul><li><a href="../index.html">Home</a></li><li><a href="information.html">Information</a></li><li><a href="history.html">History</a></li><li><a href="types-styles.html">Types &amp; Styles</a></li><li><a href="techniques.html">Techniques</a></li><li><a href="sheltering.html">Sheltering</a></li><li><a href="hazards.html">Hazards</a></li><li><a href="records.html">Records</a></li><li><a href="clubs.html">Clubs</a></li><li><a href="success-stories.html">Stories</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="developments.html">Latest</a></li><li><a href="guidelines.html">Guidelines</a></li><li><a href="quiz.html">Quizzes</a></li><li><a href="simulator.html">Simulator</a></li><li><a href="contact.html">Contact</a></li></ul></div></footer>
+
+<!-- ▼ BOTTOM TICKER (live date · time · location)
+     CSS  : §13: .ticker .ticker__track   (css/style.css — search for the § number)
+     JS   : main.js: date, time, location -->
+<div class="ticker" role="marquee" aria-label="Date, time and location"><div class="ticker__track"><span data-tick></span><span data-tick></span><span data-tick></span><span data-tick></span><span data-tick></span><span data-tick></span><span data-tick></span><span data-tick></span></div></div>
+<script src="../js/main.js"></script><script src="../js/motion.js"></script><script src="../js/pages.js"></script>
+<script src="../js/checklist.js"></script></body></html>

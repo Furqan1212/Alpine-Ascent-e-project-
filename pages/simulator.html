@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Expedition Simulator — Alpine Ascents</title><meta name="description" content="Expedition simulator">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../images/logo.svg"><link rel="icon" type="image/png" sizes="64x64" href="../images/favicon.png"><link rel="stylesheet" href="../css/style.css"><script>if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("motion")</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css"></head><body>
+<!-- ▼ SKIP LINK (keyboard shortcut to the main content)
+     CSS  : §2: .skip   (css/style.css — search for the § number) -->
+<!-- ═══════════════════════════════════════════════════════════════════════════════
+  PAGE      : Expedition Simulator — Alpine Ascents   (pages/simulator.html)
+  SECTIONS  : Simulate your expedition.  ·  Where do you want to climb?  ·  Now make it yours.  ·  Two trips,
+              side by side.  ·  An honest estimate.
+  SHARED    : skip link · scroll bar · navbar with Learn menu + visitor pill · footer · bottom ticker (same on every page)
+  STYLES    : ../css/style.css  (only stylesheet; comments above each section give the § to search for)
+  SCRIPTS   : main.js · motion.js · pages.js · cdnjs.cloudflare.com · sim-peaks.js · simulator.js
+  HOW TO READ: every "▼" comment below sits right above the HTML it describes and lists its CSS classes + JS file.
+════════════════════════════════════════════════════════════════════════════════ -->
+<a class="skip" href="#main">Skip to content</a>
+<!-- ▼ SCROLL PROGRESS BAR (thin orange line at the very top)
+     CSS  : §2: .progress   (css/style.css — search for the § number) -->
+<div class="progress" aria-hidden="true"></div>
+<!-- ▼ NAVIGATION BAR (fixed at the top)
+     CSS  : §4: .nav .logo .links .nav__right .visitors .burger | §2: .wrap | §4b: .dd .dd__btn .dd__menu | §4c:
+            .live .vtip   (css/style.css — search for the § number)
+     JS   : main.js: visitor counter + menu, dropdown, active page -->
+<header class="nav"><div class="wrap">
+<!-- ▼ LOGO (images/logo.svg, inline copy)
+     CSS  : §4: .logo   (css/style.css — search for the § number) -->
+<a class="logo" href="../index.html" aria-label="Alpine Ascents home"><svg class="lg" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="lgBg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0d1b31"/><stop offset="1" stop-color="#1c3a60"/></linearGradient><clipPath id="lgClip"><circle cx="24" cy="24" r="22.5"/></clipPath></defs><circle cx="24" cy="24" r="22.5" fill="url(#lgBg)"/><g clip-path="url(#lgClip)"><circle cx="36" cy="12" r="2.2" fill="#ffb38a" opacity=".9"/><path d="M-2 52 L24 21 L26 52Z" fill="#eef6fb"/><path d="M24 21 L50 52 L26 52Z" fill="#8fd3f4"/><path d="M24 21 L19.6 25.6 L22.4 24.6 L24 27.6 L26 24.8 L28.6 26.2Z" fill="#fff"/><path d="M-2 52 L-2 44 L13 36 L19 41 L28 34 L50 46 L50 52Z" fill="#12263f"/></g><g fill="#ff6a2b" stroke="#ff6a2b" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="9.2" r="2.5" stroke="none"/><path d="M24 12.4 V18.2" stroke-width="3"/><path d="M24 18.2 L21.6 21.2 M24 18.2 L26.4 21.2" stroke-width="2.4"/><path d="M24 13.6 L20.4 16.4" stroke-width="2.2"/><g><path d="M24 13.8 L28.2 9.4" stroke-width="2.2"/><path d="M26.2 6.2 L30.8 10.6" stroke-width="1.6" stroke="#eef6fb"/><path d="M26.2 6.2 L28.8 5.4" stroke-width="1.4" stroke="#eef6fb"/></g></g><circle cx="24" cy="24" r="22.5" fill="none" stroke="#8fd3f4" stroke-width="1.3" opacity=".55"/></svg>ALPINE ASCENTS</a>
+<!-- ▼ MAIN MENU (page links + Learn dropdown)
+     CSS  : §4: .links | §4b: .dd .dd__btn .dd__menu   (css/style.css — search for the § number)
+     JS   : main.js: menu, dropdown, active page -->
+<nav aria-label="Primary"><ul class="links" id="menu"><li><a href="../index.html">Home</a></li><li class="dd"><button class="dd__btn" type="button" aria-expanded="false" aria-haspopup="true">Learn <span aria-hidden="true">▾</span></button><ul class="dd__menu"><li><a href="information.html">Information</a></li><li><a href="history.html">History</a></li><li><a href="types-styles.html">Types &amp; Styles</a></li><li><a href="techniques.html">Techniques</a></li><li><a href="sheltering.html">Sheltering</a></li><li><a href="hazards.html">Hazards</a></li><li><a href="records.html">Records</a></li><li><a href="success-stories.html">Success Stories</a></li><li><a href="guidelines.html">Guidelines</a></li><li><a href="quiz.html">Quizzes</a></li></ul></li><li><a href="simulator.html">Simulator</a></li><li><a href="clubs.html">Clubs</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="developments.html">Latest</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
+<!-- ▼ VISITOR COUNTER + MOBILE-MENU BUTTON
+     CSS  : §4: .nav__right .visitors .burger | §4c: .live .vtip   (css/style.css — search for the § number)
+     JS   : main.js: visitor counter -->
+<div class="nav__right"><div class="visitors" tabindex="0" aria-describedby="visTip"><i class="live" aria-hidden="true"></i><b id="visitCount">—</b><span class="lbl">visitors</span><div class="vtip" id="visTip" role="tooltip"><strong id="visTipTitle"></strong><span id="visTipSub"></span><small>Counted in this browser only</small></div></div>
+<button class="burger" aria-expanded="false" aria-controls="menu" aria-label="Toggle menu"><span></span></button></div>
+</div></header>
+
+<!-- ▼ MAIN CONTENT — everything between the navbar and the footer. Each block below is one section of this page. -->
+<main id="main">
+<!-- ▼ PAGE BANNER — "Simulate your expedition."
+     CSS  : §7: .page-hero .page-hero__bg .crumbs | §2: .wrap   (css/style.css — search for the § number) -->
+<section class="page-hero"><div class="page-hero__bg" style="background-image:url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2000&q=80')" role="img" aria-label="Expedition simulator banner photograph"></div>
+<div class="wrap"><p class="crumbs"><a href="../index.html">Home</a> / Simulator</p><h1>Simulate your expedition.</h1></div></section>
+
+<!-- ▼ SECTION · Step 1 · Choose a mountain — "Where do you want to climb?"
+     CSS  : §2: .section .wrap .eyebrow .lead | §30: .sec-ph | §16: .chips   (css/style.css — search for the §
+            number) -->
+<section class="section"><div class="sec-ph" style="background-image:url('https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1400&q=70')" aria-hidden="true"></div><div class="wrap"><p class="eyebrow">Step 1 · Choose a mountain</p><h2 class="reveal">Where do you want to climb?</h2>
+<p class="lead reveal">Click a pin on the map or pick a peak below. Then adjust your fitness, experience and support to see what it would really take.</p>
+<div id="peakChips" class="chips" role="group" aria-label="Choose a mountain"></div>
+<div id="simMap" role="application" aria-label="Map of mountains in the simulator"></div></div></section>
+
+<!-- ▼ SECTION · Step 2 · Shape your trip — "Now make it yours."
+     CSS  : §2: .section .section--navy .wrap .eyebrow .lead | §30: .sec-ph | §25: .sim .panel .ctl .l .seg
+            .sim__res .res__top .total .bars .gauges .gauge .trk .arc .ring .badge .risks .advice | §20: .check
+            | §6: .hero__cta | §5: .btn .btn--primary .btn--ghost   (css/style.css — search for the § number)
+     JS   : simulator.js: cost / difficulty / success model + map -->
+<section class="section section--navy" id="sim"><div class="sec-ph" style="background-image:url('https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=1400&q=70')" aria-hidden="true"></div><div class="wrap"><p class="eyebrow">Step 2 · Shape your trip</p><h2 class="reveal">Now make it yours.</h2>
+<div class="sim" style="margin-top:40px">
+<form class="panel" id="simForm" onsubmit="return false">
+<h3 id="peakName">Mount Everest</h3><p class="lead" id="peakInfo" style="font-size:1rem;margin:0 0 8px"></p>
+<div class="ctl"><label for="fit">Fitness <output id="fitOut" for="fit">6 / 10</output></label><input id="fit" name="fit" type="range" min="1" max="10" value="6"></div>
+<div class="ctl"><label for="exp">Experience</label><select id="exp" name="exp"></select></div>
+<div class="ctl"><label for="group">Group size <output id="grpOut" for="group">4 people</output></label><input id="group" name="group" type="range" min="1" max="10" value="4"><small>Smaller groups cost more per person.</small></div>
+<div class="ctl"><span class="l">Support level</span><div class="seg" role="radiogroup" aria-label="Support level"><label><input type="radio" name="support" value="budget"><span>Budget</span></label><label><input type="radio" name="support" value="guided" checked><span>Guided</span></label><label><input type="radio" name="support" value="premium"><span>Premium</span></label></div></div>
+<div class="ctl"><label class="check" style="text-transform:none;letter-spacing:0;font-size:.95rem;color:var(--ice)"><input type="checkbox" id="oxygen" name="oxygen" checked><span>Use bottled oxygen</span></label><small id="o2note"></small></div>
+<div class="ctl"><label for="month">Month of climb</label><select id="month" name="month"></select></div>
+</form>
+<div class="sim__res">
+<div class="panel"><div class="res__top"><small>Estimated total</small><span class="total" id="rTotal" aria-live="polite">$0</span><p id="rPer"></p></div><ul class="bars" id="rBars"></ul></div>
+<div class="panel gauges">
+<div class="gauge"><svg viewBox="0 0 120 80" role="img" aria-label="Difficulty gauge"><path class="trk" d="M10 65 A50 50 0 0 1 110 65"/><path class="arc" id="dialArc" d="M10 65 A50 50 0 0 1 110 65" style="stroke-dasharray:157.08;stroke-dashoffset:157.08"/><text id="dialNum" x="60" y="58">0</text></svg><p>Difficulty · <span id="dialLbl"></span></p></div>
+<div class="gauge"><svg viewBox="0 0 120 80" role="img" aria-label="Success chance ring"><circle class="trk" cx="60" cy="42" r="30"/><circle class="arc ring" id="ringArc" cx="60" cy="42" r="30" transform="rotate(-90 60 42)" style="stroke-dasharray:188.5;stroke-dashoffset:188.5"/><text id="ringNum" x="60" y="50">0%</text></svg><p>Success chance</p></div></div>
+<div class="panel"><span class="badge" id="rSeason"></span><h3 style="margin-top:18px">Top risks</h3><ul class="risks" id="rRisks"></ul><h3 style="margin-top:22px">How to improve your odds</h3><ul class="advice" id="rAdvice"></ul>
+<div class="hero__cta" style="margin-top:26px"><button class="btn btn--primary" id="saveA" type="button">Save as Trip A</button><button class="btn btn--ghost" id="saveB" type="button">Save as Trip B</button></div></div>
+</div></div></div></section>
+
+<!-- ▼ SECTION · Step 3 · Compare — "Two trips, side by side."
+     CSS  : §2: .section .wrap .eyebrow .lead | §30: .sec-ph | §25: .cmp | §6: .hero__cta | §5: .btn .btn--ghost
+            (css/style.css — search for the § number) -->
+<section class="section"><div class="sec-ph" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1400&q=70')" aria-hidden="true"></div><div class="wrap"><p class="eyebrow">Step 3 · Compare</p><h2 class="reveal">Two trips, side by side.</h2>
+<p class="lead reveal">Save one trip as A, change your settings or mountain, then save another as B. The better value in each row turns green.</p>
+<div id="cmp" class="cmp reveal" style="margin-top:36px"></div><div class="hero__cta" style="margin-top:24px"><button class="btn btn--ghost" id="clearCmp" type="button">Clear saved trips</button></div></div></section>
+
+<!-- ▼ SECTION · How it works — "An honest estimate."
+     CSS  : §2: .section .section--navy .wrap .eyebrow .lead | §8: .split .facts .frame | §20: .sources
+            (css/style.css — search for the § number) -->
+<section class="section section--navy"><div class="wrap split"><div><p class="eyebrow">How it works</p><h2 class="reveal">An honest estimate.</h2>
+<p class="lead reveal">This is a learning tool, not a quote. Costs are rough 2026 figures in US dollars, and the difficulty and success numbers come from a simple model, not real statistics.</p>
+<ul class="facts reveal"><li><span>Everest permit</span>$15,000 (Nepal, spring 2026)</li><li><span>Denali permit</span>$450</li><li><span>Aconcagua permit</span>about $980</li><li><span>Guide fees</span>Modelled from published operator ranges</li></ul>
+<ul class="sources"><li><a href="https://www.alanarnette.com/?p=48861" target="_blank" rel="noopener noreferrer"><span>Alan Arnette: Everest 2026 cost guide</span><span aria-hidden="true">↗</span></a></li><li><a href="https://globalsummitguide.com/mountaineering-permits-regulations/" target="_blank" rel="noopener noreferrer"><span>Global Summit Guide: permit costs by mountain</span><span aria-hidden="true">↗</span></a></li></ul></div>
+<figure class="frame"><img src="https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=1000&q=80" alt="Climbers on a snowy ridge" loading="lazy"><figcaption>Plan first. Then climb.</figcaption></figure></div></section>
+<!-- ▼ NEXT-PAGE LINK (big link at the end of the page)
+     CSS  : §11: .next | §2: .wrap   (css/style.css — search for the § number) -->
+<a class="next" href="clubs.html"><div class="wrap"><small>Next</small><span>Find a club near you →</span></div></a>
+</main>
+
+<!-- ▼ FOOTER
+     CSS  : §12: .footer | §2: .wrap   (css/style.css — search for the § number) -->
+<footer class="footer"><div class="wrap"><div>© 2026 Alpine Ascents. All rights reserved.</div><ul><li><a href="../index.html">Home</a></li><li><a href="information.html">Information</a></li><li><a href="history.html">History</a></li><li><a href="types-styles.html">Types &amp; Styles</a></li><li><a href="techniques.html">Techniques</a></li><li><a href="sheltering.html">Sheltering</a></li><li><a href="hazards.html">Hazards</a></li><li><a href="records.html">Records</a></li><li><a href="clubs.html">Clubs</a></li><li><a href="success-stories.html">Stories</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="developments.html">Latest</a></li><li><a href="guidelines.html">Guidelines</a></li><li><a href="quiz.html">Quizzes</a></li><li><a href="simulator.html">Simulator</a></li><li><a href="contact.html">Contact</a></li></ul></div></footer>
+
+<!-- ▼ BOTTOM TICKER (live date · time · location)
+     CSS  : §13: .ticker .ticker__track   (css/style.css — search for the § number)
+     JS   : main.js: date, time, location -->
+<div class="ticker" role="marquee" aria-label="Date, time and location"><div class="ticker__track"><span data-tick></span><span data-tick></span><span data-tick></span><span data-tick></span><span data-tick></span><span data-tick></span><span data-tick></span><span data-tick></span></div></div>
+<script src="../js/main.js"></script><script src="../js/motion.js"></script><script src="../js/pages.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script><script src="../data/sim-peaks.js"></script><script src="../js/simulator.js"></script></body></html>
